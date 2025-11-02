@@ -936,8 +936,8 @@ def admin_book_add(request):
         if form.is_valid():
             book = form.save(commit=False)
             # Set created_at and updated_at
-            book.created_at = now()
-            book.updated_at = now()
+            book.created_at = datetime.now()
+            book.updated_at = datetime.now()
             book.save()
             form.save_m2m()  # Save many-to-many relationships (authors)
 
