@@ -1,0 +1,335 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Order Dashboard - Admin{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>
+                    <i class="fas fa-chart-line text-brown me-2"></i>Order Dashboard
+                </h1>
+                <a href="{% url 'admin:index' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-cog me-2"></i>Django Admin
+                </a>
+            </div>
+            <p class="text-muted">Monitor orders, revenue, and sales performance</p>
+        </div>
+    </div>
+
+    <!-- Date Range Filter -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3 align-items-end">
+                <div class="col-md-3">
+                    <label for="start_date" class="form-label">Start Date</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date"
+                            value="{{ start_date }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="end_date" class="form-label">End Date</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date"
+                           value="{{ end_date }}">
+                </div>
+                <div class="col-md-4">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-filter me-2"></i>Apply Filter
+                        </button>
+                        <a href="?start_date={{ default_start }}&end_date={{ default_end }}"
+                           class="btn btn-outline-secondary">
+                            Last 7 Days
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-2 text-end" style="overflow: hidden">
+                    <small class="text-muted">
+                        <span class="text-nowrap">From: {{ start_date }}</span>
+                        <span class="text-nowrap">To: {{ end_date|date }}</span>
+                    </small>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Summary Statistics -->
+    <div class="row mb-4">
+        <div class="col-md-4 mb-sm-2">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">{{ total_orders }}</h4>
+                            <small>Total Orders</small>
+                        </div>
+                        <i class="fas fa-shopping-bag fa-2x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-sm-2">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">₹{{ total_revenue|floatformat:0 }}</h4>
+                            <small>Total Revenue</small>
+                        </div>
+                        <i class="fas fa-rupee-sign fa-2x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <h4 class="mb-0">{{ total_items_sold }}</h4>
+                            <small>Items Sold</small>
+                        </div>
+                        <i class="fas fa-book fa-2x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-lg-8">
+            <!-- Recent Orders -->
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Recent Orders</h5>
+                    <a href="{% url 'admin:bookapp_order_changelist' %}" class="btn btn-sm btn-outline-primary">
+                        View All
+                    </a>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Payment</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for order in recent_orders %}
+                                <tr>
+                                    <td>
+                                        <strong>{{ order.order_id }}</strong>
+                                    </td>
+                                    <td>{{ order.user.get_full_name|default:order.user.username }}</td>
+                                    <td>₹{{ order.total_amount|floatformat:0 }}</td>
+                                    <td>
+                                        <span class="badge {% if order.order_status == 'delivered' %}bg-success{% elif order.order_status == 'cancelled' %}bg-danger{% else %}bg-warning{% endif %}">
+                                            {{ order.get_order_status_display }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="badge {% if order.payment_status == 'completed' %}bg-success{% elif order.payment_status == 'failed' %}bg-danger{% else %}bg-warning{% endif %}">
+                                            {{ order.get_payment_status_display }}
+                                        </span>
+                                    </td>
+                                    <td>{{ order.created_at|date:"M j, Y" }}</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="6" class="text-center py-4 text-muted">
+                                        No orders found in the selected date range.
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Top Selling Books -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Top Selling Books</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>Book</th>
+                                    <th>Copies Sold</th>
+                                    <th>Revenue</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for book in top_books %}
+                                <tr>
+                                    <td>
+                                        <strong>{{ book.book__title|truncatewords:3 }}</strong>
+                                        <br>
+                                        <small class="text-muted">{{ book.book__isbn }}</small>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-primary">{{ book.total_sold }}</span>
+                                    </td>
+                                    <td>₹{{ book.revenue|floatformat:0 }}</td>
+                                    <td>
+                                        <span class="badge bg-secondary">
+                                            {{ book.book_type|title }}
+                                        </span>
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="4" class="text-center py-4 text-muted">
+                                        No sales data available.
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-lg-4">
+            <!-- Order Status Breakdown -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Order Status</h5>
+                </div>
+                <div class="card-body">
+                    {% for status in status_breakdown %}
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge {% if status.order_status == 'delivered' %}bg-success{% elif status.order_status == 'cancelled' %}bg-danger{% else %}bg-warning{% endif %}">
+                            {{ status.get_order_status_display }}
+                        </span>
+                        <div class="text-end">
+                            <strong>{{ status.count }}</strong>
+                            <br>
+                            <small class="text-muted">₹{{ status.revenue|floatformat:0 }}</small>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-muted text-center mb-0">No orders found.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Payment Status Breakdown -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Payment Status</h5>
+                </div>
+                <div class="card-body">
+                    {% for payment in payment_breakdown %}
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge {% if payment.payment_status == 'completed' %}bg-success{% elif payment.payment_status == 'failed' %}bg-danger{% else %}bg-warning{% endif %}">
+                            {{ payment.get_payment_status_display }}
+                        </span>
+                        <div class="text-end">
+                            <strong>{{ payment.count }}</strong>
+                            <br>
+                            <small class="text-muted">₹{{ payment.revenue|floatformat:0 }}</small>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-muted text-center mb-0">No payment data available.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Book Type Breakdown -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Book Type Sales</h5>
+                </div>
+                <div class="card-body">
+                    {% for book_type in book_type_breakdown %}
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge bg-info">
+                            {{ book_type.book_type|title }}
+                        </span>
+                        <div class="text-end">
+                            <strong>{{ book_type.total_quantity }}</strong> sold
+                            <br>
+                            <small class="text-muted">₹{{ book_type.revenue|floatformat:0 }}</small>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p class="text-muted text-center mb-0">No book type data available.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Set max date for end_date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('end_date').max = today;
+    document.getElementById('start_date').max = today;
+
+    // Validate date range
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const startDate = new Date(document.getElementById('start_date').value);
+        const endDate = new Date(document.getElementById('end_date').value);
+
+        if (startDate > endDate) {
+            e.preventDefault();
+            alert('Start date cannot be after end date.');
+            return false;
+        }
+
+        // Check if range is too large (optional)
+        const diffTime = Math.abs(endDate - startDate);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays > 365) {
+            if (!confirm('You are viewing a large date range (over 1 year). This might be slow. Continue?')) {
+                e.preventDefault();
+                return false;
+            }
+        }
+    });
+});
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.card {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.table th {
+    border-top: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    color: #6c757d;
+}
+</style>
+{% endblock %}

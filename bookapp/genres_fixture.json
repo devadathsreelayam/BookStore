@@ -1,0 +1,1314 @@
+[
+  {
+    "model": "bookapp.genre",
+    "pk": 1,
+    "fields": {
+      "name": "Literary Fiction",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 2,
+    "fields": {
+      "name": "Mystery & Thriller",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 3,
+    "fields": {
+      "name": "Science Fiction & Fantasy",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 4,
+    "fields": {
+      "name": "Romance",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 5,
+    "fields": {
+      "name": "Young Adult",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 6,
+    "fields": {
+      "name": "Historical Fiction",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 7,
+    "fields": {
+      "name": "Malayalam Fiction",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 8,
+    "fields": {
+      "name": "Indian Mythology",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 9,
+    "fields": {
+      "name": "Short Story Collections",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 10,
+    "fields": {
+      "name": "History",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 11,
+    "fields": {
+      "name": "Science & Technology",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 12,
+    "fields": {
+      "name": "Self-Help & Personal Development",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 13,
+    "fields": {
+      "name": "Biography & Memoir",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 14,
+    "fields": {
+      "name": "Business & Economics",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 15,
+    "fields": {
+      "name": "Philosophy & Religion",
+      "parent": null
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 16,
+    "fields": {
+      "name": "Mythological Retelling",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 17,
+    "fields": {
+      "name": "Children's Literature",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 18,
+    "fields": {
+      "name": "Social Saga",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 19,
+    "fields": {
+      "name": "Immigrant Story",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 20,
+    "fields": {
+      "name": "Immigrant Novel",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 21,
+    "fields": {
+      "name": "Magical Realism",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 22,
+    "fields": {
+      "name": "Historical Saga",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 23,
+    "fields": {
+      "name": "Romance",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 24,
+    "fields": {
+      "name": "Historical Mystery",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 25,
+    "fields": {
+      "name": "Political Fiction",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 26,
+    "fields": {
+      "name": "Historical Fiction",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 27,
+    "fields": {
+      "name": "Satire",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 28,
+    "fields": {
+      "name": "Coming-of-age",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 29,
+    "fields": {
+      "name": "Social Critique",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 30,
+    "fields": {
+      "name": "Social Drama",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 31,
+    "fields": {
+      "name": "War Fiction",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 32,
+    "fields": {
+      "name": "Social Satire",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 33,
+    "fields": {
+      "name": "Family Saga",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 34,
+    "fields": {
+      "name": "Short Stories",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 35,
+    "fields": {
+      "name": "Eco-fiction",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 36,
+    "fields": {
+      "name": "Family Drama",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 37,
+    "fields": {
+      "name": "Family Mystery",
+      "parent": 1
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 38,
+    "fields": {
+      "name": "Conspiracy Thriller",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 39,
+    "fields": {
+      "name": "Japanese Crime",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 40,
+    "fields": {
+      "name": "Scandinavian Crime",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 41,
+    "fields": {
+      "name": "Locked Room Mystery",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 42,
+    "fields": {
+      "name": "Noir",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 43,
+    "fields": {
+      "name": "Literary Thriller",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 44,
+    "fields": {
+      "name": "Police Procedural",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 45,
+    "fields": {
+      "name": "Private Detective",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 46,
+    "fields": {
+      "name": "Cozy Mystery",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 47,
+    "fields": {
+      "name": "Domestic Thriller",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 48,
+    "fields": {
+      "name": "Classic Mystery",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 49,
+    "fields": {
+      "name": "Spy Thriller",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 50,
+    "fields": {
+      "name": "Crime Thriller",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 51,
+    "fields": {
+      "name": "Psychological Thriller",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 52,
+    "fields": {
+      "name": "Legal Thriller",
+      "parent": 2
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 53,
+    "fields": {
+      "name": "Space Opera",
+      "parent": 3
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 54,
+    "fields": {
+      "name": "Hard SF",
+      "parent": 3
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 55,
+    "fields": {
+      "name": "Military SF",
+      "parent": 3
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 56,
+    "fields": {
+      "name": "Fantasy Epic",
+      "parent": 3
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 57,
+    "fields": {
+      "name": "Epic Fantasy",
+      "parent": 3
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 58,
+    "fields": {
+      "name": "High Fantasy",
+      "parent": 3
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 59,
+    "fields": {
+      "name": "Dystopian",
+      "parent": 3
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 60,
+    "fields": {
+      "name": "Cyberpunk",
+      "parent": 3
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 61,
+    "fields": {
+      "name": "Fantasy",
+      "parent": 3
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 62,
+    "fields": {
+      "name": "Science Fiction",
+      "parent": 3
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 63,
+    "fields": {
+      "name": "Social SF",
+      "parent": 3
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 64,
+    "fields": {
+      "name": "Historical Romance",
+      "parent": 4
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 65,
+    "fields": {
+      "name": "Contemporary Romance",
+      "parent": 4
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 66,
+    "fields": {
+      "name": "Historical Fiction",
+      "parent": 5
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 67,
+    "fields": {
+      "name": "Contemporary Romance",
+      "parent": 5
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 68,
+    "fields": {
+      "name": "Coming-of-age",
+      "parent": 5
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 69,
+    "fields": {
+      "name": "Paranormal Romance",
+      "parent": 5
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 70,
+    "fields": {
+      "name": "Dystopian",
+      "parent": 5
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 71,
+    "fields": {
+      "name": "Fantasy",
+      "parent": 5
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 72,
+    "fields": {
+      "name": "Generational Saga",
+      "parent": 6
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 73,
+    "fields": {
+      "name": "Post-Colonial India",
+      "parent": 6
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 74,
+    "fields": {
+      "name": "World War II",
+      "parent": 6
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 75,
+    "fields": {
+      "name": "Gothic Mystery",
+      "parent": 6
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 76,
+    "fields": {
+      "name": "Napoleonic Wars",
+      "parent": 6
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 77,
+    "fields": {
+      "name": "Medieval",
+      "parent": 6
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 78,
+    "fields": {
+      "name": "Afghanistan",
+      "parent": 6
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 79,
+    "fields": {
+      "name": "Indian History",
+      "parent": 6
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 80,
+    "fields": {
+      "name": "Autobiographical",
+      "parent": 7
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 81,
+    "fields": {
+      "name": "Historical Fiction",
+      "parent": 7
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 82,
+    "fields": {
+      "name": "Mythological Retelling",
+      "parent": 7
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 83,
+    "fields": {
+      "name": "Literary Fiction",
+      "parent": 7
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 84,
+    "fields": {
+      "name": "Coming-of-age",
+      "parent": 7
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 85,
+    "fields": {
+      "name": "Village Saga",
+      "parent": 7
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 86,
+    "fields": {
+      "name": "Romantic Tragedy",
+      "parent": 7
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 87,
+    "fields": {
+      "name": "Humorous Fiction",
+      "parent": 7
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 88,
+    "fields": {
+      "name": "Survival Drama",
+      "parent": 7
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 89,
+    "fields": {
+      "name": "Psychological Thriller",
+      "parent": 7
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 90,
+    "fields": {
+      "name": "Divine Feminine",
+      "parent": 8
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 91,
+    "fields": {
+      "name": "LGBTQ Retelling",
+      "parent": 8
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 92,
+    "fields": {
+      "name": "Shiva Trilogy",
+      "parent": 8
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 93,
+    "fields": {
+      "name": "Thriller",
+      "parent": 8
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 94,
+    "fields": {
+      "name": "Mahabharata Retelling",
+      "parent": 8
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 95,
+    "fields": {
+      "name": "Ramayana Retelling",
+      "parent": 8
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 96,
+    "fields": {
+      "name": "Mythology Retelling",
+      "parent": 9
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 97,
+    "fields": {
+      "name": "Literary Fiction",
+      "parent": 9
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 98,
+    "fields": {
+      "name": "Minimalist Fiction",
+      "parent": 9
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 99,
+    "fields": {
+      "name": "Feminist Fiction",
+      "parent": 9
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 100,
+    "fields": {
+      "name": "Classic Fiction",
+      "parent": 9
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 101,
+    "fields": {
+      "name": "Science Fiction",
+      "parent": 9
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 102,
+    "fields": {
+      "name": "Classic Literature",
+      "parent": 9
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 103,
+    "fields": {
+      "name": "Contemporary Fiction",
+      "parent": 9
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 104,
+    "fields": {
+      "name": "World History",
+      "parent": 10
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 105,
+    "fields": {
+      "name": "Middle Eastern History",
+      "parent": 10
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 106,
+    "fields": {
+      "name": "Biography",
+      "parent": 10
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 107,
+    "fields": {
+      "name": "European History",
+      "parent": 10
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 108,
+    "fields": {
+      "name": "Medical History",
+      "parent": 10
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 109,
+    "fields": {
+      "name": "Ancient History",
+      "parent": 10
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 110,
+    "fields": {
+      "name": "Indian History",
+      "parent": 10
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 111,
+    "fields": {
+      "name": "Medieval History",
+      "parent": 10
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 112,
+    "fields": {
+      "name": "American History",
+      "parent": 10
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 113,
+    "fields": {
+      "name": "Theoretical Physics",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 114,
+    "fields": {
+      "name": "Biochemistry",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 115,
+    "fields": {
+      "name": "Artificial Intelligence",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 116,
+    "fields": {
+      "name": "Evolutionary Biology",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 117,
+    "fields": {
+      "name": "Popular Science",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 118,
+    "fields": {
+      "name": "Ecology",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 119,
+    "fields": {
+      "name": "Quantum Physics",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 120,
+    "fields": {
+      "name": "Genetics",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 121,
+    "fields": {
+      "name": "Cryptography",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 122,
+    "fields": {
+      "name": "Environmental Science",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 123,
+    "fields": {
+      "name": "Medical History",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 124,
+    "fields": {
+      "name": "Philosophy of Science",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 125,
+    "fields": {
+      "name": "Information Theory",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 126,
+    "fields": {
+      "name": "Computer Science",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 127,
+    "fields": {
+      "name": "Human Biology",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 128,
+    "fields": {
+      "name": "Anthropology",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 129,
+    "fields": {
+      "name": "Mathematics",
+      "parent": 11
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 130,
+    "fields": {
+      "name": "Psychology",
+      "parent": 12
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 131,
+    "fields": {
+      "name": "Productivity",
+      "parent": 12
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 132,
+    "fields": {
+      "name": "Interpersonal Skills",
+      "parent": 12
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 133,
+    "fields": {
+      "name": "Wealth Building",
+      "parent": 12
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 134,
+    "fields": {
+      "name": "Habit Formation",
+      "parent": 12
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 135,
+    "fields": {
+      "name": "Spirituality",
+      "parent": 12
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 136,
+    "fields": {
+      "name": "Mindset",
+      "parent": 12
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 137,
+    "fields": {
+      "name": "Personal Effectiveness",
+      "parent": 12
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 138,
+    "fields": {
+      "name": "Political Autobiography",
+      "parent": 13
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 139,
+    "fields": {
+      "name": "Autobiography",
+      "parent": 13
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 140,
+    "fields": {
+      "name": "War Memoir",
+      "parent": 13
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 141,
+    "fields": {
+      "name": "Business Biography",
+      "parent": 13
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 142,
+    "fields": {
+      "name": "Memoir",
+      "parent": 13
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 143,
+    "fields": {
+      "name": "Sports Autobiography",
+      "parent": 13
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 144,
+    "fields": {
+      "name": "Spiritual Memoir",
+      "parent": 13
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 145,
+    "fields": {
+      "name": "Spiritual Autobiography",
+      "parent": 13
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 146,
+    "fields": {
+      "name": "Autobiographical Novel",
+      "parent": 13
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 147,
+    "fields": {
+      "name": "Adventure Biography",
+      "parent": 13
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 148,
+    "fields": {
+      "name": "War Biography",
+      "parent": 13
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 149,
+    "fields": {
+      "name": "Personal Finance",
+      "parent": 14
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 150,
+    "fields": {
+      "name": "Entrepreneurship",
+      "parent": 14
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 151,
+    "fields": {
+      "name": "Management",
+      "parent": 14
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 152,
+    "fields": {
+      "name": "Economics",
+      "parent": 14
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 153,
+    "fields": {
+      "name": "Investing",
+      "parent": 14
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 154,
+    "fields": {
+      "name": "Leadership",
+      "parent": 14
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 155,
+    "fields": {
+      "name": "Behavioral Economics",
+      "parent": 14
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 156,
+    "fields": {
+      "name": "Hindu Philosophy",
+      "parent": 15
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 157,
+    "fields": {
+      "name": "Buddhism",
+      "parent": 15
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 158,
+    "fields": {
+      "name": "Stoicism",
+      "parent": 15
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 159,
+    "fields": {
+      "name": "Political Philosophy",
+      "parent": 15
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 160,
+    "fields": {
+      "name": "Atheism",
+      "parent": 15
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 161,
+    "fields": {
+      "name": "Existentialism",
+      "parent": 15
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 162,
+    "fields": {
+      "name": "Spirituality",
+      "parent": 15
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 163,
+    "fields": {
+      "name": "Philosophical Fiction",
+      "parent": 15
+    }
+  },
+  {
+    "model": "bookapp.genre",
+    "pk": 164,
+    "fields": {
+      "name": "Spiritual Poetry",
+      "parent": 15
+    }
+  }
+]

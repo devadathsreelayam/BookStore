@@ -1,0 +1,1458 @@
+[
+  {
+    "model": "bookapp.author",
+    "pk": 1,
+    "fields": {
+      "name": "Arundhati Roy",
+      "bio": "Author of The God of Small Things"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 2,
+    "fields": {
+      "name": "Vikram Seth",
+      "bio": "Author of A Suitable Boy"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 3,
+    "fields": {
+      "name": "Aravind Adiga",
+      "bio": "Author of The White Tiger"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 4,
+    "fields": {
+      "name": "Kiran Desai",
+      "bio": "Author of The Inheritance of Loss"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 5,
+    "fields": {
+      "name": "Jhumpa Lahiri",
+      "bio": "Author of The Lowland"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 6,
+    "fields": {
+      "name": "Chitra Banerjee Divakaruni",
+      "bio": "Author of The Palace of Illusions"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 7,
+    "fields": {
+      "name": "Amitav Ghosh",
+      "bio": "Author of The Shadow Lines"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 8,
+    "fields": {
+      "name": "R.K. Narayan",
+      "bio": "Author of The Guide"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 9,
+    "fields": {
+      "name": "Upamanyu Chatterjee",
+      "bio": "Author of August: An Indian Story"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 10,
+    "fields": {
+      "name": "Ruskin Bond",
+      "bio": "Author of The Blue Umbrella"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 11,
+    "fields": {
+      "name": "Manu Joseph",
+      "bio": "Author of Serious Men"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 12,
+    "fields": {
+      "name": "Anuradha Roy",
+      "bio": "Author of The Folded Earth"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 13,
+    "fields": {
+      "name": "Jerry Pinto",
+      "bio": "Author of Em and the Big Hoom"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 14,
+    "fields": {
+      "name": "Kiran Nagarkar",
+      "bio": "Author of Cuckold"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 15,
+    "fields": {
+      "name": "Siddharth Dhanvant Shanghvi",
+      "bio": "Author of The Last Song of Dusk"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 16,
+    "fields": {
+      "name": "Rohinton Mistry",
+      "bio": "Author of Family Matters"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 17,
+    "fields": {
+      "name": "Leslye Walton",
+      "bio": "Author of The Strange and Beautiful Sorrows of Ava Lavender"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 18,
+    "fields": {
+      "name": "T\u00c3\u00a9a Obreht",
+      "bio": "Author of The Tiger's Wife"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 19,
+    "fields": {
+      "name": "Stieg Larsson",
+      "bio": "Author of The Girl with the Dragon Tattoo"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 20,
+    "fields": {
+      "name": "Gillian Flynn",
+      "bio": "Author of Gone Girl"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 21,
+    "fields": {
+      "name": "Dan Brown",
+      "bio": "Author of The Da Vinci Code"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 22,
+    "fields": {
+      "name": "Agatha Christie",
+      "bio": "Author of And Then There Were None"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 23,
+    "fields": {
+      "name": "Alex Michaelides",
+      "bio": "Author of The Silent Patient"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 24,
+    "fields": {
+      "name": "Richard Osman",
+      "bio": "Author of The Thursday Murder Club"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 25,
+    "fields": {
+      "name": "Tana French",
+      "bio": "Author of In the Woods"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 26,
+    "fields": {
+      "name": "Jo Nesb\u00c3\u00b8",
+      "bio": "Author of The Snowman"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 27,
+    "fields": {
+      "name": "Robert Ludlum",
+      "bio": "Author of The Bourne Identity"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 28,
+    "fields": {
+      "name": "Arthur Conan Doyle",
+      "bio": "Author of The Hound of the Baskervilles"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 29,
+    "fields": {
+      "name": "Paula Hawkins",
+      "bio": "Author of The Girl on the Train"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 30,
+    "fields": {
+      "name": "Liane Moriarty",
+      "bio": "Author of Big Little Lies"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 31,
+    "fields": {
+      "name": "Alexander McCall Smith",
+      "bio": "Author of The No. 1 Ladies' Detective Agency"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 32,
+    "fields": {
+      "name": "Ruth Ware",
+      "bio": "Author of One by One"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 33,
+    "fields": {
+      "name": "Keigo Higashino",
+      "bio": "Author of The Devotion of Suspect X"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 34,
+    "fields": {
+      "name": "A.J. Finn",
+      "bio": "Author of The Woman in the Window"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 35,
+    "fields": {
+      "name": "Robert Galbraith",
+      "bio": "Author of The Cuckoo's Calling"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 36,
+    "fields": {
+      "name": "Donna Tartt",
+      "bio": "Author of The Secret History"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 37,
+    "fields": {
+      "name": "S.J. Watson",
+      "bio": "Author of Before I Go to Sleep"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 38,
+    "fields": {
+      "name": "Patricia Highsmith",
+      "bio": "Author of The Talented Mr. Ripley"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 39,
+    "fields": {
+      "name": "Michael Connelly",
+      "bio": "Author of The Reversal"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 40,
+    "fields": {
+      "name": "Dennis Lehane",
+      "bio": "Author of Shutter Island"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 41,
+    "fields": {
+      "name": "Shari Lapena",
+      "bio": "Author of The Couple Next Door"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 42,
+    "fields": {
+      "name": "Jane Harper",
+      "bio": "Author of The Dry"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 43,
+    "fields": {
+      "name": "James M. Cain",
+      "bio": "Author of The Postman Always Rings Twice"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 44,
+    "fields": {
+      "name": "Frank Herbert",
+      "bio": "Author of Dune"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 45,
+    "fields": {
+      "name": "J.R.R. Tolkien",
+      "bio": "Author of The Lord of the Rings"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 46,
+    "fields": {
+      "name": "Isaac Asimov",
+      "bio": "Author of Foundation"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 47,
+    "fields": {
+      "name": "George Orwell",
+      "bio": "Author of 1984"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 48,
+    "fields": {
+      "name": "William Gibson",
+      "bio": "Author of Neuromancer"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 49,
+    "fields": {
+      "name": "Orson Scott Card",
+      "bio": "Author of Ender's Game"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 50,
+    "fields": {
+      "name": "George R.R. Martin",
+      "bio": "Author of A Game of Thrones"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 51,
+    "fields": {
+      "name": "Ursula K. Le Guin",
+      "bio": "Author of The Left Hand of Darkness"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 52,
+    "fields": {
+      "name": "Patrick Rothfuss",
+      "bio": "Author of The Name of the Wind"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 53,
+    "fields": {
+      "name": "Neal Stephenson",
+      "bio": "Author of Snow Crash"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 54,
+    "fields": {
+      "name": "Andy Weir",
+      "bio": "Author of The Martian"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 55,
+    "fields": {
+      "name": "Aldous Huxley",
+      "bio": "Author of Brave New World"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 56,
+    "fields": {
+      "name": "Brandon Sanderson",
+      "bio": "Author of The Way of Kings"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 57,
+    "fields": {
+      "name": "Nicholas Sparks",
+      "bio": "Author of The Notebook"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 58,
+    "fields": {
+      "name": "Jojo Moyes",
+      "bio": "Author of Me Before You"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 59,
+    "fields": {
+      "name": "Helen Hoang",
+      "bio": "Author of The Bride Test"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 60,
+    "fields": {
+      "name": "Diana Gabaldon",
+      "bio": "Author of Outlander"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 61,
+    "fields": {
+      "name": "Colleen Hoover",
+      "bio": "Author of It Ends With Us"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 62,
+    "fields": {
+      "name": "Casey McQuiston",
+      "bio": "Author of \"Red, White & Royal Blue\""
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 63,
+    "fields": {
+      "name": "Elena Armas",
+      "bio": "Author of The Spanish Love Deception"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 64,
+    "fields": {
+      "name": "Ali Hazelwood",
+      "bio": "Author of The Love Hypothesis"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 65,
+    "fields": {
+      "name": "Suzanne Collins",
+      "bio": "Author of The Hunger Games"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 66,
+    "fields": {
+      "name": "John Green",
+      "bio": "Author of The Fault in Our Stars"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 67,
+    "fields": {
+      "name": "J.K. Rowling",
+      "bio": "Author of Harry Potter and the Philosopher's Stone"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 68,
+    "fields": {
+      "name": "Stephen Chbosky",
+      "bio": "Author of The Perks of Being a Wallflower"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 69,
+    "fields": {
+      "name": "Stephenie Meyer",
+      "bio": "Author of Twilight"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 70,
+    "fields": {
+      "name": "Markus Zusak",
+      "bio": "Author of The Book Thief"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 71,
+    "fields": {
+      "name": "Veronica Roth",
+      "bio": "Author of Divergent"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 72,
+    "fields": {
+      "name": "Jenny Han",
+      "bio": "Author of To All the Boys I've Loved Before"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 73,
+    "fields": {
+      "name": "Lois Lowry",
+      "bio": "Author of The Giver"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 74,
+    "fields": {
+      "name": "Leigh Bardugo",
+      "bio": "Author of Six of Crows"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 75,
+    "fields": {
+      "name": "Kristin Hannah",
+      "bio": "Author of The Nightingale"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 76,
+    "fields": {
+      "name": "Anthony Doerr",
+      "bio": "Author of All the Light We Cannot See"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 77,
+    "fields": {
+      "name": "Ken Follett",
+      "bio": "Author of The Pillars of the Earth"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 78,
+    "fields": {
+      "name": "Khaled Hosseini",
+      "bio": "Author of The Kite Runner"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 79,
+    "fields": {
+      "name": "Leo Tolstoy",
+      "bio": "Author of War and Peace"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 80,
+    "fields": {
+      "name": "Carlos Ruiz Zaf\u00c3\u00b3n",
+      "bio": "Author of The Shadow of the Wind"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 81,
+    "fields": {
+      "name": "Alka Joshi",
+      "bio": "Author of The Henna Artist"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 82,
+    "fields": {
+      "name": "Yaa Gyasi",
+      "bio": "Author of Homegoing"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 83,
+    "fields": {
+      "name": "M.T. Vasudevan Nair",
+      "bio": "Author of Randamoozham"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 84,
+    "fields": {
+      "name": "Benyamin",
+      "bio": "Author of Aadujeevitham"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 85,
+    "fields": {
+      "name": "M. Mukundan",
+      "bio": "Author of Mayyazhippuzhayude Theerangalil"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 86,
+    "fields": {
+      "name": "Vikram Pradeep",
+      "bio": "Author of Aarachar"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 87,
+    "fields": {
+      "name": "Kamala Surayya",
+      "bio": "Author of Ente Kadha"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 88,
+    "fields": {
+      "name": "S.K. Pottekkatt",
+      "bio": "Author of Oru Desathinte Katha"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 89,
+    "fields": {
+      "name": "Vaikom Muhammad Basheer",
+      "bio": "Author of Pathummayude Aadu"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 90,
+    "fields": {
+      "name": "Malayattoor Ramakrishnan",
+      "bio": "Author of Yakshi"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 91,
+    "fields": {
+      "name": "Amish Tripathi",
+      "bio": "Author of The Immortals of Meluha"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 92,
+    "fields": {
+      "name": "Devdutt Pattanaik",
+      "bio": "Author of Jaya: An Illustrated Retelling of the Mahabharata"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 93,
+    "fields": {
+      "name": "Ashwin Sanghi",
+      "bio": "Author of The Krishna Key"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 94,
+    "fields": {
+      "name": "Anand Neelakantan",
+      "bio": "Author of Asura: Tale of the Vanquished"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 95,
+    "fields": {
+      "name": "Anuja Chandramouli",
+      "bio": "Author of Shakti: The Divine Feminine"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 96,
+    "fields": {
+      "name": "James Joyce",
+      "bio": "Author of Dubliners"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 97,
+    "fields": {
+      "name": "Ray Bradbury",
+      "bio": "Author of The Illustrated Man"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 98,
+    "fields": {
+      "name": "Charlotte Perkins Gilman",
+      "bio": "Author of The Yellow Wallpaper and Other Stories"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 99,
+    "fields": {
+      "name": "Raymond Carver",
+      "bio": "Author of What We Talk About When We Talk About Love"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 100,
+    "fields": {
+      "name": "Nisha Susan",
+      "bio": "Author of The Women Who Forgot to Invent Facebook and Other Stories"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 101,
+    "fields": {
+      "name": "Neil Gaiman",
+      "bio": "Author of Norse Mythology"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 102,
+    "fields": {
+      "name": "Anton Chekhov",
+      "bio": "Author of The Complete Short Stories of Anton Chekhov"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 103,
+    "fields": {
+      "name": "Jawaharlal Nehru",
+      "bio": "Author of The Discovery of India"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 104,
+    "fields": {
+      "name": "Bipan Chandra",
+      "bio": "Author of India After Independence"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 105,
+    "fields": {
+      "name": "Yuval Noah Harari",
+      "bio": "Author of Sapiens: A Brief History of Humankind"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 106,
+    "fields": {
+      "name": "William Dalrymple",
+      "bio": "Author of The Anarchy: The Relentless Rise of the East India Company"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 107,
+    "fields": {
+      "name": "Jared Diamond",
+      "bio": "Author of Guns, Germs and Steel"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 108,
+    "fields": {
+      "name": "Peter Frankopan",
+      "bio": "Author of The Silk Roads: A New History of the World"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 109,
+    "fields": {
+      "name": "William L. Shirer",
+      "bio": "Author of The Rise and Fall of the Third Reich"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 110,
+    "fields": {
+      "name": "Will Durant",
+      "bio": "Author of The Story of Civilization"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 111,
+    "fields": {
+      "name": "Yasmin Khan",
+      "bio": "Author of The Great Partition"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 112,
+    "fields": {
+      "name": "Howard Zinn",
+      "bio": "Author of A People's History of the United States"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 113,
+    "fields": {
+      "name": "Shashi Tharoor",
+      "bio": "Author of Inglorious Empire: What the British Did to India"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 114,
+    "fields": {
+      "name": "Herodotus",
+      "bio": "Author of The Histories"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 115,
+    "fields": {
+      "name": "Siddhartha Mukherjee",
+      "bio": "Author of The Emperor of All Maladies"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 116,
+    "fields": {
+      "name": "Thomas Asbridge",
+      "bio": "Author of The Crusades"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 117,
+    "fields": {
+      "name": "A.L. Basham",
+      "bio": "Author of The Wonder That Was India"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 118,
+    "fields": {
+      "name": "Tony Judt",
+      "bio": "Author of Postwar: A History of Europe Since 1945"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 119,
+    "fields": {
+      "name": "Eugene Rogan",
+      "bio": "Author of The Arabs: A History"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 120,
+    "fields": {
+      "name": "William Manchester",
+      "bio": "Author of The Last Lion: Winston Spencer Churchill"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 121,
+    "fields": {
+      "name": "Stephen Hawking",
+      "bio": "Author of A Brief History of Time"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 122,
+    "fields": {
+      "name": "Richard Dawkins",
+      "bio": "Author of The Selfish Gene"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 123,
+    "fields": {
+      "name": "Walter Isaacson",
+      "bio": "Author of The Innovators"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 124,
+    "fields": {
+      "name": "Simon Singh",
+      "bio": "Author of The Code Book"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 125,
+    "fields": {
+      "name": "Robert Kanigel",
+      "bio": "Author of The Man Who Knew Infinity"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 126,
+    "fields": {
+      "name": "Brian Greene",
+      "bio": "Author of The Elegant Universe"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 127,
+    "fields": {
+      "name": "Elizabeth Kolbert",
+      "bio": "Author of The Sixth Extinction"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 128,
+    "fields": {
+      "name": "Thomas S. Kuhn",
+      "bio": "Author of The Structure of Scientific Revolutions"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 129,
+    "fields": {
+      "name": "Carl Sagan",
+      "bio": "Author of The Demon-Haunted World"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 130,
+    "fields": {
+      "name": "Jim Baggott",
+      "bio": "Author of The Quantum Story"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 131,
+    "fields": {
+      "name": "James Gleick",
+      "bio": "Author of The Information"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 132,
+    "fields": {
+      "name": "Bill Bryson",
+      "bio": "Author of The Body"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 133,
+    "fields": {
+      "name": "Peter Wohlleben",
+      "bio": "Author of The Hidden Life of Trees"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 134,
+    "fields": {
+      "name": "Carlo Rovelli",
+      "bio": "Author of The Order of Time"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 135,
+    "fields": {
+      "name": "Nick Lane",
+      "bio": "Author of The Vital Question"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 136,
+    "fields": {
+      "name": "Gary Smith",
+      "bio": "Author of The AI Delusion"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 137,
+    "fields": {
+      "name": "Max Tegmark",
+      "bio": "Author of Life 3.0"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 138,
+    "fields": {
+      "name": "James Clear",
+      "bio": "Author of Atomic Habits"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 139,
+    "fields": {
+      "name": "Stephen R. Covey",
+      "bio": "Author of The 7 Habits of Highly Effective People"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 140,
+    "fields": {
+      "name": "Eckhart Tolle",
+      "bio": "Author of The Power of Now"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 141,
+    "fields": {
+      "name": "Napoleon Hill",
+      "bio": "Author of Think and Grow Rich"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 142,
+    "fields": {
+      "name": "Mark Manson",
+      "bio": "Author of The Subtle Art of Not Giving a F*ck"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 143,
+    "fields": {
+      "name": "Dale Carnegie",
+      "bio": "Author of How to Win Friends and Influence People"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 144,
+    "fields": {
+      "name": "Br\u00c3\u00a9ne Brown",
+      "bio": "Author of Daring Greatly"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 145,
+    "fields": {
+      "name": "Robin Sharma",
+      "bio": "Author of The 5 AM Club"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 146,
+    "fields": {
+      "name": "Carol S. Dweck",
+      "bio": "Author of Mindset: The New Psychology of Success"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 147,
+    "fields": {
+      "name": "Don Miguel Ruiz",
+      "bio": "Author of The Four Agreements"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 148,
+    "fields": {
+      "name": "Anne Frank",
+      "bio": "Author of The Diary of a Young Girl"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 149,
+    "fields": {
+      "name": "A.P.J. Abdul Kalam",
+      "bio": "Author of Wings of Fire"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 150,
+    "fields": {
+      "name": "Mahatma Gandhi",
+      "bio": "Author of The Story of My Experiments with Truth"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 151,
+    "fields": {
+      "name": "Nelson Mandela",
+      "bio": "Author of Long Walk to Freedom"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 152,
+    "fields": {
+      "name": "Tara Westover",
+      "bio": "Author of Educated"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 153,
+    "fields": {
+      "name": "Michelle Obama",
+      "bio": "Author of Becoming"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 154,
+    "fields": {
+      "name": "Malcolm X",
+      "bio": "Author of The Autobiography of Malcolm X"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 155,
+    "fields": {
+      "name": "Bill Clinton",
+      "bio": "Author of My Life"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 156,
+    "fields": {
+      "name": "Laura Hillenbrand",
+      "bio": "Author of Unbroken"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 157,
+    "fields": {
+      "name": "Jeannette Walls",
+      "bio": "Author of The Glass Castle"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 158,
+    "fields": {
+      "name": "Jon Krakauer",
+      "bio": "Author of Into the Wild"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 159,
+    "fields": {
+      "name": "Maya Angelou",
+      "bio": "Author of I Know Why the Caged Bird Sings"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 160,
+    "fields": {
+      "name": "Gregory David Roberts",
+      "bio": "Author of Shantaram"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 161,
+    "fields": {
+      "name": "Paul Kalanithi",
+      "bio": "Author of When Breath Becomes Air"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 162,
+    "fields": {
+      "name": "Trevor Noah",
+      "bio": "Author of Born a Crime"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 163,
+    "fields": {
+      "name": "Randy Pausch",
+      "bio": "Author of The Last Lecture"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 164,
+    "fields": {
+      "name": "Andre Agassi",
+      "bio": "Author of Open"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 165,
+    "fields": {
+      "name": "Cheryl Strayed",
+      "bio": "Author of Wild"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 166,
+    "fields": {
+      "name": "Eric Ries",
+      "bio": "Author of The Lean Startup"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 167,
+    "fields": {
+      "name": "Peter Thiel",
+      "bio": "Author of Zero to One"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 168,
+    "fields": {
+      "name": "Benjamin Graham",
+      "bio": "Author of The Intelligent Investor"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 169,
+    "fields": {
+      "name": "Daniel Kahneman",
+      "bio": "Author of Thinking Fast and Slow"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 170,
+    "fields": {
+      "name": "Jim Collins",
+      "bio": "Author of Good to Great"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 171,
+    "fields": {
+      "name": "Morgan Housel",
+      "bio": "Author of The Psychology of Money"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 172,
+    "fields": {
+      "name": "Steven D. Levitt",
+      "bio": "Author of Freakonomics"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 173,
+    "fields": {
+      "name": "George S. Clason",
+      "bio": "Author of The Richest Man in Babylon"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 174,
+    "fields": {
+      "name": "Simon Sinek",
+      "bio": "Author of Start with Why"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 175,
+    "fields": {
+      "name": "Thomas Piketty",
+      "bio": "Author of Capital in the Twenty-First Century"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 176,
+    "fields": {
+      "name": "Plato",
+      "bio": "Author of The Republic"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 177,
+    "fields": {
+      "name": "Marcus Aurelius",
+      "bio": "Author of Meditations"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 178,
+    "fields": {
+      "name": "Friedrich Nietzsche",
+      "bio": "Author of Thus Spoke Zarathustra"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 179,
+    "fields": {
+      "name": "Jostein Gaarder",
+      "bio": "Author of Sophie's World"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 180,
+    "fields": {
+      "name": "Dalai Lama",
+      "bio": "Author of The Art of Happiness"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 181,
+    "fields": {
+      "name": "Kahlil Gibran",
+      "bio": "Author of The Prophet"
+    }
+  },
+  {
+    "model": "bookapp.author",
+    "pk": 182,
+    "fields": {
+      "name": "Martin Heidegger",
+      "bio": "Author of Being and Time"
+    }
+  }
+]

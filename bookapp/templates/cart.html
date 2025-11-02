@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+
+{% block title %}Shopping Cart - BookNook{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-4">
+                <i class="fas fa-shopping-cart text-brown me-2"></i>Shopping Cart
+            </h1>
+        </div>
+    </div>
+
+    {% if cart_items %}
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Cart Items -->
+            <div class="card">
+                <div class="card-body">
+                    {% for item in cart_items %}
+                    <div class="row align-items-center mb-4 pb-3 border-bottom">
+                        <!-- Book Cover -->
+                        <div class="col-md-2">
+                            <img src="{{ item.book.cover_image }}"
+                                 alt="{{ item.book.title }}"
+                                 class="img-fluid rounded"
+                                 style="height: 100px; object-fit: cover;"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/100x150/6c757d/white?text=No+Cover'">
+                        </div>
+
+                        <!-- Book Details -->
+                        <div class="col-md-5">
+                            <h5 class="mb-1">{{ item.book.title }}</h5>
+                            <p class="text-muted mb-1 small">
+                                by {% for author in item.book.authors.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                            </p>
+                            <span class="badge bg-primary">{{ item.book.get_book_type_display }}</span>
+                        </div>
+
+                        <!-- Quantity Controls -->
+                        <div class="col-md-2">
+                            <form method="post" action="{% url 'update_cart_quantity' item.id %}" class="d-flex align-items-center">
+                                {% csrf_token %}
+                                <input type="number" name="quantity" value="{{ item.quantity }}"
+                                       min="1" max="{{ item.book.stock }}"
+                                       class="form-control form-control-sm" style="width: 70px;">
+                                <button type="submit" class="btn btn-sm btn-outline-primary ms-2">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                            </form>
+                            <small class="text-muted">Max: {{ item.book.stock }}</small>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="col-md-2 text-end">
+                            <h6 class="text-success mb-1">₹{{ item.total_price|floatformat:0 }}</h6>
+                            <small class="text-muted">₹{{ item.book.price|floatformat:0 }} each</small>
+                        </div>
+
+                        <!-- Remove Button -->
+                        <div class="col-md-1 text-end">
+                            <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-sm btn-outline-danger">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <!-- Clear Cart Button -->
+                    <div class="text-end mt-3">
+                        <a href="{% url 'clear_cart' %}" class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-broom me-1"></i>Clear Cart
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header bg-brown text-white">
+                    <h5 class="mb-0">Order Summary</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Items ({{ cart_total_items|default:cart.total_items }}):</span>
+                        <span>₹{{ cart_total_price|default:cart.total_price|floatformat:0 }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Shipping:</span>
+                        <span class="text-success">FREE</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between mb-3">
+                        <strong>Total:</strong>
+                        <strong class="text-success">₹{{ cart_total_price|default:cart.total_price|floatformat:0 }}</strong>
+                    </div>
+
+                    <a href="{% url 'create_order' %}" class="btn btn-success w-100 mb-2">
+                        <i class="fas fa-lock me-2"></i>Proceed to Checkout
+                    </a>
+                    <a href="{% url 'book_catalog' %}" class="btn btn-outline-primary w-100">
+                        <i class="fas fa-arrow-left me-2"></i>Continue Shopping
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <!-- Empty Cart -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-center py-5">
+                <div class="card-body">
+                    <i class="fas fa-shopping-cart fa-4x text-muted mb-3"></i>
+                    <h3 class="text-muted">Your cart is empty</h3>
+                    <p class="text-muted mb-4">Add some books to get started!</p>
+                    <a href="{% url 'book_catalog' %}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-book me-2"></i>Browse Books
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Update quantity with AJAX for real-time calculation
+    document.querySelectorAll('input[name="quantity"]').forEach(input => {
+        input.addEventListener('change', function() {
+            const form = this.closest('form');
+            const itemId = form.action.split('/').filter(part => part).pop();
+
+            // Submit form via AJAX
+            fetch(form.action, {
+                method: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: new FormData(form)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update the item total price
+                    const itemRow = form.closest('.row');
+                    itemRow.querySelector('.text-success h6').textContent = `₹${data.item_total}`;
+
+                    // Update cart totals
+                    document.querySelector('.cart-total-items').textContent = data.cart_total_items;
+                    document.querySelector('.cart-total-price').textContent = `₹${data.cart_total_price}`;
+
+                    // Update navbar cart count
+                    const navCartBadge = document.querySelector('.navbar .badge');
+                    if (navCartBadge) {
+                        navCartBadge.textContent = data.cart_total_items;
+                    }
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Fallback: submit form normally
+                form.submit();
+            });
+        });
+    });
+});
+</script>
+{% endblock %}

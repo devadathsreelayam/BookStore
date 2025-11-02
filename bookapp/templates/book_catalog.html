@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Catalog - BookStore{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Filters Sidebar -->
+    <div class="col-md-3">
+        <div class="card mb-4 sticky-filters">
+            <div class="card-header">
+                <h5 class="mb-0">Filters</h5>
+            </div>
+            <div class="card-body">
+                <form method="get" id="filterForm">
+                    <!-- Search -->
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Search</strong></label>
+                        <div class="input-group">
+                            <input type="text" name="q" class="form-control"
+                                   placeholder="Search books..." value="{{ search_query }}">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Genre Filter -->
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Genre</strong></label>
+                        <select name="genre" class="form-select">
+                            <option value="">All Genres</option>
+                            {% for genre in all_genres %}
+                                <option value="{{ genre }}"
+                                        {% if selected_genre == genre %}selected{% endif %}>
+                                    {{ genre }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- Author Filter -->
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Author</strong></label>
+                        <select name="author" class="form-select">
+                            <option value="">All Authors</option>
+                            {% for author in all_authors %}
+                                <option value="{{ author }}"
+                                        {% if selected_author == author %}selected{% endif %}>
+                                    {{ author }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <!-- eBook Filter -->
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Format</strong></label>
+                        <select name="format" class="form-select">
+                            <option value="">All Formats</option>
+                            <option value="ebook" {% if request.GET.format == 'ebook' %}selected{% endif %}>
+                                eBook Available
+                            </option>
+                            <option value="physical" {% if request.GET.format == 'physical' %}selected{% endif %}>
+                                Physical Only
+                            </option>
+                        </select>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-filter me-2"></i>Apply Filters
+                        </button>
+
+                        {% if search_query or selected_genre or selected_author or request.GET.format %}
+                        <a href="{% url 'book_catalog' %}" class="btn btn-outline-secondary">
+                            Clear Filters
+                        </a>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Books Grid -->
+    <div class="col-md-9">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Book Catalog</h2>
+            <span class="text-muted">{{ books.count }} books found</span>
+        </div>
+
+        {% if books %}
+        <div class="row">
+            {% for book in books %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card book-card h-100">
+                    <!-- Wishlist Heart Icon -->
+                    <button class="wishlist-heart" data-book-isbn="{{ book.isbn }}" title="Add to Wishlist">
+                        <i class="fas fa-heart text-muted"></i>
+                    </button>
+
+                    <!-- Book Cover -->
+                    <div class="book-cover-container" style="height: 200px; overflow: hidden;">
+                        <img src="{{ book.cover_image }}"
+                             alt="{{ book.title }}"
+                             class="card-img-top book-cover"
+                             style="height: 100%; object-fit: cover;"
+                             onerror="this.onerror=null; this.src='https://placehold.co/300x400/6c757d/white?text=No+Cover'">
+                    </div>
+
+                    <div class="card-body d-flex flex-column">
+                        <h6 class="card-title">{{ book.title|truncatewords:8 }}</h6>
+                        <p class="card-text text-muted small mb-2">
+                            by {% for author in book.authors.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                        </p>
+
+                        <!-- eBook Badge -->
+                        {% if book.book_type == 'digital' or book.book_type == 'both' %}
+                        <div class="mb-2">
+                            <span class="badge bg-info">
+                                <i class="fas fa-file-pdf"></i> eBook Available
+                            </span>
+                        </div>
+                        {% endif %}
+
+                        <p class="card-text small text-muted flex-grow-1">
+                            {{ book.summary|truncatewords:15 }}
+                        </p>
+                        <div class="mt-auto">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <!-- eBook Price -->
+                                {% if book.book_type == 'digital' or book.book_type == 'both' %}
+                                {% widthratio book.price 4 3 as ebook_price %}
+                                <div class="text-success">
+                                    <small class="d-block">eBook</small>
+                                    <strong>₹{{ ebook_price }}</strong>
+                                </div>
+                                {% endif %}
+
+                                <!-- Paperback Price -->
+                                {% if book.book_type == 'physical' or book.book_type == 'both' %}
+                                <div class="text-primary">
+                                    <small class="d-block">Paperback</small>
+                                    <strong>₹{{ book.price|floatformat:0 }}</strong>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <span class="badge {% if book.stock > 0 %}bg-success{% else %}bg-danger{% endif %} small">
+                                {% if book.stock > 0 %}In Stock{% else %}Out of Stock{% endif %}
+                            </span>
+
+                            <a href="{% url 'book_detail' book.isbn %}" class="btn btn-outline-primary btn-sm w-100 mt-2">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-5">
+            <i class="fas fa-book fa-3x text-muted mb-3"></i>
+            <h4>No books found</h4>
+            <p class="text-muted">Try adjusting your search or filters</p>
+            <a href="{% url 'book_catalog' %}" class="btn btn-primary">Clear Filters</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+/* Wishlist heart icon styles */
+.book-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.wishlist-heart {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    z-index: 10;
+    border: none;
+}
+
+.book-card:hover .wishlist-heart {
+    opacity: 1;
+}
+
+.wishlist-heart:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: scale(1.1);
+}
+
+.wishlist-heart:hover i {
+    color: #dc3545 !important; /* Red color on hover */
+}
+
+.wishlist-heart.active i {
+    color: #dc3545 !important; /* Red when active */
+}
+
+.wishlist-heart.active:hover i {
+    color: #c82333 !important; /* Darker red on hover when active */
+}
+
+/* Sticky filters for desktop */
+@media (min-width: 768px) {
+    .sticky-filters {
+        position: sticky;
+        top: 20px;
+        z-index: 100;
+        max-height: calc(100vh - 40px);
+        overflow-y: auto;
+    }
+
+    /* Optional: Add scrollbar styling */
+    .sticky-filters::-webkit-scrollbar {
+        width: 4px;
+    }
+
+    .sticky-filters::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .sticky-filters::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Auto-submit filter forms when selection changes
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterForm = document.getElementById('filterForm');
+        const filterElements = filterForm.querySelectorAll('select, input[type="text"]');
+
+        filterElements.forEach(element => {
+            element.addEventListener('change', function() {
+                filterForm.submit();
+            });
+        });
+    });
+</script>
+{% endblock %}

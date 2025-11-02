@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+
+{% block title %}New Arrivals - BookNook{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h1>
+                        <i class="fas fa-gift text-brown me-2"></i>New Arrivals
+                    </h1>
+                    <p class="text-muted mb-0">
+                        Freshly added books from the last 7 days
+                        {% if seven_days_ago %}
+                        <br><small>Since {{ seven_days_ago|date:"M d, Y" }}</small>
+                        {% endif %}
+                    </p>
+                </div>
+                <span class="badge bg-success fs-6">
+                    {{ new_books|length }} new book{{ new_books|length|pluralize }}
+                </span>
+            </div>
+        </div>
+    </div>
+
+    {% if new_books %}
+    <div class="row">
+        {% for book in new_books %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card book-card h-100">
+                <!-- New Arrival Badge -->
+                <div class="position-absolute top-0 start-0 m-2">
+                    <span class="badge bg-success">
+                        <i class="fas fa-star me-1"></i>New
+                    </span>
+                </div>
+
+                <!-- Wishlist Heart -->
+                <button class="wishlist-heart" data-book-isbn="{{ book.isbn }}" title="Add to Wishlist">
+                    <i class="fas fa-heart text-muted"></i>
+                </button>
+
+                <!-- Book Cover -->
+                <div class="book-cover-container" style="height: 200px; overflow: hidden;">
+                    <img src="{{ book.cover_image }}"
+                         alt="{{ book.title }}"
+                         class="card-img-top book-cover"
+                         style="height: 100%; object-fit: cover;"
+                         onerror="this.onerror=null; this.src='https://placehold.co/300x400/6c757d/white?text=No+Cover'">
+                </div>
+
+                <div class="card-body d-flex flex-column">
+                    <h6 class="card-title">{{ book.title|truncatewords:6 }}</h6>
+                    <p class="card-text text-muted small mb-2">
+                        by {% for author in book.authors.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    </p>
+
+                    <!-- eBook Badge -->
+                    {% if book.book_type == 'digital' or book.book_type == 'both' %}
+                    <div class="mb-2">
+                        <span class="badge bg-info small">
+                            <i class="fas fa-file-pdf"></i> eBook
+                        </span>
+                    </div>
+                    {% endif %}
+
+                    <p class="card-text small text-muted flex-grow-1">
+                        {{ book.summary|truncatewords:12 }}
+                    </p>
+
+                    <div class="mt-auto">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-primary fw-bold">₹{{ book.price|floatformat:0 }}</span>
+                            <span class="badge {% if book.stock > 0 %}bg-success{% else %}bg-danger{% endif %} small">
+                                {% if book.stock > 0 %}In Stock{% else %}Out of Stock{% endif %}
+                            </span>
+                        </div>
+                        <a href="{% url 'book_detail' book.isbn %}" class="btn btn-outline-primary btn-sm w-100">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Added Date -->
+                <div class="card-footer bg-transparent border-0 pt-0">
+                    <small class="text-muted">
+                        <i class="fas fa-clock me-1"></i>
+                        Added {{ book.created_at|timesince }} ago
+                    </small>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- View All New Arrivals Button -->
+    {% if total_new_arrivals > 10 %}
+    <div class="row mt-4">
+        <div class="col-12 text-center">
+            <div class="card bg-light">
+                <div class="card-body py-4">
+                    <h5 class="text-muted mb-3">
+                        Discover {{ total_new_arrivals|add:"-10" }} more new arrivals!
+                    </h5>
+                    <a href="{% url 'book_catalog' %}?sort=newest" class="btn btn-primary btn-lg">
+                        <i class="fas fa-book-open me-2"></i>View All New Books
+                    </a>
+                    <p class="text-muted small mt-2 mb-0">
+                        Or <a href="{% url 'book_catalog' %}" class="text-brown">browse all books</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% else %}
+    <!-- No New Arrivals -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-center py-5">
+                <div class="card-body">
+                    <i class="fas fa-gift fa-4x text-muted mb-3"></i>
+                    <h3 class="text-muted">No New Arrivals</h3>
+                    <p class="text-muted mb-4">
+                        Check back soon for new books!<br>
+                        Last 7 days: {{ seven_days_ago|date:"M d, Y" }} - Today
+                    </p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{% url 'book_catalog' %}" class="btn btn-primary">
+                            <i class="fas fa-book me-2"></i>Browse All Books
+                        </a>
+                        <a href="{% url 'author_list' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-users me-2"></i>Explore Authors
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* New arrival specific styles */
+    .book-card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Wishlist heart icon styles */
+    .wishlist-heart {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        z-index: 10;
+        border: none;
+    }
+
+    .book-card:hover .wishlist-heart {
+        opacity: 1;
+    }
+
+    .wishlist-heart:hover {
+        background: rgba(255, 255, 255, 0.95);
+        transform: scale(1.1);
+    }
+
+    .wishlist-heart:hover i {
+        color: #dc3545 !important;
+    }
+
+    .wishlist-heart.active i {
+        color: #dc3545 !important;
+    }
+
+    .wishlist-heart.active:hover i {
+        color: #c82333 !important;
+    }
+
+    .badge.bg-success {
+        background: linear-gradient(135deg, #28a745, #20c997) !important;
+    }
+
+    /* Pulse animation for new badge */
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    .badge.bg-success {
+        animation: pulse 2s infinite;
+    }
+</style>
+{% endblock %}

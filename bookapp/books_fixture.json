@@ -1,0 +1,5059 @@
+[
+  {
+    "model": "bookapp.book",
+    "pk": "9780006550686",
+    "fields": {
+      "title": "The God of Small Things",
+      "authors": [
+        1
+      ],
+      "publication_year": 1997,
+      "price": "499.0",
+      "summary": "The story of fraternal twins Estha and Rahel and the traumatic childhood incident that forever alters their lives and family dynamics in Kerala.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1627922724i/9777.jpg",
+      "tags": [
+        "Family",
+        "Love",
+        "Caste",
+        "Kerala"
+      ],
+      "genre": 36,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780060972106",
+    "fields": {
+      "title": "A Suitable Boy",
+      "authors": [
+        2
+      ],
+      "publication_year": 1993,
+      "price": "899.0",
+      "summary": "Set in post-independence India, this epic follows four families as Mrs. Rupa Mehra searches for a suitable husband for her daughter Lata.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1298480331i/78462.jpg",
+      "tags": [
+        "Post-independence",
+        "Marriage",
+        "Society"
+      ],
+      "genre": 18,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781416562597",
+    "fields": {
+      "title": "The White Tiger",
+      "authors": [
+        3
+      ],
+      "publication_year": 2008,
+      "price": "399.0",
+      "summary": "Balram Halwai, a chauffeur in Mumbai, writes letters describing his journey from village poverty to entrepreneurial success in modern India.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630420791i/3814430.jpg",
+      "tags": [
+        "Class",
+        "Ambition",
+        "Corruption"
+      ],
+      "genre": 29,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780802142818",
+    "fields": {
+      "title": "The Inheritance of Loss",
+      "authors": [
+        4
+      ],
+      "publication_year": 2006,
+      "price": "449.0",
+      "summary": "In Kalimpong, a retired judge's orphaned granddaughter Sai navigates her romance while their cook's son seeks opportunity in America.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1687241325i/4008.jpg",
+      "tags": [
+        "Globalization",
+        "Identity",
+        "Migration"
+      ],
+      "genre": 19,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780307265746",
+    "fields": {
+      "title": "The Lowland",
+      "authors": [
+        5
+      ],
+      "publication_year": 2013,
+      "price": "499.0",
+      "summary": "Two brothers' lives diverge dramatically when one becomes involved in the Naxalite movement while the other moves to America.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1362339891i/17349203.jpg",
+      "tags": [
+        "Brothers",
+        "Politics",
+        "Naxalite"
+      ],
+      "genre": 33,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780385520367",
+    "fields": {
+      "title": "The Palace of Illusions",
+      "authors": [
+        6
+      ],
+      "publication_year": 2008,
+      "price": "399.0",
+      "summary": "The Mahabharata retold from the perspective of Draupadi, exploring her life, desires, and struggles in a patriarchal world.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348258730i/782256.jpg",
+      "tags": [
+        "Mahabharata",
+        "Draupadi",
+        "Feminism"
+      ],
+      "genre": 16,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780195621656",
+    "fields": {
+      "title": "The Shadow Lines",
+      "authors": [
+        7
+      ],
+      "publication_year": 1988,
+      "price": "449.0",
+      "summary": "A narrator pieces together family memories across Calcutta, London, and Dhaka, exploring how political borders create shadow lines in our minds.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328022488i/9534.jpg",
+      "tags": [
+        "Memory",
+        "Borders",
+        "Calcutta"
+      ],
+      "genre": 25,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780395927205",
+    "fields": {
+      "title": "Interpreter of Maladies",
+      "authors": [
+        5
+      ],
+      "publication_year": 1999,
+      "price": "399.0",
+      "summary": "Nine stories explore Indian-American experiences, examining marriage, love, and the immigrant condition with profound insight.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1356468574i/5439.jpg",
+      "tags": [
+        "Diaspora",
+        "Relationships",
+        "Culture"
+      ],
+      "genre": 34,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788185986077",
+    "fields": {
+      "title": "The Guide",
+      "authors": [
+        8
+      ],
+      "publication_year": 1958,
+      "price": "299.0",
+      "summary": "A corrupt tour guide transforms into an unwilling spiritual guide in this classic set in Narayan's fictional town of Malgudi.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Transformation",
+        "Spirituality",
+        "Malgudi"
+      ],
+      "genre": 30,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780395927212",
+    "fields": {
+      "title": "The Namesake",
+      "authors": [
+        5
+      ],
+      "publication_year": 2003,
+      "price": "449.0",
+      "summary": "Gogol Ganguli struggles with his unusual name and cultural identity as he navigates life between his Bengali heritage and American upbringing.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1480100519i/33917.jpg",
+      "tags": [
+        "Identity",
+        "Names",
+        "Generations"
+      ],
+      "genre": 20,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780312429974",
+    "fields": {
+      "title": "Sea of Poppies",
+      "authors": [
+        7
+      ],
+      "publication_year": 2008,
+      "price": "499.0",
+      "summary": "On the eve of the Opium War, diverse characters aboard the ship Ibis find their fates intertwined in this epic of colonialism and trade.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348269491i/3360746.jpg",
+      "tags": [
+        "Opium Trade",
+        "Colonialism",
+        "Ship"
+      ],
+      "genre": 26,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780618574315",
+    "fields": {
+      "title": "The Hungry Tide",
+      "authors": [
+        7
+      ],
+      "publication_year": 2004,
+      "price": "449.0",
+      "summary": "In the Sundarbans, an American biologist, a Delhi businessman, and local villagers confront the volatile relationship between humans and nature.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348262589i/7838.jpg",
+      "tags": [
+        "Sundarbans",
+        "Environment",
+        "Dolphins"
+      ],
+      "genre": 35,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780375758773",
+    "fields": {
+      "title": "The Glass Palace",
+      "authors": [
+        7
+      ],
+      "publication_year": 2000,
+      "price": "599.0",
+      "summary": "Spanning a century, this epic follows characters across Burma, India, and Malaysia through colonialism, war, and independence.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348262589i/7838.jpg",
+      "tags": [
+        "Burma",
+        "India",
+        "Rubber Plantations"
+      ],
+      "genre": 22,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780143062072",
+    "fields": {
+      "title": "August: An Indian Story",
+      "authors": [
+        9
+      ],
+      "publication_year": 1988,
+      "price": "399.0",
+      "summary": "A young, westernized Indian civil servant finds himself in a bizarre small town, confronting the absurdities of bureaucracy and rural life.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1173453138i/736890.jpg",
+      "tags": [
+        "Bureaucracy",
+        "Small-town India"
+      ],
+      "genre": 27,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788172235429",
+    "fields": {
+      "title": "The Blue Umbrella",
+      "authors": [
+        10
+      ],
+      "publication_year": 1980,
+      "price": "199.0",
+      "summary": "In a Himalayan village, a young girl's prized blue umbrella becomes an object of desire for the entire community.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328012992i/1122455.jpg",
+      "tags": [
+        "Himalayas",
+        "Innocence",
+        "Village"
+      ],
+      "genre": 17,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780143333386",
+    "fields": {
+      "title": "The Room on the Roof",
+      "authors": [
+        10
+      ],
+      "publication_year": 1956,
+      "price": "249.0",
+      "summary": "An orphaned Anglo-Indian boy rebels against his guardian and finds friendship and freedom in the streets of Dehradun.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1432076429i/1222718.jpg",
+      "tags": [
+        "Dehradun",
+        "Friendship",
+        "Orphan"
+      ],
+      "genre": 28,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788185986046",
+    "fields": {
+      "title": "The Vendor of Sweets",
+      "authors": [
+        8
+      ],
+      "publication_year": 1967,
+      "price": "299.0",
+      "summary": "A traditional sweet vendor in Malgudi struggles to understand his modern, writer son who returns from America with unexpected ideas.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Generational Conflict",
+        "Tradition"
+      ],
+      "genre": 36,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780393338166",
+    "fields": {
+      "title": "Serious Men",
+      "authors": [
+        11
+      ],
+      "publication_year": 2010,
+      "price": "399.0",
+      "summary": "A Dalit office assistant in a scientific institute creates an elaborate deception about his son being a genius to challenge the system.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348262589i/7838.jpg",
+      "tags": [
+        "Class",
+        "Science",
+        "Ambition"
+      ],
+      "genre": 32,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780393088755",
+    "fields": {
+      "title": "The Illicit Happiness of Other People",
+      "authors": [
+        11
+      ],
+      "publication_year": 2012,
+      "price": "399.0",
+      "summary": "In 1990s Madras, a father investigates why his seemingly happy teenage son committed suicide three years earlier.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348262589i/7838.jpg",
+      "tags": [
+        "Suicide",
+        "Family",
+        "Madras"
+      ],
+      "genre": 37,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788184755397",
+    "fields": {
+      "title": "The Folded Earth",
+      "authors": [
+        12
+      ],
+      "publication_year": 2011,
+      "price": "399.0",
+      "summary": "A young widow moves to a Himalayan hill town and finds herself drawn into the lives of her landlord and a charismatic environmentalist.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327888243i/1122455.jpg",
+      "tags": [
+        "Himalayas",
+        "Widow",
+        "Nature"
+      ],
+      "genre": 23,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780393357440",
+    "fields": {
+      "title": "All the Lives We Never Lived",
+      "authors": [
+        12
+      ],
+      "publication_year": 2018,
+      "price": "499.0",
+      "summary": "In 1930s India, a young boy's life is upended when his mother, inspired by dance and art, abandons the family for personal freedom.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1522953241i/38818467.jpg",
+      "tags": [
+        "Freedom",
+        "Art",
+        "1930s India"
+      ],
+      "genre": 26,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9789381626089",
+    "fields": {
+      "title": "Em and the Big Hoom",
+      "authors": [
+        13
+      ],
+      "publication_year": 2012,
+      "price": "399.0",
+      "summary": "A son and daughter in Bombay navigate their complex relationship with their brilliant but mentally ill mother and weary father.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Mental Illness",
+        "Motherhood",
+        "Bombay"
+      ],
+      "genre": 36,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788172234569",
+    "fields": {
+      "title": "Cuckold",
+      "authors": [
+        14
+      ],
+      "publication_year": 1997,
+      "price": "599.0",
+      "summary": "The crown prince of Mewar grapples with his wife's divine devotion to Lord Krishna and his own political and military ambitions.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348262589i/7838.jpg",
+      "tags": [
+        "Mewar",
+        "Prince",
+        "Mystical"
+      ],
+      "genre": 26,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780143032310",
+    "fields": {
+      "title": "The Last Song of Dusk",
+      "authors": [
+        15
+      ],
+      "publication_year": 2004,
+      "price": "399.0",
+      "summary": "In 1920s Bombay, a beautiful singer's perfect marriage is tested by tragedy in this lyrical tale of love, loss, and art.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Bombay",
+        "Tragedy",
+        "Art"
+      ],
+      "genre": 21,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780571214629",
+    "fields": {
+      "title": "Family Matters",
+      "authors": [
+        16
+      ],
+      "publication_year": 2002,
+      "price": "549.0",
+      "summary": "In Bombay, a retired professor's declining health forces his family to confront their relationships, secrets, and changing city.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348262589i/7838.jpg",
+      "tags": [
+        "Bombay",
+        "Parsi Community",
+        "Aging"
+      ],
+      "genre": 33,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781400030651",
+    "fields": {
+      "title": "A Fine Balance",
+      "authors": [
+        16
+      ],
+      "publication_year": 1995,
+      "price": "599.0",
+      "summary": "During India's Emergency period, four strangers from different backgrounds form an unlikely family while facing immense hardship.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328022488i/9534.jpg",
+      "tags": [
+        "Emergency",
+        "Survival",
+        "Friendship"
+      ],
+      "genre": 25,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780763665661",
+    "fields": {
+      "title": "The Strange and Beautiful Sorrows of Ava Lavender",
+      "authors": [
+        17
+      ],
+      "publication_year": 2014,
+      "price": "399.0",
+      "summary": "Born with bird wings, Ava Lavender explores her family's history of curious love and heartbreak in this magical multigenerational tale.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1388175309i/18280675.jpg",
+      "tags": [
+        "Love",
+        "Wings",
+        "Generations"
+      ],
+      "genre": 21,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780385343835",
+    "fields": {
+      "title": "The Tiger's Wife",
+      "authors": [
+        18
+      ],
+      "publication_year": 2011,
+      "price": "449.0",
+      "summary": "A young doctor in a war-torn Balkan country unravels the mysterious stories her grandfather told about a deathless man and a tiger's wife.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1328022488i/9534.jpg",
+      "tags": [
+        "Balkans",
+        "Folklore",
+        "Grandfather"
+      ],
+      "genre": 31,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780307949486",
+    "fields": {
+      "title": "The Girl with the Dragon Tattoo",
+      "authors": [
+        19
+      ],
+      "publication_year": 2005,
+      "price": "499.0",
+      "summary": "A journalist and a hacker investigate the decades-old disappearance of a wealthy industrialist's niece, uncovering dark family secrets.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327868566i/2429135.jpg",
+      "tags": [
+        "Investigation",
+        "Murder",
+        "Sweden"
+      ],
+      "genre": 50,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780307588371",
+    "fields": {
+      "title": "Gone Girl",
+      "authors": [
+        20
+      ],
+      "publication_year": 2012,
+      "price": "449.0",
+      "summary": "On their fifth anniversary, Nick's wife Amy disappears, and he becomes the prime suspect in a twisted game of marital deception.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554086139i/19288043.jpg",
+      "tags": [
+        "Marriage",
+        "Deception",
+        "Missing Wife"
+      ],
+      "genre": 51,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780307474278",
+    "fields": {
+      "title": "The Da Vinci Code",
+      "authors": [
+        21
+      ],
+      "publication_year": 2003,
+      "price": "399.0",
+      "summary": "Harvard symbologist Robert Langdon uncovers a centuries-old conspiracy within the Catholic Church after a murder at the Louvre.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1579621267i/968.jpg",
+      "tags": [
+        "Art",
+        "Religion",
+        "Symbols"
+      ],
+      "genre": 38,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780062073488",
+    "fields": {
+      "title": "And Then There Were None",
+      "authors": [
+        22
+      ],
+      "publication_year": 1939,
+      "price": "299.0",
+      "summary": "Ten strangers are invited to an isolated island where they are killed off one by one, following a sinister nursery rhyme.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1638425885i/16299.jpg",
+      "tags": [
+        "Island",
+        "Murder",
+        "Suspense"
+      ],
+      "genre": 48,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781250301697",
+    "fields": {
+      "title": "The Silent Patient",
+      "authors": [
+        23
+      ],
+      "publication_year": 2019,
+      "price": "399.0",
+      "summary": "A famous painter shoots her husband and then stops speaking; a criminal psychotherapist is determined to uncover her motive.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1665263052i/40097951.jpg",
+      "tags": [
+        "Therapist",
+        "Murder",
+        "Silence"
+      ],
+      "genre": 51,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780241425442",
+    "fields": {
+      "title": "The Thursday Murder Club",
+      "authors": [
+        24
+      ],
+      "publication_year": 2020,
+      "price": "499.0",
+      "summary": "Four retirees in a peaceful retirement village meet weekly to investigate unsolved murders, but find themselves with a real case.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1597466563i/52439564.jpg",
+      "tags": [
+        "Retirees",
+        "Cold Case",
+        "Village"
+      ],
+      "genre": 46,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780143113492",
+    "fields": {
+      "title": "In the Woods",
+      "authors": [
+        25
+      ],
+      "publication_year": 2007,
+      "price": "449.0",
+      "summary": "Detective Rob Ryan investigates a child's murder in the same woods where he was found traumatized with no memory twenty years earlier.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Cold Case",
+        "Dublin",
+        "Trauma"
+      ],
+      "genre": 44,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780099520280",
+    "fields": {
+      "title": "The Snowman",
+      "authors": [
+        26
+      ],
+      "publication_year": 2007,
+      "price": "499.0",
+      "summary": "Inspector Harry Hole investigates a serial killer who builds snowmen outside the homes of his victims during Oslo's first snowfall.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Serial Killer",
+        "Snowman",
+        "Oslo"
+      ],
+      "genre": 40,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780752863881",
+    "fields": {
+      "title": "The Bourne Identity",
+      "authors": [
+        27
+      ],
+      "publication_year": 1980,
+      "price": "399.0",
+      "summary": "A man is found floating in the Mediterranean Sea with no memory but extraordinary skills, discovering he is a deadly CIA operative.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1337818022i/7868.jpg",
+      "tags": [
+        "Amnesia",
+        "Assassin",
+        "Conspiracy"
+      ],
+      "genre": 49,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780007119318",
+    "fields": {
+      "title": "The Murder of Roger Ackroyd",
+      "authors": [
+        22
+      ],
+      "publication_year": 1926,
+      "price": "299.0",
+      "summary": "Hercule Poirot comes out of retirement to investigate the murder of a wealthy widower in a small English village with shocking results.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1389734066i/16328.jpg",
+      "tags": [
+        "Village",
+        "Poison",
+        "Hercule Poirot"
+      ],
+      "genre": 48,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780141033748",
+    "fields": {
+      "title": "The Hound of the Baskervilles",
+      "authors": [
+        28
+      ],
+      "publication_year": 1902,
+      "price": "299.0",
+      "summary": "Sherlock Holmes investigates the curse of a phantom hound that is terrorizing the Baskerville family on the gloomy Devonshire moors.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1355929317i/8921.jpg",
+      "tags": [
+        "Sherlock Holmes",
+        "Supernatural",
+        "Moors"
+      ],
+      "genre": 48,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781594634024",
+    "fields": {
+      "title": "The Girl on the Train",
+      "authors": [
+        29
+      ],
+      "publication_year": 2015,
+      "price": "399.0",
+      "summary": "A divorced alcoholic becomes obsessed with a couple she sees daily from her train and inserts herself into their lives when the wife disappears.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1574805688i/22557272.jpg",
+      "tags": [
+        "Obsession",
+        "Memory",
+        "Alcoholism"
+      ],
+      "genre": 51,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780399587191",
+    "fields": {
+      "title": "Big Little Lies",
+      "authors": [
+        30
+      ],
+      "publication_year": 2014,
+      "price": "449.0",
+      "summary": "Three mothers in an affluent Australian town become embroiled in a murder investigation that reveals the dark secrets beneath their perfect lives.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1414110727i/22875147.jpg",
+      "tags": [
+        "School",
+        "Murder",
+        "Friendship"
+      ],
+      "genre": 47,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780349107699",
+    "fields": {
+      "title": "The No. 1 Ladies' Detective Agency",
+      "authors": [
+        31
+      ],
+      "publication_year": 1998,
+      "price": "349.0",
+      "summary": "Precious Ramotswe sets up Botswana's first female-owned detective agency, solving cases with wisdom, humor, and understanding of human nature.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327868566i/2429135.jpg",
+      "tags": [
+        "Botswana",
+        "Female Detective",
+        "Africa"
+      ],
+      "genre": 46,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781501188817",
+    "fields": {
+      "title": "One by One",
+      "authors": [
+        32
+      ],
+      "publication_year": 2020,
+      "price": "499.0",
+      "summary": "Employees of a tech startup are trapped in a remote French chalet during a corporate retreat when a deadly avalanche strikes and people start dying.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1588622662i/50783726.jpg",
+      "tags": [
+        "Ski Chalet",
+        "Corporate",
+        "Snowstorm"
+      ],
+      "genre": 41,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780349133759",
+    "fields": {
+      "title": "The Devotion of Suspect X",
+      "authors": [
+        33
+      ],
+      "publication_year": 2005,
+      "price": "399.0",
+      "summary": "A brilliant mathematician devises the perfect alibi for his neighbor after she murders her abusive ex-husband, challenging a physics genius detective.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Mathematics",
+        "Neighbor",
+        "Cover-up"
+      ],
+      "genre": 39,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780062678423",
+    "fields": {
+      "title": "The Woman in the Window",
+      "authors": [
+        34
+      ],
+      "publication_year": 2018,
+      "price": "449.0",
+      "summary": "An agoraphobic child psychologist spies on her neighbors and witnesses a crime in the house across the street, but no one believes her.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1499140585i/34946532.jpg",
+      "tags": [
+        "Agoraphobia",
+        "Spying",
+        "Crime"
+      ],
+      "genre": 51,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780316206846",
+    "fields": {
+      "title": "The Cuckoo's Calling",
+      "authors": [
+        35
+      ],
+      "publication_year": 2013,
+      "price": "499.0",
+      "summary": "War veteran turned private investigator Cormoran Strike looks into the alleged suicide of a famous supermodel, uncovering a web of lies and fashion industry secrets.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1597466563i/52439564.jpg",
+      "tags": [
+        "Model Suicide",
+        "London",
+        "Cormoran Strike"
+      ],
+      "genre": 45,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780140167771",
+    "fields": {
+      "title": "The Secret History",
+      "authors": [
+        36
+      ],
+      "publication_year": 1992,
+      "price": "599.0",
+      "summary": "A group of eccentric classics students at an elite New England college commit a murder under the influence of their charismatic professor.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1672349328i/29044.jpg",
+      "tags": [
+        "Classics Students",
+        "Murder",
+        "Elite College"
+      ],
+      "genre": 43,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780062060563",
+    "fields": {
+      "title": "Before I Go to Sleep",
+      "authors": [
+        37
+      ],
+      "publication_year": 2011,
+      "price": "399.0",
+      "summary": "A woman with amnesia wakes up every day with no memory, keeping a secret journal to piece together her past and discover who she can trust.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327868566i/2429135.jpg",
+      "tags": [
+        "Amnesia",
+        "Memory",
+        "Trust"
+      ],
+      "genre": 51,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780307949493",
+    "fields": {
+      "title": "The Girl Who Played with Fire",
+      "authors": [
+        19
+      ],
+      "publication_year": 2006,
+      "price": "499.0",
+      "summary": "Lisbeth Salander becomes the prime suspect in three murders while journalist Mikael Blomkvist races to prove her innocence and uncover a sex trafficking ring.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1351778881i/5060378.jpg",
+      "tags": [
+        "Hacker",
+        "Conspiracy",
+        "Sweden"
+      ],
+      "genre": 50,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780393332148",
+    "fields": {
+      "title": "The Talented Mr. Ripley",
+      "authors": [
+        38
+      ],
+      "publication_year": 1955,
+      "price": "399.0",
+      "summary": "A young man with a talent for forgery and impersonation is sent to Italy to retrieve a wealthy man's son but becomes obsessed with his life.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1354793865i/101269.jpg",
+      "tags": [
+        "Identity",
+        "Obsession",
+        "Italy"
+      ],
+      "genre": 51,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780316069489",
+    "fields": {
+      "title": "The Reversal",
+      "authors": [
+        39
+      ],
+      "publication_year": 2010,
+      "price": "449.0",
+      "summary": "Defense attorney Mickey Haller is hired to prosecute a child murderer in a retrial, working with his ex-wife and half-brother Harry Bosch.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Prosecutor",
+        "Defense",
+        "Retrial"
+      ],
+      "genre": 52,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780380731862",
+    "fields": {
+      "title": "Shutter Island",
+      "authors": [
+        40
+      ],
+      "publication_year": 2003,
+      "price": "449.0",
+      "summary": "U.S. Marshals investigate the disappearance of a patient from a hospital for the criminally insane on a remote island in 1954.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1579621267i/968.jpg",
+      "tags": [
+        "Asylum",
+        "Missing Patient",
+        "1950s"
+      ],
+      "genre": 51,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780735221086",
+    "fields": {
+      "title": "The Couple Next Door",
+      "authors": [
+        41
+      ],
+      "publication_year": 2016,
+      "price": "399.0",
+      "summary": "A couple's baby is kidnapped while they are at a dinner party next door, and the investigation reveals that everyone is hiding something.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1452635660i/28220915.jpg",
+      "tags": [
+        "Missing Baby",
+        "Secrets",
+        "Parents"
+      ],
+      "genre": 47,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781250105608",
+    "fields": {
+      "title": "The Dry",
+      "authors": [
+        42
+      ],
+      "publication_year": 2016,
+      "price": "449.0",
+      "summary": "A federal agent returns to his drought-stricken hometown for a funeral and investigates a shocking crime that the community wants to keep buried.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1465674490i/30039059.jpg",
+      "tags": [
+        "Drought",
+        "Small Town",
+        "Australia"
+      ],
+      "genre": 50,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780679722643",
+    "fields": {
+      "title": "The Postman Always Rings Twice",
+      "authors": [
+        43
+      ],
+      "publication_year": 1934,
+      "price": "299.0",
+      "summary": "A drifter begins an affair with a married woman and they plot to murder her older husband and take over his roadside diner.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Passion",
+        "Murder",
+        "Diner"
+      ],
+      "genre": 42,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780441172719",
+    "fields": {
+      "title": "Dune",
+      "authors": [
+        44
+      ],
+      "publication_year": 1965,
+      "price": "499.0",
+      "summary": "On the desert planet Arrakis, young Paul Atreides leads a rebellion against galactic oppressors while controlling the universe's most valuable resource: spice.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1555447414i/44767458.jpg",
+      "tags": [
+        "Desert",
+        "Politics",
+        "Messiah"
+      ],
+      "genre": 62,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780544003415",
+    "fields": {
+      "title": "The Lord of the Rings",
+      "authors": [
+        45
+      ],
+      "publication_year": 1954,
+      "price": "899.0",
+      "summary": "A humble hobbit must destroy a powerful ring that could enable the dark lord Sauron to conquer Middle-earth, aided by a fellowship of diverse companions.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654215925i/61215351.jpg",
+      "tags": [
+        "Middle-earth",
+        "Quest",
+        "Magic"
+      ],
+      "genre": 58,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780553293357",
+    "fields": {
+      "title": "Foundation",
+      "authors": [
+        46
+      ],
+      "publication_year": 1951,
+      "price": "399.0",
+      "summary": "A psychohistorian predicts the fall of the Galactic Empire and establishes a foundation to preserve knowledge and shorten the coming dark age.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1417900846i/29579.jpg",
+      "tags": [
+        "Galactic Empire",
+        "Psychohistory"
+      ],
+      "genre": 53,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780451524935",
+    "fields": {
+      "title": "1984",
+      "authors": [
+        47
+      ],
+      "publication_year": 1949,
+      "price": "349.0",
+      "summary": "In a dystopian future, Winston Smith rebels against the oppressive Party and its omnipresent leader Big Brother in a world of constant surveillance.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1657781256i/40961427.jpg",
+      "tags": [
+        "Totalitarianism",
+        "Surveillance"
+      ],
+      "genre": 59,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780547928227",
+    "fields": {
+      "title": "The Hobbit",
+      "authors": [
+        45
+      ],
+      "publication_year": 1937,
+      "price": "449.0",
+      "summary": "A reluctant hobbit, Bilbo Baggins, embarks on an unexpected adventure with a group of dwarves to reclaim their mountain home from a dragon.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1546071216i/5907.jpg",
+      "tags": [
+        "Adventure",
+        "Dragon",
+        "Quest"
+      ],
+      "genre": 58,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780441569595",
+    "fields": {
+      "title": "Neuromancer",
+      "authors": [
+        48
+      ],
+      "publication_year": 1984,
+      "price": "399.0",
+      "summary": "A washed-up computer hacker is hired for one last job that brings him face-to-face with a powerful artificial intelligence in a dystopian future.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554437239i/22328.jpg",
+      "tags": [
+        "AI",
+        "Cyberspace",
+        "Hacker"
+      ],
+      "genre": 60,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780765342294",
+    "fields": {
+      "title": "Ender's Game",
+      "authors": [
+        49
+      ],
+      "publication_year": 1985,
+      "price": "399.0",
+      "summary": "Gifted child Ender Wiggin is trained in an orbital battle school to lead humanity's defense against an impending alien invasion.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1408303130i/375802.jpg",
+      "tags": [
+        "Child Soldiers",
+        "Alien War"
+      ],
+      "genre": 55,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780553386790",
+    "fields": {
+      "title": "A Game of Thrones",
+      "authors": [
+        50
+      ],
+      "publication_year": 1996,
+      "price": "599.0",
+      "summary": "Noble families vie for control of the Iron Throne in the Seven Kingdoms, while ancient evils awaken in the north and dragons are reborn.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1716873386i/13496.jpg",
+      "tags": [
+        "Politics",
+        "Dragons",
+        "Medieval"
+      ],
+      "genre": 56,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780441478125",
+    "fields": {
+      "title": "The Left Hand of Darkness",
+      "authors": [
+        51
+      ],
+      "publication_year": 1969,
+      "price": "449.0",
+      "summary": "An envoy is sent to a planet where inhabitants can change gender, challenging his understanding of human nature while on a diplomatic mission.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1388220578i/18423.jpg",
+      "tags": [
+        "Gender",
+        "Diplomacy",
+        "Winter Planet"
+      ],
+      "genre": 63,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780756404741",
+    "fields": {
+      "title": "The Name of the Wind",
+      "authors": [
+        52
+      ],
+      "publication_year": 2007,
+      "price": "499.0",
+      "summary": "The legendary wizard Kvothe recounts his life story, from childhood in a troupe of performers to his years at a university of magic.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1654390109i/186074.jpg",
+      "tags": [
+        "Magic University",
+        "Musician"
+      ],
+      "genre": 61,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780553380958",
+    "fields": {
+      "title": "Snow Crash",
+      "authors": [
+        53
+      ],
+      "publication_year": 1992,
+      "price": "449.0",
+      "summary": "A pizza delivery driver and hacker uncovers a ancient Sumerian linguistic virus that threatens both the virtual and real worlds.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1579766245i/830.jpg",
+      "tags": [
+        "Virtual Reality",
+        "Linguistics"
+      ],
+      "genre": 60,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780553418026",
+    "fields": {
+      "title": "The Martian",
+      "authors": [
+        54
+      ],
+      "publication_year": 2011,
+      "price": "399.0",
+      "summary": "An astronaut is stranded on Mars and must use his engineering skills and humor to survive until rescue becomes possible.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1413706054i/18007564.jpg",
+      "tags": [
+        "Mars",
+        "Survival",
+        "Science"
+      ],
+      "genre": 54,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780060850524",
+    "fields": {
+      "title": "Brave New World",
+      "authors": [
+        55
+      ],
+      "publication_year": 1932,
+      "price": "349.0",
+      "summary": "In a futuristic world where humans are genetically engineered and conditioned for specific social roles, one man questions this perfect society.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1575509280i/5129.jpg",
+      "tags": [
+        "Genetic Engineering",
+        "Society"
+      ],
+      "genre": 59,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780765326355",
+    "fields": {
+      "title": "The Way of Kings",
+      "authors": [
+        56
+      ],
+      "publication_year": 2010,
+      "price": "699.0",
+      "summary": "In a world shattered by storms and war, various characters including a slave, a soldier, and a scholar discover their destinies are intertwined.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1388184640i/7235533.jpg",
+      "tags": [
+        "Magic Storms",
+        "Knights",
+        "Worldbuilding"
+      ],
+      "genre": 57,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780553816719",
+    "fields": {
+      "title": "The Notebook",
+      "authors": [
+        57
+      ],
+      "publication_year": 1996,
+      "price": "349.0",
+      "summary": "In 1940s South Carolina, wealthy Allie Hamilton falls for poor mill worker Noah Calhoun, a summer romance that spans decades and a lifetime.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1385738917i/15931.jpg",
+      "tags": [
+        "Summer Love",
+        "Class",
+        "Memory"
+      ],
+      "genre": 65,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780718157838",
+    "fields": {
+      "title": "Me Before You",
+      "authors": [
+        58
+      ],
+      "publication_year": 2012,
+      "price": "399.0",
+      "summary": "Quirky Louisa Clark becomes a caregiver for Will Traynor, a wealthy, cynical quadriplegic, and both their lives are transformed by their unexpected connection.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1357108762i/15507958.jpg",
+      "tags": [
+        "Disability",
+        "Caregiver",
+        "Life Choices"
+      ],
+      "genre": 65,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780451490827",
+    "fields": {
+      "title": "The Bride Test",
+      "authors": [
+        59
+      ],
+      "publication_year": 2019,
+      "price": "449.0",
+      "summary": "Khai Diep believes he cannot feel love, so his mother travels to Vietnam to find him a perfect wife, leading to an unexpected romance with Esme.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1545416958i/42201431.jpg",
+      "tags": [
+        "Neurodiversity",
+        "Vietnam",
+        "Arranged Marriage"
+      ],
+      "genre": 65,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780440212560",
+    "fields": {
+      "title": "Outlander",
+      "authors": [
+        60
+      ],
+      "publication_year": 1991,
+      "price": "599.0",
+      "summary": "Former WWII nurse Claire Randall is transported from 1945 to 1743 Scotland, where she is forced to marry a chivalrous young warrior, Jamie Fraser.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630500884i/10964.jpg",
+      "tags": [
+        "Time Travel",
+        "Scotland",
+        "18th Century"
+      ],
+      "genre": 64,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780451490803",
+    "fields": {
+      "title": "The Kiss Quotient",
+      "authors": [
+        59
+      ],
+      "publication_year": 2018,
+      "price": "449.0",
+      "summary": "A brilliant econometrician with Autism hires a male escort to teach her about dating and relationships, leading to a surprising and heartfelt romance.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1515688540i/36642787.jpg",
+      "tags": [
+        "Neurodiversity",
+        "Dating",
+        "Escort"
+      ],
+      "genre": 65,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781471156267",
+    "fields": {
+      "title": "It Ends With Us",
+      "authors": [
+        61
+      ],
+      "publication_year": 2016,
+      "price": "399.0",
+      "summary": "Lily Bloom's relationship with neurosurgeon Ryle Kincaid is tested when her first love, Atlas, reappears, forcing her to confront difficult patterns.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1470427482i/27362503.jpg",
+      "tags": [
+        "Domestic Violence",
+        "Boston",
+        "Florist"
+      ],
+      "genre": 65,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781250316776",
+    "fields": {
+      "title": "\"Red, White & Royal Blue\"",
+      "authors": [
+        62
+      ],
+      "publication_year": 2019,
+      "price": "499.0",
+      "summary": "When the son of the U.S. President has a public confrontation with the Prince of Wales, a staged truce evolves into a secret, whirlwind romance.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586729042i/41150487.jpg",
+      "tags": [
+        "LGBTQ",
+        "Politics",
+        "Prince"
+      ],
+      "genre": 65,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781662500019",
+    "fields": {
+      "title": "The Spanish Love Deception",
+      "authors": [
+        63
+      ],
+      "publication_year": 2021,
+      "price": "449.0",
+      "summary": "Catalina Mart\u00c3\u00adn desperately needs a date to her sister's wedding in Spain and reluctantly turns to her annoying, handsome coworker Aaron Blackford.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1618328122i/54860560.jpg",
+      "tags": [
+        "Fake Dating",
+        "Workplace",
+        "Spain"
+      ],
+      "genre": 65,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780593336823",
+    "fields": {
+      "title": "The Love Hypothesis",
+      "authors": [
+        64
+      ],
+      "publication_year": 2021,
+      "price": "449.0",
+      "summary": "A PhD student fake-dates a famous young professor to convince her friend she's fine, but their staged romance soon develops into something very real.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1618328122i/54860560.jpg",
+      "tags": [
+        "Fake Dating",
+        "Academia",
+        "Stanford"
+      ],
+      "genre": 65,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780439023481",
+    "fields": {
+      "title": "The Hunger Games",
+      "authors": [
+        65
+      ],
+      "publication_year": 2008,
+      "price": "399.0",
+      "summary": "In a dystopian future, Katniss Everdeen volunteers to take her younger sister's place in the Hunger Games, a televised fight to the death between teenagers.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586722975i/2767052.jpg",
+      "tags": [
+        "Survival",
+        "Reality TV",
+        "Rebellion"
+      ],
+      "genre": 70,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780142424179",
+    "fields": {
+      "title": "The Fault in Our Stars",
+      "authors": [
+        66
+      ],
+      "publication_year": 2012,
+      "price": "349.0",
+      "summary": "Two teenagers, Hazel and Augustus, who meet at a cancer support group, embark on a heartbreaking and transformative journey together.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1360206420i/11870085.jpg",
+      "tags": [
+        "Cancer",
+        "Illness",
+        "Love"
+      ],
+      "genre": 67,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780747532699",
+    "fields": {
+      "title": "Harry Potter and the Philosopher's Stone",
+      "authors": [
+        67
+      ],
+      "publication_year": 1997,
+      "price": "499.0",
+      "summary": "A young boy discovers on his eleventh birthday that he is a wizard and is whisked away to Hogwarts School of Witchcraft and Wizardry.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1474154022i/3.jpg",
+      "tags": [
+        "Wizard",
+        "School",
+        "Magic"
+      ],
+      "genre": 71,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781451696196",
+    "fields": {
+      "title": "The Perks of Being a Wallflower",
+      "authors": [
+        68
+      ],
+      "publication_year": 1999,
+      "price": "399.0",
+      "summary": "An introverted freshman named Charlie navigates the complexities of high school, friendship, and love through a series of letters to an anonymous stranger.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1167355537i/22628.jpg",
+      "tags": [
+        "High School",
+        "Trauma",
+        "Friendship"
+      ],
+      "genre": 68,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780316015844",
+    "fields": {
+      "title": "Twilight",
+      "authors": [
+        69
+      ],
+      "publication_year": 2005,
+      "price": "449.0",
+      "summary": "When Bella Swan moves to rainy Forks, Washington, she falls in love with Edward Cullen, a mysterious and alluring vampire, putting her life in danger.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1361039443i/41865.jpg",
+      "tags": [
+        "Vampires",
+        "Forbidden Love",
+        "High School"
+      ],
+      "genre": 69,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780375831003",
+    "fields": {
+      "title": "The Book Thief",
+      "authors": [
+        70
+      ],
+      "publication_year": 2005,
+      "price": "499.0",
+      "summary": "Narrated by Death, this is the story of Liesel Meminger, a young girl in Nazi Germany who finds solace by stealing books and sharing them with others.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1522157426i/19063.jpg",
+      "tags": [
+        "Nazi Germany",
+        "Death",
+        "Books"
+      ],
+      "genre": 66,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780062024039",
+    "fields": {
+      "title": "Divergent",
+      "authors": [
+        71
+      ],
+      "publication_year": 2011,
+      "price": "399.0",
+      "summary": "In a society divided into five factions, Tris Prior must choose where she belongs and uncovers a conflict that threatens to tear her world apart.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1618526890i/13335037.jpg",
+      "tags": [
+        "Identity",
+        "Factions",
+        "Choice"
+      ],
+      "genre": 70,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781442426702",
+    "fields": {
+      "title": "To All the Boys I've Loved Before",
+      "authors": [
+        72
+      ],
+      "publication_year": 2014,
+      "price": "349.0",
+      "summary": "Lara Jean's love life goes from imaginary to out of control when the secret love letters she wrote to all her past crushes are mysteriously mailed out.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1372131350i/15749186.jpg",
+      "tags": [
+        "Love Letters",
+        "High School",
+        "Family"
+      ],
+      "genre": 67,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780385732550",
+    "fields": {
+      "title": "The Giver",
+      "authors": [
+        73
+      ],
+      "publication_year": 1993,
+      "price": "299.0",
+      "summary": "Jonas is chosen to be the Receiver of Memory in his seemingly perfect, colorless community and discovers the dark secrets behind its existence.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1342493368i/3636.jpg",
+      "tags": [
+        "Memory",
+        "Sameness",
+        "Utopia"
+      ],
+      "genre": 70,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781627792127",
+    "fields": {
+      "title": "Six of Crows",
+      "authors": [
+        74
+      ],
+      "publication_year": 2015,
+      "price": "449.0",
+      "summary": "Criminal prodigy Kaz Brekker is offered a chance at a deadly heist that could make him rich, but only if he can assemble a crew of six outcasts.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1651710803i/23437156.jpg",
+      "tags": [
+        "Heist",
+        "Criminal",
+        "Magic"
+      ],
+      "genre": 71,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780312577223",
+    "fields": {
+      "title": "The Nightingale",
+      "authors": [
+        75
+      ],
+      "publication_year": 2015,
+      "price": "499.0",
+      "summary": "Two sisters in German-occupied France take vastly different paths to survive and fight against the Nazi regime during World War II.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1570553241i/21853621.jpg",
+      "tags": [
+        "France",
+        "Sisters",
+        "Resistance"
+      ],
+      "genre": 74,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781476746586",
+    "fields": {
+      "title": "All the Light We Cannot See",
+      "authors": [
+        76
+      ],
+      "publication_year": 2014,
+      "price": "599.0",
+      "summary": "The paths of a blind French girl and a German boy-soldier collide in occupied France as both try to survive the devastation of World War II.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1451445648i/18143977.jpg",
+      "tags": [
+        "France",
+        "Blind Girl",
+        "Radio"
+      ],
+      "genre": 74,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780451166890",
+    "fields": {
+      "title": "The Pillars of the Earth",
+      "authors": [
+        77
+      ],
+      "publication_year": 1989,
+      "price": "699.0",
+      "summary": "A sweeping epic of ambition, anarchy, and absolute power set against the backdrop of the building of a cathedral in 12th-century England.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1576953684i/5043.jpg",
+      "tags": [
+        "Cathedral",
+        "12th Century",
+        "England"
+      ],
+      "genre": 77,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781594631931",
+    "fields": {
+      "title": "The Kite Runner",
+      "authors": [
+        78
+      ],
+      "publication_year": 2003,
+      "price": "399.0",
+      "summary": "Amir recounts his childhood in Afghanistan and his friendship with Hassan, the son of his father's servant, and a betrayal that haunts him for decades.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1579036753i/77203.jpg",
+      "tags": [
+        "Friendship",
+        "Betrayal",
+        "Redemption"
+      ],
+      "genre": 78,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780140447934",
+    "fields": {
+      "title": "War and Peace",
+      "authors": [
+        79
+      ],
+      "publication_year": 1869,
+      "price": "799.0",
+      "summary": "A monumental work set during the Napoleonic era, following the lives of five aristocratic Russian families and their personal struggles.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1413215930i/656.jpg",
+      "tags": [
+        "Russia",
+        "Aristocracy",
+        "Philosophy"
+      ],
+      "genre": 76,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780143034902",
+    "fields": {
+      "title": "The Shadow of the Wind",
+      "authors": [
+        80
+      ],
+      "publication_year": 2001,
+      "price": "499.0",
+      "summary": "In post-war Barcelona, a young boy discovers a mysterious book in a hidden library and embarks on a quest to find the truth about its author.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1553858149i/12392.jpg",
+      "tags": [
+        "Barcelona",
+        "Books",
+        "Post-war"
+      ],
+      "genre": 75,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780778386614",
+    "fields": {
+      "title": "The Henna Artist",
+      "authors": [
+        81
+      ],
+      "publication_year": 2020,
+      "price": "449.0",
+      "summary": "Escaping an abusive marriage, Lakshmi becomes a renowned henna artist for the wealthy women of Jaipur, but her past threatens her new life.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1568572805i/51171454.jpg",
+      "tags": [
+        "1950s Jaipur",
+        "Independence",
+        "Women"
+      ],
+      "genre": 73,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781101947135",
+    "fields": {
+      "title": "Homegoing",
+      "authors": [
+        82
+      ],
+      "publication_year": 2016,
+      "price": "499.0",
+      "summary": "Two half-sisters in 18th-century Ghana are separated by fate; one marries a British slaver, the other is sold into slavery, tracing their descendants through centuries.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1454340024i/27071490.jpg",
+      "tags": [
+        "Ghana",
+        "Slavery",
+        "Generations"
+      ],
+      "genre": 72,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9789394407012",
+    "fields": {
+      "title": "The Last Queen",
+      "authors": [
+        6
+      ],
+      "publication_year": 2021,
+      "price": "399.0",
+      "summary": "The epic story of Rani Jindan, the last queen of the Sikh Empire, who fought against the British Empire to protect her son and her kingdom.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1624448419i/58745163.jpg",
+      "tags": [
+        "Rani Jindan",
+        "Sikh Empire",
+        "British"
+      ],
+      "genre": 79,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788126400361",
+    "fields": {
+      "title": "Randamoozham",
+      "authors": [
+        83
+      ],
+      "publication_year": 1984,
+      "price": "399.0",
+      "summary": "The Mahabharata retold from the perspective of Bhima, the second Pandava, challenging traditional narratives and exploring his marginalized voice.",
+      "cover_image": "https://m.media-amazon.com/images/I/81bQHVJ4TLL._SY522_.jpg",
+      "tags": [
+        "Mahabharata",
+        "Bhima",
+        "Perspective"
+      ],
+      "genre": 82,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788185986039",
+    "fields": {
+      "title": "Aadujeevitham",
+      "authors": [
+        84
+      ],
+      "publication_year": 2008,
+      "price": "349.0",
+      "summary": "The harrowing true story of Najeeb, an Indian migrant worker forced into slavery as a goat herder in the deserts of Saudi Arabia.",
+      "cover_image": "https://m.media-amazon.com/images/I/71cF+7L1YjL._SY522_.jpg",
+      "tags": [
+        "Gulf",
+        "Slavery",
+        "Desert"
+      ],
+      "genre": 88,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788126401580",
+    "fields": {
+      "title": "Naalukettu",
+      "authors": [
+        83
+      ],
+      "publication_year": 1958,
+      "price": "299.0",
+      "summary": "A young man from a decaying matrilineal tharavad seeks revenge and identity while grappling with the decline of the traditional joint family system.",
+      "cover_image": "https://m.media-amazon.com/images/I/81P5Z+8vM3L._SY522_.jpg",
+      "tags": [
+        "Joint Family",
+        "Feud",
+        "Matriarchy"
+      ],
+      "genre": 84,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788126410209",
+    "fields": {
+      "title": "Mayyazhippuzhayude Theerangalil",
+      "authors": [
+        85
+      ],
+      "publication_year": 1974,
+      "price": "329.0",
+      "summary": "Set in the French colonial enclave of Mahe, it captures the lives of ordinary people amidst political change and the struggle for liberation.",
+      "cover_image": "https://m.media-amazon.com/images/I/81l8a9pR0YL._SY522_.jpg",
+      "tags": [
+        "Mahe",
+        "French Colony",
+        "Freedom"
+      ],
+      "genre": 81,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9789385932001",
+    "fields": {
+      "title": "Aarachar",
+      "authors": [
+        86
+      ],
+      "publication_year": 2012,
+      "price": "379.0",
+      "summary": "The story of a hangwoman and her family in Kolkata, exploring the moral and psychological burdens of executing death sentences.",
+      "cover_image": "https://m.media-amazon.com/images/I/81vXf+Z2QkL._SY522_.jpg",
+      "tags": [
+        "Executioner",
+        "Capital Punishment",
+        "Family"
+      ],
+      "genre": 83,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788126402136",
+    "fields": {
+      "title": "Ente Kadha",
+      "authors": [
+        87
+      ],
+      "publication_year": 1973,
+      "price": "279.0",
+      "summary": "The candid and controversial autobiography of Kamala Das, detailing her journey as a woman, writer, and rebel in mid-20th century Kerala.",
+      "cover_image": "https://m.media-amazon.com/images/I/81J8M7+/PEL._SY522_.jpg",
+      "tags": [
+        "Feminism",
+        "Childhood",
+        "Rebellion"
+      ],
+      "genre": 80,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788126403218",
+    "fields": {
+      "title": "Oru Desathinte Katha",
+      "authors": [
+        88
+      ],
+      "publication_year": 1971,
+      "price": "319.0",
+      "summary": "An epic portrayal of life in a Kerala village, capturing its traditions, characters, and the winds of change over several decades.",
+      "cover_image": "https://m.media-amazon.com/images/I/81V9X9Z+5YL._SY522_.jpg",
+      "tags": [
+        "Kerala Village",
+        "Community",
+        "Change"
+      ],
+      "genre": 85,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788126403157",
+    "fields": {
+      "title": "Pathummayude Aadu",
+      "authors": [
+        89
+      ],
+      "publication_year": 1959,
+      "price": "249.0",
+      "summary": "A humorous and warm account of the author's large, eccentric family and the chaos caused by his sister Pathumma's beloved goat.",
+      "cover_image": "https://m.media-amazon.com/images/I/81L5Z+5ZJ7L._SY522_.jpg",
+      "tags": [
+        "Family",
+        "Goat",
+        "Muslim Life"
+      ],
+      "genre": 87,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788126403140",
+    "fields": {
+      "title": "Balyakalasakhi",
+      "authors": [
+        89
+      ],
+      "publication_year": 1944,
+      "price": "259.0",
+      "summary": "A poignant love story between Majeed and Suhra, set in pre-Independence Kerala, torn apart by family feud and crushing poverty.",
+      "cover_image": "https://m.media-amazon.com/images/I/81L5Z+5ZJ7L._SY522_.jpg",
+      "tags": [
+        "Love",
+        "Poverty",
+        "Destiny"
+      ],
+      "genre": 86,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788126417536",
+    "fields": {
+      "title": "Yakshi",
+      "authors": [
+        90
+      ],
+      "publication_year": 1967,
+      "price": "299.0",
+      "summary": "A college professor falls in love with a woman he believes to be a Yakshi, a mythical vampire, in this psychological exploration of love and fear.",
+      "cover_image": "https://m.media-amazon.com/images/I/81L5Z+5ZJ7L._SY522_.jpg",
+      "tags": [
+        "Supernatural",
+        "Love",
+        "Psychology"
+      ],
+      "genre": 89,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780330458538",
+    "fields": {
+      "title": "The Palace of Illusions",
+      "authors": [
+        6
+      ],
+      "publication_year": 2008,
+      "price": "399.0",
+      "summary": "The Mahabharata retold from the perspective of Draupadi, exploring her life, desires, and struggles in a patriarchal world.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348258730i/782256.jpg",
+      "tags": [
+        "Draupadi",
+        "Feminism",
+        "Epic"
+      ],
+      "genre": 94,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9789381626348",
+    "fields": {
+      "title": "The Immortals of Meluha",
+      "authors": [
+        91
+      ],
+      "publication_year": 2010,
+      "price": "299.0",
+      "summary": "A tribal leader named Shiva journeys to the land of Meluha and discovers he may be the fabled Neelkanth, the savior prophesied to defeat evil.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1586557707i/7909964.jpg",
+      "tags": [
+        "Lord Shiva",
+        "Fantasy",
+        "Adventure"
+      ],
+      "genre": 92,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9789385152145",
+    "fields": {
+      "title": "The Ram Chandra Series: Ram - Scion of Ikshvaku",
+      "authors": [
+        91
+      ],
+      "publication_year": 2015,
+      "price": "349.0",
+      "summary": "A human and gritty retelling of the Ramayana, portraying Ram not as a god but as a noble prince fighting for justice in a corrupt world.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1432743295i/25163615.jpg",
+      "tags": [
+        "Lord Ram",
+        "Ayodhya",
+        "Dharma"
+      ],
+      "genre": 95,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780143104254",
+    "fields": {
+      "title": "Jaya: An Illustrated Retelling of the Mahabharata",
+      "authors": [
+        92
+      ],
+      "publication_year": 2010,
+      "price": "599.0",
+      "summary": "A simplified and illustrated version of the Mahabharata, collecting various regional folktales and philosophical interpretations of the great epic.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348262589i/7838.jpg",
+      "tags": [
+        "Epic",
+        "Illustrated",
+        "Philosophy"
+      ],
+      "genre": 94,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9789381626683",
+    "fields": {
+      "title": "The Krishna Key",
+      "authors": [
+        93
+      ],
+      "publication_year": 2012,
+      "price": "399.0",
+      "summary": "A historian becomes the prime suspect in a murder and must decipher clues from Indian mythology to find the real killer and a terrifying secret.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348262589i/7838.jpg",
+      "tags": [
+        "Lord Krishna",
+        "Conspiracy",
+        "History"
+      ],
+      "genre": 93,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9789386224638",
+    "fields": {
+      "title": "Sita: Warrior of Mithila",
+      "authors": [
+        91
+      ],
+      "publication_year": 2017,
+      "price": "349.0",
+      "summary": "Book two of the Ram Chandra Series, reimagining Sita not as a damsel in distress but as a fierce warrior and brilliant strategist.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1487077313i/32874570.jpg",
+      "tags": [
+        "Sita",
+        "Feminism",
+        "Warrior"
+      ],
+      "genre": 95,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9789381576001",
+    "fields": {
+      "title": "Asura: Tale of the Vanquished",
+      "authors": [
+        94
+      ],
+      "publication_year": 2012,
+      "price": "449.0",
+      "summary": "The story of the Ramayana told from the perspective of Ravana, portraying him as a capable and just leader fighting against Aryan domination.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348262589i/7838.jpg",
+      "tags": [
+        "Ravana",
+        "Anti-hero",
+        "Lanka"
+      ],
+      "genre": 95,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780143063970",
+    "fields": {
+      "title": "The Pregnant King",
+      "authors": [
+        92
+      ],
+      "publication_year": 2008,
+      "price": "399.0",
+      "summary": "Inspired by a lesser-known tale from the Mahabharata, this novel explores themes of gender fluidity and non-conformity in a mythical world.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348262589i/7838.jpg",
+      "tags": [
+        "Mahabharata",
+        "Gender",
+        "Identity"
+      ],
+      "genre": 91,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9789350096350",
+    "fields": {
+      "title": "Ajaya: Roll of the Dice",
+      "authors": [
+        94
+      ],
+      "publication_year": 2013,
+      "price": "399.0",
+      "summary": "The Mahabharata from the point of view of the Kauravas, presenting Duryodhana as a tragic hero fighting for a more egalitarian society.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1387744413i/18775221.jpg",
+      "tags": [
+        "Kauravas",
+        "Duryodhana",
+        "Perspective"
+      ],
+      "genre": 94,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9789383562238",
+    "fields": {
+      "title": "Shakti: The Divine Feminine",
+      "authors": [
+        95
+      ],
+      "publication_year": 2014,
+      "price": "349.0",
+      "summary": "A powerful retelling of the stories of the primary goddesses of Hindu mythology - Sati, Parvati, and Kali - and their manifestations as Shakti.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1387744413i/18775221.jpg",
+      "tags": [
+        "Goddess",
+        "Parvati",
+        "Sati",
+        "Kali"
+      ],
+      "genre": 90,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780141182452",
+    "fields": {
+      "title": "Dubliners",
+      "authors": [
+        96
+      ],
+      "publication_year": 1914,
+      "price": "349.0",
+      "summary": "Fifteen stories offering a vivid portrait of middle-class life in Dublin, capturing moments of moral and spiritual paralysis and sudden revelation.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554235463i/11012.jpg",
+      "tags": [
+        "Ireland",
+        "Epiphany",
+        "Modernism"
+      ],
+      "genre": 97,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780380729401",
+    "fields": {
+      "title": "The Illustrated Man",
+      "authors": [
+        97
+      ],
+      "publication_year": 1951,
+      "price": "379.0",
+      "summary": "A man's tattoos come to life at night, each one telling a different story about possible futures, exploring technology and humanity.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Tattoos",
+        "Future",
+        "Dystopia"
+      ],
+      "genre": 101,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780486298573",
+    "fields": {
+      "title": "The Yellow Wallpaper and Other Stories",
+      "authors": [
+        98
+      ],
+      "publication_year": 1892,
+      "price": "279.0",
+      "summary": "A collection of pioneering feminist stories, including the famous title story about a woman's descent into madness under patriarchal control.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Women",
+        "Mental Health",
+        "Society"
+      ],
+      "genre": 99,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780679723053",
+    "fields": {
+      "title": "What We Talk About When We Talk About Love",
+      "authors": [
+        99
+      ],
+      "publication_year": 1981,
+      "price": "329.0",
+      "summary": "Seventeen minimalist stories about blue-collar Americans, exploring the complexities of love, communication, and human connection.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Relationships",
+        "Love",
+        "Blue-collar"
+      ],
+      "genre": 98,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9789389152632",
+    "fields": {
+      "title": "The Women Who Forgot to Invent Facebook and Other Stories",
+      "authors": [
+        100
+      ],
+      "publication_year": 2020,
+      "price": "349.0",
+      "summary": "Twelve sharp, witty stories about love, friendship, and life in modern India, exploring digital lives and contemporary relationships.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1627922724i/9777.jpg",
+      "tags": [
+        "Modern India",
+        "Technology",
+        "Women"
+      ],
+      "genre": 103,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780393609097",
+    "fields": {
+      "title": "Norse Mythology",
+      "authors": [
+        101
+      ],
+      "publication_year": 2017,
+      "price": "449.0",
+      "summary": "Gaiman retells the classic Norse myths about the gods of Asgard, from creation to Ragnarok, with his characteristic wit and narrative flair.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1488251351i/30841984.jpg",
+      "tags": [
+        "Norse Gods",
+        "Loki",
+        "Thor"
+      ],
+      "genre": 96,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780099541049",
+    "fields": {
+      "title": "The Complete Short Stories of Anton Chekhov",
+      "authors": [
+        102
+      ],
+      "publication_year": 1886,
+      "price": "599.0",
+      "summary": "A comprehensive collection of stories by the master of the short story form, capturing the full spectrum of Russian life and human nature.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Russia",
+        "Human Condition",
+        "Realism"
+      ],
+      "genre": 102,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780670089635",
+    "fields": {
+      "title": "The Ministry of Utmost Happiness",
+      "authors": [
+        1
+      ],
+      "publication_year": 2017,
+      "price": "499.0",
+      "summary": "While primarily a novel, this work reads like interconnected stories weaving together the lives of India's marginalized and dispossessed.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1627922724i/9777.jpg",
+      "tags": [
+        "India",
+        "Politics",
+        "Marginalized"
+      ],
+      "genre": 97,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780143031031",
+    "fields": {
+      "title": "The Discovery of India",
+      "authors": [
+        103
+      ],
+      "publication_year": 1946,
+      "price": "599.0",
+      "summary": "Written in prison, this book explores India's rich history from ancient times to the British colonial period, reflecting on its philosophical and cultural heritage.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Freedom Struggle",
+        "Civilization",
+        "Culture"
+      ],
+      "genre": 110,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780140168648",
+    "fields": {
+      "title": "India After Independence",
+      "authors": [
+        104
+      ],
+      "publication_year": 1999,
+      "price": "699.0",
+      "summary": "A comprehensive account of India's political, social, and economic journey from 1947 to the end of the 20th century.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Partition",
+        "Nation Building",
+        "Politics"
+      ],
+      "genre": 110,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780099590088",
+    "fields": {
+      "title": "Sapiens: A Brief History of Humankind",
+      "authors": [
+        105
+      ],
+      "publication_year": 2014,
+      "price": "599.0",
+      "summary": "A groundbreaking narrative of humanity's creation and evolution that explores the forces that have shaped human societies and cultures.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1595674533i/23692271.jpg",
+      "tags": [
+        "Evolution",
+        "Cognitive Revolution",
+        "Mankind"
+      ],
+      "genre": 104,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781408864378",
+    "fields": {
+      "title": "The Anarchy: The Relentless Rise of the East India Company",
+      "authors": [
+        106
+      ],
+      "publication_year": 2019,
+      "price": "899.0",
+      "summary": "The story of how the East India Company looted the Indian subcontinent, transforming from a trading venture into a colonial power.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1549631613i/43575172.jpg",
+      "tags": [
+        "East India Company",
+        "Colonialism",
+        "Empire"
+      ],
+      "genre": 110,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780393317558",
+    "fields": {
+      "title": "Guns, Germs and Steel",
+      "authors": [
+        107
+      ],
+      "publication_year": 1997,
+      "price": "799.0",
+      "summary": "Explores why human societies developed differently across continents, focusing on environmental factors rather than racial differences.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1453215833i/9812.jpg",
+      "tags": [
+        "Civilization",
+        "Geography",
+        "Society"
+      ],
+      "genre": 104,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780747587260",
+    "fields": {
+      "title": "The Last Mughal",
+      "authors": [
+        106
+      ],
+      "publication_year": 2006,
+      "price": "749.0",
+      "summary": "The dramatic story of the fall of the Mughal Empire and the bloody rise of the British Raj in Delhi during the 1857 Uprising.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Mughal Empire",
+        "Bahadur Shah Zafar",
+        "1857"
+      ],
+      "genre": 110,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781101912379",
+    "fields": {
+      "title": "The Silk Roads: A New History of the World",
+      "authors": [
+        108
+      ],
+      "publication_year": 2015,
+      "price": "799.0",
+      "summary": "A retelling of world history with the Silk Road at its center, showing how the East has always been central to global development.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1455888355i/25632750.jpg",
+      "tags": [
+        "Trade Routes",
+        "Central Asia",
+        "Globalization"
+      ],
+      "genre": 104,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780140107814",
+    "fields": {
+      "title": "India's Struggle for Independence",
+      "authors": [
+        104
+      ],
+      "publication_year": 1989,
+      "price": "549.0",
+      "summary": "A detailed and analytical history of India's freedom struggle from the 1857 Revolt to Independence in 1947.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Freedom Movement",
+        "Gandhi",
+        "Nationalism"
+      ],
+      "genre": 110,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781451651683",
+    "fields": {
+      "title": "The Rise and Fall of the Third Reich",
+      "authors": [
+        109
+      ],
+      "publication_year": 1960,
+      "price": "1299.0",
+      "summary": "A comprehensive history of Nazi Germany from its origins to its collapse, written by a journalist who witnessed the events firsthand.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Nazi Germany",
+        "World War II",
+        "Hitler"
+      ],
+      "genre": 104,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781567310238",
+    "fields": {
+      "title": "The Story of Civilization",
+      "authors": [
+        110
+      ],
+      "publication_year": 1935,
+      "price": "1999.0",
+      "summary": "An 11-volume comprehensive survey of Western history, focusing on philosophical and cultural trends from ancient times to the modern era.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Philosophy",
+        "Culture",
+        "Western Civilization"
+      ],
+      "genre": 104,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780300143331",
+    "fields": {
+      "title": "The Great Partition",
+      "authors": [
+        111
+      ],
+      "publication_year": 2007,
+      "price": "499.0",
+      "summary": "A human history of the Partition of India, exploring the devastating human cost and lasting legacy of the division.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Partition",
+        "1947",
+        "Refugees"
+      ],
+      "genre": 110,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780060838652",
+    "fields": {
+      "title": "A People's History of the United States",
+      "authors": [
+        112
+      ],
+      "publication_year": 1980,
+      "price": "899.0",
+      "summary": "American history from the perspective of common people rather than political and economic elites, focusing on marginalized groups.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1355442822i/2767.jpg",
+      "tags": [
+        "Working Class",
+        "Indigenous",
+        "African American"
+      ],
+      "genre": 112,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781849048088",
+    "fields": {
+      "title": "Inglorious Empire: What the British Did to India",
+      "authors": [
+        113
+      ],
+      "publication_year": 2016,
+      "price": "499.0",
+      "summary": "A searing critique of British colonialism in India, documenting the economic devastation and human suffering caused by British rule.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1486322828i/33045555.jpg",
+      "tags": [
+        "British Raj",
+        "Colonialism",
+        "Economy"
+      ],
+      "genre": 110,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780140449082",
+    "fields": {
+      "title": "The Histories",
+      "authors": [
+        114
+      ],
+      "publication_year": 0,
+      "price": "699.0",
+      "summary": "The founding work of history in Western literature, describing the background and events of the Greco-Persian Wars.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Greco-Persian Wars",
+        "Egypt",
+        "Persia"
+      ],
+      "genre": 109,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781439107959",
+    "fields": {
+      "title": "The Emperor of All Maladies",
+      "authors": [
+        115
+      ],
+      "publication_year": 2010,
+      "price": "599.0",
+      "summary": "A biography of cancer from its first documented appearances thousands of years ago through the epic battles to cure and control it.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1527878345i/7170627.jpg",
+      "tags": [
+        "Cancer",
+        "Medicine",
+        "Biography"
+      ],
+      "genre": 108,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780060787295",
+    "fields": {
+      "title": "The Crusades",
+      "authors": [
+        116
+      ],
+      "publication_year": 2010,
+      "price": "799.0",
+      "summary": "A comprehensive history of the Crusades, balancing perspectives from both Christian and Muslim sides of the conflict.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Holy Land",
+        "Christianity",
+        "Islam"
+      ],
+      "genre": 111,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780330439091",
+    "fields": {
+      "title": "The Wonder That Was India",
+      "authors": [
+        117
+      ],
+      "publication_year": 1954,
+      "price": "899.0",
+      "summary": "A classic work on ancient Indian culture, civilization, and achievements before the Muslim invasions.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Ancient India",
+        "Culture",
+        "Civilization"
+      ],
+      "genre": 110,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780143037750",
+    "fields": {
+      "title": "Postwar: A History of Europe Since 1945",
+      "authors": [
+        118
+      ],
+      "publication_year": 2005,
+      "price": "1199.0",
+      "summary": "A comprehensive history of Europe from the end of World War II to the early 21st century, covering both Eastern and Western Europe.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Cold War",
+        "Reconstruction",
+        "EU"
+      ],
+      "genre": 107,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780465071005",
+    "fields": {
+      "title": "The Arabs: A History",
+      "authors": [
+        119
+      ],
+      "publication_year": 2009,
+      "price": "799.0",
+      "summary": "A comprehensive history of the Arab world from the Ottoman conquests through colonialism to the modern era.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Arab World",
+        "Ottoman",
+        "Modern"
+      ],
+      "genre": 105,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780395349292",
+    "fields": {
+      "title": "The Last Lion: Winston Spencer Churchill",
+      "authors": [
+        120
+      ],
+      "publication_year": 1983,
+      "price": "1499.0",
+      "summary": "A definitive biography of Winston Churchill, covering his early life through his leadership during World War II.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "World War II",
+        "Britain",
+        "Leadership"
+      ],
+      "genre": 106,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780553380163",
+    "fields": {
+      "title": "A Brief History of Time",
+      "authors": [
+        121
+      ],
+      "publication_year": 1988,
+      "price": "499.0",
+      "summary": "Explores fundamental questions about the universe, its origin, structure, and eventual fate, from the Big Bang to black holes.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1333578746i/3869.jpg",
+      "tags": [
+        "Cosmology",
+        "Universe",
+        "Big Bang"
+      ],
+      "genre": 113,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780192860927",
+    "fields": {
+      "title": "The Selfish Gene",
+      "authors": [
+        122
+      ],
+      "publication_year": 1976,
+      "price": "449.0",
+      "summary": "Introduces the gene-centered view of evolution, arguing that organisms are mere vehicles for the replication of selfish genes.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1366758096i/61535.jpg",
+      "tags": [
+        "Genetics",
+        "Evolution",
+        "Natural Selection"
+      ],
+      "genre": 116,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781476733524",
+    "fields": {
+      "title": "The Gene: An Intimate History",
+      "authors": [
+        115
+      ],
+      "publication_year": 2016,
+      "price": "699.0",
+      "summary": "A sweeping history of the gene and a personal account of how genetics may influence our futures, identities, and choices.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1457208963i/27276428.jpg",
+      "tags": [
+        "DNA",
+        "Heredity",
+        "Ethics"
+      ],
+      "genre": 120,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781476708690",
+    "fields": {
+      "title": "The Innovators",
+      "authors": [
+        123
+      ],
+      "publication_year": 2014,
+      "price": "799.0",
+      "summary": "The story of the people who created the computer and the Internet, exploring how their minds worked and what made them so inventive.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1410607545i/21856367.jpg",
+      "tags": [
+        "Digital Revolution",
+        "Internet",
+        "Collaboration"
+      ],
+      "genre": 126,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781857028898",
+    "fields": {
+      "title": "The Code Book",
+      "authors": [
+        124
+      ],
+      "publication_year": 1999,
+      "price": "549.0",
+      "summary": "A history of cryptography, from ancient Egyptian puzzles to modern quantum cryptography, explaining the science of secrecy.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Codes",
+        "Ciphers",
+        "Secrets"
+      ],
+      "genre": 121,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780671750619",
+    "fields": {
+      "title": "The Man Who Knew Infinity",
+      "authors": [
+        125
+      ],
+      "publication_year": 1991,
+      "price": "499.0",
+      "summary": "The biography of Srinivasa Ramanujan, the mathematical genius who emerged from poverty in Madras to collaborate with G.H. Hardy at Cambridge.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Ramanujan",
+        "Biography",
+        "Number Theory"
+      ],
+      "genre": 129,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780375708114",
+    "fields": {
+      "title": "The Elegant Universe",
+      "authors": [
+        126
+      ],
+      "publication_year": 1999,
+      "price": "599.0",
+      "summary": "Explains string theory and the quest for a unified 'theory of everything' that reconciles general relativity with quantum mechanics.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "String Theory",
+        "Multiverse",
+        "Relativity"
+      ],
+      "genre": 113,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780805092998",
+    "fields": {
+      "title": "The Sixth Extinction",
+      "authors": [
+        127
+      ],
+      "publication_year": 2014,
+      "price": "499.0",
+      "summary": "Argues that the Earth is undergoing a modern, man-made sixth mass extinction, drawing on work from dozens of scientific disciplines.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1377097660i/17910054.jpg",
+      "tags": [
+        "Biodiversity",
+        "Climate Change",
+        "Anthropocene"
+      ],
+      "genre": 122,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780226458120",
+    "fields": {
+      "title": "The Structure of Scientific Revolutions",
+      "authors": [
+        128
+      ],
+      "publication_year": 1962,
+      "price": "399.0",
+      "summary": "Introduces the concept of paradigm shifts, arguing that scientific progress is not gradual but a series of intellectual revolutions.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Paradigm Shift",
+        "Scientific Progress"
+      ],
+      "genre": 124,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780345409461",
+    "fields": {
+      "title": "The Demon-Haunted World",
+      "authors": [
+        129
+      ],
+      "publication_year": 1995,
+      "price": "449.0",
+      "summary": "A passionate defense of reason and science, providing readers with the tools to distinguish between science and pseudoscience.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Skepticism",
+        "Critical Thinking",
+        "Pseudoscience"
+      ],
+      "genre": 117,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780199566846",
+    "fields": {
+      "title": "The Quantum Story",
+      "authors": [
+        130
+      ],
+      "publication_year": 2011,
+      "price": "699.0",
+      "summary": "A history of quantum theory, from its birth at the dawn of the 20th century to its modern applications in technology.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Quantum Mechanics",
+        "History",
+        "Physics"
+      ],
+      "genre": 119,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780007225736",
+    "fields": {
+      "title": "The Information",
+      "authors": [
+        131
+      ],
+      "publication_year": 2011,
+      "price": "599.0",
+      "summary": "A history of information, from African drum languages to the invention of writing, the alphabet, and the modern information age.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Data",
+        "Communication",
+        "History"
+      ],
+      "genre": 125,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780857522411",
+    "fields": {
+      "title": "The Body",
+      "authors": [
+        132
+      ],
+      "publication_year": 2019,
+      "price": "799.0",
+      "summary": "A guide to the human body, exploring its remarkable functions, its resilience, and the ways it can go wrong.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1563280953i/43582376.jpg",
+      "tags": [
+        "Anatomy",
+        "Physiology",
+        "Health"
+      ],
+      "genre": 127,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781771642484",
+    "fields": {
+      "title": "The Hidden Life of Trees",
+      "authors": [
+        133
+      ],
+      "publication_year": 2015,
+      "price": "449.0",
+      "summary": "Reveals the surprising social life of trees, describing how they communicate, support their sick, and maintain an ecosystem.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1464283317i/28256439.jpg",
+      "tags": [
+        "Forests",
+        "Nature",
+        "Communication"
+      ],
+      "genre": 118,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780735216105",
+    "fields": {
+      "title": "The Order of Time",
+      "authors": [
+        134
+      ],
+      "publication_year": 2017,
+      "price": "399.0",
+      "summary": "A poetic and profound exploration of the nature of time, arguing that our common-sense understanding of it is profoundly wrong.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1521483617i/36480113.jpg",
+      "tags": [
+        "Time",
+        "Physics",
+        "Philosophy"
+      ],
+      "genre": 113,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781781250372",
+    "fields": {
+      "title": "The Vital Question",
+      "authors": [
+        135
+      ],
+      "publication_year": 2015,
+      "price": "599.0",
+      "summary": "Investigates the deep link between energy and genes, proposing a new theory for the origin of complex life on Earth.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Energy",
+        "Life",
+        "Evolution"
+      ],
+      "genre": 114,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780198824314",
+    "fields": {
+      "title": "The AI Delusion",
+      "authors": [
+        136
+      ],
+      "publication_year": 2018,
+      "price": "499.0",
+      "summary": "Argues that the real danger of AI is not super-intelligence, but our own inability to recognize its severe limitations and our own gullibility.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Artificial Intelligence",
+        "Statistics",
+        "Bias"
+      ],
+      "genre": 126,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781101970317",
+    "fields": {
+      "title": "Life 3.0",
+      "authors": [
+        137
+      ],
+      "publication_year": 2017,
+      "price": "549.0",
+      "summary": "Explores the future of artificial intelligence and how we can ensure it benefits humanity, delving into consciousness and cosmic destiny.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1495449238i/34272565.jpg",
+      "tags": [
+        "AI",
+        "Future",
+        "Ethics"
+      ],
+      "genre": 115,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780735211292",
+    "fields": {
+      "title": "Atomic Habits",
+      "authors": [
+        138
+      ],
+      "publication_year": 2018,
+      "price": "399.0",
+      "summary": "A practical guide to building good habits and breaking bad ones through tiny, incremental changes that yield remarkable results over time.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1655988385i/40121378.jpg",
+      "tags": [
+        "Productivity",
+        "Tiny Changes",
+        "Systems"
+      ],
+      "genre": 134,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780743269513",
+    "fields": {
+      "title": "The 7 Habits of Highly Effective People",
+      "authors": [
+        139
+      ],
+      "publication_year": 1989,
+      "price": "499.0",
+      "summary": "A holistic approach to personal and interpersonal effectiveness based on principles of character ethics and continuous improvement.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1667859376i/36072.jpg",
+      "tags": [
+        "Leadership",
+        "Principles",
+        "Character"
+      ],
+      "genre": 137,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781577314806",
+    "fields": {
+      "title": "The Power of Now",
+      "authors": [
+        140
+      ],
+      "publication_year": 1997,
+      "price": "449.0",
+      "summary": "A guide to spiritual enlightenment that emphasizes the importance of living in the present moment to free oneself from suffering.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1667859526i/6708.jpg",
+      "tags": [
+        "Mindfulness",
+        "Presence",
+        "Enlightenment"
+      ],
+      "genre": 135,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781585424337",
+    "fields": {
+      "title": "Think and Grow Rich",
+      "authors": [
+        141
+      ],
+      "publication_year": 1937,
+      "price": "299.0",
+      "summary": "A classic work that distills the secrets of success from hundreds of wealthy individuals, focusing on the power of personal belief.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1667859950i/30186948.jpg",
+      "tags": [
+        "Success",
+        "Money",
+        "Mindset"
+      ],
+      "genre": 133,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780062457714",
+    "fields": {
+      "title": "The Subtle Art of Not Giving a F*ck",
+      "authors": [
+        142
+      ],
+      "publication_year": 2016,
+      "price": "359.0",
+      "summary": "A counterintuitive approach to living a good life, arguing that we should focus on a few important things and let go of the rest.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1465761302i/28257707.jpg",
+      "tags": [
+        "Counter-intuitive",
+        "Values",
+        "Happiness"
+      ],
+      "genre": 136,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780671027032",
+    "fields": {
+      "title": "How to Win Friends and Influence People",
+      "authors": [
+        143
+      ],
+      "publication_year": 1936,
+      "price": "349.0",
+      "summary": "A timeless classic on the principles of effective communication, building relationships, and becoming a more influential person.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1442726934i/4865.jpg",
+      "tags": [
+        "Communication",
+        "Relationships",
+        "Leadership"
+      ],
+      "genre": 132,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781592408412",
+    "fields": {
+      "title": "Daring Greatly",
+      "authors": [
+        144
+      ],
+      "publication_year": 2012,
+      "price": "429.0",
+      "summary": "Explores how the courage to be vulnerable can transform the way we live, love, parent, and lead in our personal and professional lives.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348557874i/13588306.jpg",
+      "tags": [
+        "Vulnerability",
+        "Courage",
+        "Shame"
+      ],
+      "genre": 130,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781443456623",
+    "fields": {
+      "title": "The 5 AM Club",
+      "authors": [
+        145
+      ],
+      "publication_year": 2018,
+      "price": "399.0",
+      "summary": "A story that reveals the morning routine used by many of the world's most successful people to boost productivity and achieve serenity.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1542530874i/40263591.jpg",
+      "tags": [
+        "Morning Routine",
+        "Genius",
+        "Performance"
+      ],
+      "genre": 131,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780345472328",
+    "fields": {
+      "title": "Mindset: The New Psychology of Success",
+      "authors": [
+        146
+      ],
+      "publication_year": 2006,
+      "price": "459.0",
+      "summary": "Introduces the concept of 'fixed' vs. 'growth' mindsets and shows how success in almost every area of life can be influenced by how we think about our talents.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1479328879i/40745.jpg",
+      "tags": [
+        "Growth Mindset",
+        "Fixed Mindset",
+        "Achievement"
+      ],
+      "genre": 130,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781878424310",
+    "fields": {
+      "title": "The Four Agreements",
+      "authors": [
+        147
+      ],
+      "publication_year": 1997,
+      "price": "329.0",
+      "summary": "A practical guide to personal freedom based on ancient Toltec wisdom, offering a powerful code of conduct for life.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1570647995i/6596.jpg",
+      "tags": [
+        "Toltec Wisdom",
+        "Personal Freedom",
+        "Code of Conduct"
+      ],
+      "genre": 135,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780553296983",
+    "fields": {
+      "title": "The Diary of a Young Girl",
+      "authors": [
+        148
+      ],
+      "publication_year": 1947,
+      "price": "299.0",
+      "summary": "The poignant writings of a Jewish teenager while she and her family were in hiding for two years during the Nazi occupation of the Netherlands.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1560816565i/48855.jpg",
+      "tags": [
+        "Holocaust",
+        "World War II",
+        "Hiding"
+      ],
+      "genre": 140,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788173711466",
+    "fields": {
+      "title": "Wings of Fire",
+      "authors": [
+        149
+      ],
+      "publication_year": 1999,
+      "price": "349.0",
+      "summary": "The autobiography of India's 'Missile Man,' chronicling his journey from a small town to becoming the President of India.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1588282137i/634583.jpg",
+      "tags": [
+        "Missile Man",
+        "President",
+        "Scientist"
+      ],
+      "genre": 139,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9788172290712",
+    "fields": {
+      "title": "The Story of My Experiments with Truth",
+      "authors": [
+        150
+      ],
+      "publication_year": 1927,
+      "price": "399.0",
+      "summary": "Mahatma Gandhi's autobiography, detailing his life, philosophy, and the development of his principles of truth and nonviolent resistance.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Freedom Struggle",
+        "Non-violence",
+        "Satyagraha"
+      ],
+      "genre": 145,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780316548182",
+    "fields": {
+      "title": "Long Walk to Freedom",
+      "authors": [
+        151
+      ],
+      "publication_year": 1994,
+      "price": "599.0",
+      "summary": "The epic autobiography of Nelson Mandela, chronicling his early life, education, 27 years in prison, and his pivotal role in reshaping South Africa.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1388182650i/318431.jpg",
+      "tags": [
+        "Apartheid",
+        "Prison",
+        "South Africa"
+      ],
+      "genre": 138,
+      "book_type": "both",
+      "stock": 25,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781451648539",
+    "fields": {
+      "title": "Steve Jobs",
+      "authors": [
+        123
+      ],
+      "publication_year": 2011,
+      "price": "799.0",
+      "summary": "Based on interviews with Steve Jobs, this biography tells the story of the roller-coaster life and searingly intense personality of a creative entrepreneur.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1511288482i/11084145.jpg",
+      "tags": [
+        "Apple",
+        "Innovation",
+        "Technology"
+      ],
+      "genre": 141,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780399590504",
+    "fields": {
+      "title": "Educated",
+      "authors": [
+        152
+      ],
+      "publication_year": 2018,
+      "price": "499.0",
+      "summary": "A memoir about a young woman who, kept out of school, leaves her survivalist family and goes on to earn a PhD from Cambridge University.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1506026635i/35133922.jpg",
+      "tags": [
+        "Education",
+        "Family",
+        "Survival"
+      ],
+      "genre": 142,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781524763138",
+    "fields": {
+      "title": "Becoming",
+      "authors": [
+        153
+      ],
+      "publication_year": 2018,
+      "price": "699.0",
+      "summary": "An intimate, powerful, and inspiring memoir by the former First Lady of the United States, detailing her journey from the South Side of Chicago to the White House.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1528206356i/38746485.jpg",
+      "tags": [
+        "First Lady",
+        "Race",
+        "Identity"
+      ],
+      "genre": 142,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780345350688",
+    "fields": {
+      "title": "The Autobiography of Malcolm X",
+      "authors": [
+        154
+      ],
+      "publication_year": 1965,
+      "price": "549.0",
+      "summary": "The story of human rights activist Malcolm X, from his childhood and criminal past to his ministry as a member of the Nation of Islam and his eventual assassination.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1338868084i/92057.jpg",
+      "tags": [
+        "Civil Rights",
+        "Transformation",
+        "Activism"
+      ],
+      "genre": 138,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780375414572",
+    "fields": {
+      "title": "My Life",
+      "authors": [
+        155
+      ],
+      "publication_year": 2004,
+      "price": "899.0",
+      "summary": "President Bill Clinton's memoir is the strikingly candid portrait of a global leader who decided early in life to devote his intellectual and political gifts to serving the public.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "President",
+        "Politics",
+        "America"
+      ],
+      "genre": 138,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781400064168",
+    "fields": {
+      "title": "Unbroken",
+      "authors": [
+        156
+      ],
+      "publication_year": 2010,
+      "price": "599.0",
+      "summary": "The incredible true story of Louis Zamperini, an Olympic runner who became an airman, surviving a plane crash, weeks adrift at sea, and years as a prisoner of war.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327863305i/8664353.jpg",
+      "tags": [
+        "World War II",
+        "Survival",
+        "Resilience"
+      ],
+      "genre": 148,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780743247542",
+    "fields": {
+      "title": "The Glass Castle",
+      "authors": [
+        157
+      ],
+      "publication_year": 2005,
+      "price": "449.0",
+      "summary": "A remarkable memoir of resilience and redemption, recounting the author's nomadic, poverty-stricken childhood at the hands of dysfunctional, idealistic parents.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1400930557i/7445.jpg",
+      "tags": [
+        "Dysfunctional Family",
+        "Poverty",
+        "Resilience"
+      ],
+      "genre": 142,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780385486804",
+    "fields": {
+      "title": "Into the Wild",
+      "authors": [
+        158
+      ],
+      "publication_year": 1996,
+      "price": "399.0",
+      "summary": "The true story of Christopher McCandless, a young man who gave his savings to charity, abandoned his car and most of his possessions, and hitchhiked to Alaska to live in the wilderness.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1634587785i/1845.jpg",
+      "tags": [
+        "Wilderness",
+        "Alaska",
+        "Journey"
+      ],
+      "genre": 147,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780345514400",
+    "fields": {
+      "title": "I Know Why the Caged Bird Sings",
+      "authors": [
+        159
+      ],
+      "publication_year": 1969,
+      "price": "379.0",
+      "summary": "Maya Angelou's debut memoir recounts a youth filled with racism, trauma, and displacement, but also love, literature, and unshakable strength.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327957926i/13214.jpg",
+      "tags": [
+        "Race",
+        "Trauma",
+        "Literature"
+      ],
+      "genre": 142,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780349117546",
+    "fields": {
+      "title": "Shantaram",
+      "authors": [
+        160
+      ],
+      "publication_year": 2003,
+      "price": "699.0",
+      "summary": "A novel based on the author's life, about an escaped Australian convict who flees to Bombay and finds love, conflict, and unexpected humanity in the city's underworld.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1634587785i/1845.jpg",
+      "tags": [
+        "India",
+        "Crime",
+        "Redemption"
+      ],
+      "genre": 146,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780812988406",
+    "fields": {
+      "title": "When Breath Becomes Air",
+      "authors": [
+        161
+      ],
+      "publication_year": 2016,
+      "price": "429.0",
+      "summary": "A neurosurgeon's moving memoir, written as he faces a terminal cancer diagnosis, exploring what makes life worth living in the face of death.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1492677644i/25899336.jpg",
+      "tags": [
+        "Cancer",
+        "Medicine",
+        "Mortality"
+      ],
+      "genre": 142,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780399588174",
+    "fields": {
+      "title": "Born a Crime",
+      "authors": [
+        162
+      ],
+      "publication_year": 2016,
+      "price": "499.0",
+      "summary": "The comedian and host of The Daily Show shares his remarkable story of growing up in South Africa under apartheid, born to a white Swiss father and a black Xhosa mother.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1473867911i/29780253.jpg",
+      "tags": [
+        "Apartheid",
+        "Comedy",
+        "South Africa"
+      ],
+      "genre": 142,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781401323257",
+    "fields": {
+      "title": "The Last Lecture",
+      "authors": [
+        163
+      ],
+      "publication_year": 2008,
+      "price": "349.0",
+      "summary": "A professor dying of pancreatic cancer delivers his final lecture, sharing his wisdom and life lessons about achieving childhood dreams and living a fulfilling life.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1388075285i/2318271.jpg",
+      "tags": [
+        "Cancer",
+        "Life Lessons",
+        "Legacy"
+      ],
+      "genre": 142,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780307268198",
+    "fields": {
+      "title": "Open",
+      "authors": [
+        164
+      ],
+      "publication_year": 2009,
+      "price": "599.0",
+      "summary": "A candid and thrilling autobiography of the tennis legend, revealing his struggles with the sport, his personal life, and his remarkable comeback.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Tennis",
+        "Fame",
+        "Struggle"
+      ],
+      "genre": 143,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780307592736",
+    "fields": {
+      "title": "Wild",
+      "authors": [
+        165
+      ],
+      "publication_year": 2012,
+      "price": "449.0",
+      "summary": "A powerful, blazingly honest memoir about a woman's 1,100-mile solo hike along the Pacific Crest Trail, undertaken as a way to recover from personal catastrophe.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1453189881i/12262741.jpg",
+      "tags": [
+        "Hiking",
+        "Healing",
+        "Pacific Crest Trail"
+      ],
+      "genre": 142,
+      "book_type": "both",
+      "stock": 30,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9789385750295",
+    "fields": {
+      "title": "My Gita",
+      "authors": [
+        92
+      ],
+      "publication_year": 2015,
+      "price": "399.0",
+      "summary": "In his unique style, the author explains his personal understanding of the Bhagavad Gita and how its wisdom applies to modern life.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Bhagavad Gita",
+        "Mythology",
+        "Philosophy"
+      ],
+      "genre": 144,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780307887894",
+    "fields": {
+      "title": "The Lean Startup",
+      "authors": [
+        166
+      ],
+      "publication_year": 2011,
+      "price": "599.0",
+      "summary": "Introduces a scientific approach to creating and managing successful startups by focusing on validated learning, rapid experimentation, and iterative product releases.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1333578874i/10127019.jpg",
+      "tags": [
+        "Startups",
+        "Innovation",
+        "Agile"
+      ],
+      "genre": 150,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780804139298",
+    "fields": {
+      "title": "Zero to One",
+      "authors": [
+        167
+      ],
+      "publication_year": 2014,
+      "price": "499.0",
+      "summary": "Blake Masters and Peter Thiel argue that true progress comes from monopolies created by unique technology, going from 'zero to one,' rather than copying what works.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1630662598i/18050143.jpg",
+      "tags": [
+        "Innovation",
+        "Monopoly",
+        "Technology"
+      ],
+      "genre": 150,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780060555665",
+    "fields": {
+      "title": "The Intelligent Investor",
+      "authors": [
+        168
+      ],
+      "publication_year": 1949,
+      "price": "699.0",
+      "summary": "A foundational book on value investing, teaching strategies for developing long-term strategies and protecting investments from substantial error.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1334154657i/106835.jpg",
+      "tags": [
+        "Value Investing",
+        "Stocks",
+        "Warren Buffett"
+      ],
+      "genre": 153,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780374275631",
+    "fields": {
+      "title": "Thinking Fast and Slow",
+      "authors": [
+        169
+      ],
+      "publication_year": 2011,
+      "price": "799.0",
+      "summary": "The Nobel winner details the two systems that drive the way we think: System 1 is fast and intuitive; System 2 is slower and more logical.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1317793965i/11468377.jpg",
+      "tags": [
+        "Psychology",
+        "Decision Making",
+        "Bias"
+      ],
+      "genre": 155,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780066620992",
+    "fields": {
+      "title": "Good to Great",
+      "authors": [
+        170
+      ],
+      "publication_year": 2001,
+      "price": "649.0",
+      "summary": "A management study that identifies why some companies make the leap to superior results and others don't, focusing on disciplined people, thought, and action.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Leadership",
+        "Companies",
+        "Success"
+      ],
+      "genre": 151,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780857197689",
+    "fields": {
+      "title": "The Psychology of Money",
+      "authors": [
+        171
+      ],
+      "publication_year": 2020,
+      "price": "449.0",
+      "summary": "A collection of short stories exploring the strange ways people think about money, teaching that doing well with money has more to do with behavior than raw intelligence.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1588439546i/41881472.jpg",
+      "tags": [
+        "Wealth",
+        "Behavior",
+        "Stories"
+      ],
+      "genre": 149,
+      "book_type": "both",
+      "stock": 15,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780060731335",
+    "fields": {
+      "title": "Freakonomics",
+      "authors": [
+        172
+      ],
+      "publication_year": 2005,
+      "price": "499.0",
+      "summary": "An economist and a journalist explore the hidden side of everything, applying economic theory to diverse subjects not usually covered by traditional economists.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1550915845i/1202.jpg",
+      "tags": [
+        "Incentives",
+        "Data",
+        "Unconventional"
+      ],
+      "genre": 152,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780451205360",
+    "fields": {
+      "title": "The Richest Man in Babylon",
+      "authors": [
+        173
+      ],
+      "publication_year": 1926,
+      "price": "299.0",
+      "summary": "A timeless classic that offers financial advice through a series of parables set in ancient Babylon, providing common-sense rules for money management.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1667859950i/30186948.jpg",
+      "tags": [
+        "Wealth Building",
+        "Parables",
+        "Savings"
+      ],
+      "genre": 149,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781591846444",
+    "fields": {
+      "title": "Start with Why",
+      "authors": [
+        174
+      ],
+      "publication_year": 2009,
+      "price": "549.0",
+      "summary": "Explores the concept that the world's most inspiring leaders and organizations all think, act, and communicate from the inside out, starting with a clear 'why'.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1368577759i/7108725.jpg",
+      "tags": [
+        "Purpose",
+        "Inspiration",
+        "Golden Circle"
+      ],
+      "genre": 154,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780674430006",
+    "fields": {
+      "title": "Capital in the Twenty-First Century",
+      "authors": [
+        175
+      ],
+      "publication_year": 2013,
+      "price": "1299.0",
+      "summary": "An analysis of a unique collection of data from twenty countries, tracing the dynamics of wealth and income distribution since the 18th century.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1395678946i/18736925.jpg",
+      "tags": [
+        "Inequality",
+        "Wealth",
+        "Capitalism"
+      ],
+      "genre": 152,
+      "book_type": "both",
+      "stock": 20,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780140449143",
+    "fields": {
+      "title": "The Republic",
+      "authors": [
+        176
+      ],
+      "publication_year": 0,
+      "price": "399.0",
+      "summary": "A Socratic dialogue exploring the definition of justice, the order and character of the just city-state, and the just man through the voice of Socrates.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1386923445i/30289.jpg",
+      "tags": [
+        "Justice",
+        "Ideal State",
+        "Forms"
+      ],
+      "genre": 159,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780140449334",
+    "fields": {
+      "title": "Meditations",
+      "authors": [
+        177
+      ],
+      "publication_year": 0,
+      "price": "349.0",
+      "summary": "The personal writings of Roman Emperor Marcus Aurelius, offering a series of spiritual exercises and philosophical reflections on Stoic philosophy.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1425617737i/30659.jpg",
+      "tags": [
+        "Self-help",
+        "Duty",
+        "Resilience"
+      ],
+      "genre": 158,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780140441185",
+    "fields": {
+      "title": "Thus Spoke Zarathustra",
+      "authors": [
+        178
+      ],
+      "publication_year": 1883,
+      "price": "499.0",
+      "summary": "A philosophical novel that introduces Nietzsche's concepts of the \u00c3\u0153bermensch, the will to power, and the death of God through the prophet Zarathustra.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "\u00c3\u0153bermensch",
+        "Will to Power",
+        "God is Dead"
+      ],
+      "genre": 161,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780618918249",
+    "fields": {
+      "title": "The God Delusion",
+      "authors": [
+        122
+      ],
+      "publication_year": 2006,
+      "price": "599.0",
+      "summary": "A polemic against religious faith, arguing that a supernatural creator almost certainly does not exist and that belief in a god qualifies as a delusion.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1347220693i/14743.jpg",
+      "tags": [
+        "Science",
+        "Religion",
+        "Evolution"
+      ],
+      "genre": 160,
+      "book_type": "both",
+      "stock": 0,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780425152254",
+    "fields": {
+      "title": "Sophie's World",
+      "authors": [
+        179
+      ],
+      "publication_year": 1991,
+      "price": "549.0",
+      "summary": "A novel that follows a teenage girl who receives a mysterious correspondence course in philosophy, tracing the history of Western philosophical thought.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874796i/10959.jpg",
+      "tags": [
+        "History of Philosophy",
+        "Novel",
+        "Mystery"
+      ],
+      "genre": 163,
+      "book_type": "both",
+      "stock": 10,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9781594488894",
+    "fields": {
+      "title": "The Art of Happiness",
+      "authors": [
+        180
+      ],
+      "publication_year": 1998,
+      "price": "399.0",
+      "summary": "Based on conversations with psychiatrist Howard Cutler, the Dalai XIV explores how to overcome anxiety, insecurity, and anger to find lasting happiness.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1327874899i/8852.jpg",
+      "tags": [
+        "Happiness",
+        "Compassion",
+        "Mindfulness"
+      ],
+      "genre": 157,
+      "book_type": "both",
+      "stock": 5,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780394404288",
+    "fields": {
+      "title": "The Prophet",
+      "authors": [
+        181
+      ],
+      "publication_year": 1923,
+      "price": "279.0",
+      "summary": "A book of 26 poetic essays that discuss life and the human condition, covering topics such as love, marriage, work, reason, passion, and freedom.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1355046531i/2547.jpg",
+      "tags": [
+        "Love",
+        "Life",
+        "Wisdom"
+      ],
+      "genre": 164,
+      "book_type": "both",
+      "stock": 40,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  },
+  {
+    "model": "bookapp.book",
+    "pk": "9780631197705",
+    "fields": {
+      "title": "Being and Time",
+      "authors": [
+        182
+      ],
+      "publication_year": 1927,
+      "price": "899.0",
+      "summary": "A seminal work in 20th-century philosophy that examines the question of Being through an analysis of human existence (Dasein) and its temporal nature.",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1348253118i/875281.jpg",
+      "tags": [
+        "Phenomenology",
+        "Dasein",
+        "Ontology"
+      ],
+      "genre": 161,
+      "book_type": "both",
+      "stock": 50,
+      "created_at": "2025-11-01T11:22:38.173791",
+      "updated_at": "2025-11-01T11:22:38.173791"
+    }
+  }
+]

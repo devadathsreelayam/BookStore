@@ -1,0 +1,487 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% if is_adding %}Add New Author{% else %}Edit Author{% endif %} - Admin{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <h1>
+                        <i class="fas fa-user-edit text-brown me-2"></i>
+                        {% if is_adding %}Add New Author{% else %}Edit Author{% endif %}
+                    </h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'admin_author_management' %}">Author Management</a></li>
+                            <li class="breadcrumb-item active">{% if is_adding %}Add New{% else %}{{ form.instance.name|truncatewords:2 }}{% endif %}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="btn-group">
+                    <a href="{% url 'admin_author_management' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-2"></i>Back to List
+                    </a>
+                    {% if not is_adding %}
+                    <a href="{% url 'admin:bookapp_author_change' form.instance.id %}" class="btn btn-outline-primary">
+                        <i class="fas fa-cog me-2"></i>Django Admin
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Author Form -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Author Information</h5>
+                    {% if not is_adding %}
+                    <span class="badge bg-primary">ID: {{ form.instance.id }}</span>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    <form method="post" id="authorForm">
+                        {% csrf_token %}
+
+                        <!-- Basic Information -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="border-bottom pb-2">Basic Information</h6>
+                            </div>
+
+                            <!-- Name -->
+                            <div class="col-12 mb-3">
+                                <label for="{{ form.name.id_for_label }}" class="form-label">
+                                    {{ form.name.label }}
+                                </label>
+                                {{ form.name }}
+                                {% if form.name.errors %}
+                                <div class="text-danger small mt-1">
+                                    {{ form.name.errors }}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Biography -->
+                            <div class="col-12 mb-3">
+                                <label for="{{ form.bio.id_for_label }}" class="form-label">
+                                    {{ form.bio.label }}
+                                </label>
+                                {{ form.bio }}
+                                {% if form.bio.errors %}
+                                <div class="text-danger small mt-1">
+                                    {{ form.bio.errors }}
+                                </div>
+                                {% endif %}
+                                {% if form.bio.help_text %}
+                                <small class="form-text text-muted">{{ form.bio.help_text }}</small>
+                                {% endif %}
+                                <div class="form-text">
+                                    <small>Characters: <span id="bioCharCount">0</span></small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Photo Information -->
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <h6 class="border-bottom pb-2">Photo</h6>
+                            </div>
+
+                            <!-- Photo URL -->
+                            <div class="col-12 mb-3">
+                                <label for="{{ form.photo.id_for_label }}" class="form-label">
+                                    {{ form.photo.label }}
+                                </label>
+                                {{ form.photo }}
+                                {% if form.photo.errors %}
+                                <div class="text-danger small mt-1">
+                                    {{ form.photo.errors }}
+                                </div>
+                                {% endif %}
+                                {% if form.photo.help_text %}
+                                <small class="form-text text-muted">{{ form.photo.help_text }}</small>
+                                {% endif %}
+
+                                <!-- Photo Preview -->
+                                <div class="mt-3 text-center">
+                                    <img src="{% if not is_adding %}{{ form.instance.photo_url }}{% else %}https://placehold.co/300x300/6c757d/white?text=Author+Photo{% endif %}"
+                                         alt="Author photo preview"
+                                         class="img-fluid rounded border"
+                                         id="photoPreview"
+                                         style="max-height: 300px; max-width: 300px;"
+                                         onerror="this.src='https://placehold.co/300x300/6c757d/white?text=Photo+Not+Found'">
+                                </div>
+
+                                <!-- Quick Photo Suggestions -->
+                                <div class="mt-2">
+                                    <small class="text-muted d-block mb-1">Quick photo URLs:</small>
+                                    <div class="btn-group btn-group-sm">
+                                        <button type="button" class="btn btn-outline-secondary quick-photo"
+                                                data-url="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&crop=face">
+                                            Male
+                                        </button>
+                                        <button type="button" class="btn btn-outline-secondary quick-photo"
+                                                data-url="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=300&h=300&fit=crop&crop=face">
+                                            Female
+                                        </button>
+                                        <button type="button" class="btn btn-outline-secondary quick-photo"
+                                                data-url="https://placehold.co/300x300/6c757d/white?text=No+Photo">
+                                            Clear
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="d-flex gap-2 justify-content-end">
+                                    <a href="{% url 'admin_author_management' %}" class="btn btn-secondary">
+                                        Cancel
+                                    </a>
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save me-2"></i>
+                                        {% if is_adding %}Add Author{% else %}Save Changes{% endif %}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview & Additional Information -->
+        <div class="col-lg-4">
+            <!-- Author Preview -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h6 class="mb-0">{% if is_adding %}Author Preview{% else %}Author Details{% endif %}</h6>
+                </div>
+                <div class="card-body text-center">
+                    <img src="{% if not is_adding %}{{ form.instance.photo_url }}{% else %}https://placehold.co/200x200/6c757d/white?text=New+Author{% endif %}"
+                         alt="{% if not is_adding %}{{ form.instance.name }}{% else %}New Author{% endif %}"
+                         class="img-fluid rounded-circle mb-3 border"
+                         style="width: 150px; height: 150px; object-fit: cover;"
+                         onerror="this.src='https://placehold.co/150x150/6c757d/white?text=No+Photo'"
+                         id="sidebarPhoto">
+
+                    {% if not is_adding %}
+                    <h5>{{ form.instance.name }}</h5>
+                    <p class="text-muted small" style="white-space: pre-line;">
+                        {{ form.instance.bio|truncatewords:30|default:"No biography provided" }}
+                    </p>
+
+                    <!-- Author Stats -->
+                    <div class="row text-center mt-3">
+                        <div class="col-6">
+                            <div class="border rounded p-2">
+                                <small class="text-muted d-block">Books</small>
+                                <strong class="text-primary">{{ form.instance.books.count }}</strong>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="border rounded p-2">
+                                <small class="text-muted d-block">Has Photo</small>
+                                <strong class="{% if form.instance.photo %}text-success{% else %}text-danger{% endif %}">
+                                    {% if form.instance.photo %}Yes{% else %}No{% endif %}
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <h5 class="text-muted">New Author</h5>
+                    <p class="text-muted small">Preview will appear here</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Quick Actions & Help -->
+            <div class="card">
+                <div class="card-header">
+                    <h6 class="mb-0">{% if is_adding %}Adding Tips{% else %}Quick Actions{% endif %}</h6>
+                </div>
+                <div class="card-body">
+                    {% if is_adding %}
+                    <div class="small">
+                        <p><strong>Required Fields:</strong></p>
+                        <ul class="ps-3">
+                            <li>Author Name</li>
+                        </ul>
+                        <p><strong>Optional Fields:</strong></p>
+                        <ul class="ps-3">
+                            <li>Biography</li>
+                            <li>Photo URL</li>
+                        </ul>
+                        <p><strong>Tips:</strong></p>
+                        <ul class="ps-3">
+                            <li>Use high-quality author photos (300x300px recommended)</li>
+                            <li>Biography should be concise but informative</li>
+                            <li>Photo URLs should be direct links to images</li>
+                        </ul>
+                    </div>
+                    {% else %}
+                    <!-- Author's Books -->
+                    <div class="mb-3">
+                        <h6 class="border-bottom pb-2">Author's Books</h6>
+                        {% if form.instance.books.all %}
+                        <div class="mt-2">
+                            {% for book in form.instance.books.all|slice:":5" %}
+                            <div class="d-flex align-items-center mb-2">
+                                <img src="{{ book.cover_image }}"
+                                     alt="{{ book.title }}"
+                                     class="rounded me-2"
+                                     style="width: 30px; height: 45px; object-fit: cover;"
+                                     onerror="this.src='https://placehold.co/30x45/6c757d/white?text=No+Cover'">
+                                <div class="flex-grow-1">
+                                    <small class="d-block">{{ book.title|truncatewords:3 }}</small>
+                                    <small class="text-muted">₹{{ book.price|floatformat:0 }}</small>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% if form.instance.books.count > 5 %}
+                            <small class="text-muted">+ {{ form.instance.books.count|add:"-5" }} more books</small>
+                            {% endif %}
+                        </div>
+                        {% else %}
+                        <p class="text-muted small mb-0">No books by this author yet.</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'admin_book_add' %}?author={{ form.instance.id }}"
+                           class="btn btn-outline-success btn-sm">
+                            <i class="fas fa-plus me-2"></i>Add Book by This Author
+                        </a>
+                        <a href="{% url 'admin:bookapp_author_change' form.instance.id %}"
+                           class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-edit me-2"></i>Advanced Edit in Django Admin
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Metadata -->
+            {% if not is_adding %}
+            <div class="card mt-4">
+                <div class="card-header">
+                    <h6 class="mb-0">Metadata</h6>
+                </div>
+                <div class="card-body small">
+                    <div class="row">
+                        <div class="col-12 mb-2">
+                            <strong>Author ID:</strong> {{ form.instance.id }}
+                        </div>
+                        <div class="col-12 mb-2">
+                            <strong>Books Count:</strong> {{ form.instance.books.count }}
+                        </div>
+                        <div class="col-12 mb-2">
+                            <strong>Photo Status:</strong>
+                            <span class="badge {% if form.instance.photo %}bg-success{% else %}bg-danger{% endif %}">
+                                {% if form.instance.photo %}Has Photo{% else %}No Photo{% endif %}
+                            </span>
+                        </div>
+                        {% if form.instance.photo %}
+                        <div class="col-12">
+                            <strong>Photo URL:</strong>
+                            <a href="{{ form.instance.photo }}" target="_blank" class="small">View Original</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add Bootstrap classes to form elements
+    const formElements = document.querySelectorAll('input, select, textarea');
+    formElements.forEach(element => {
+        if (!element.classList.contains('form-select') && element.tagName === 'SELECT') {
+            element.classList.add('form-select');
+        }
+        if (element.type !== 'checkbox' && element.type !== 'radio' && !element.classList.contains('form-control')) {
+            element.classList.add('form-control');
+        }
+    });
+
+    // Bio character count
+    const bioField = document.getElementById('{{ form.bio.id_for_label }}');
+    const bioCharCount = document.getElementById('bioCharCount');
+
+    if (bioField && bioCharCount) {
+        // Initial count
+        bioCharCount.textContent = bioField.value.length;
+
+        // Update on input
+        bioField.addEventListener('input', function() {
+            bioCharCount.textContent = this.value.length;
+        });
+    }
+
+    // Photo preview and URL handling
+    const photoField = document.getElementById('{{ form.photo.id_for_label }}');
+    const photoPreview = document.getElementById('photoPreview');
+    const sidebarPhoto = document.getElementById('sidebarPhoto');
+
+    function updatePhotoPreviews(url) {
+        if (url) {
+            photoPreview.src = url;
+            if (sidebarPhoto) {
+                sidebarPhoto.src = url;
+            }
+        } else {
+            photoPreview.src = 'https://placehold.co/300x300/6c757d/white?text=Author+Photo';
+            if (sidebarPhoto) {
+                sidebarPhoto.src = 'https://placehold.co/200x200/6c757d/white?text=No+Photo';
+            }
+        }
+
+        // Handle image errors
+        photoPreview.onerror = function() {
+            this.src = 'https://placehold.co/300x300/6c757d/white?text=Photo+Not+Found';
+        };
+        if (sidebarPhoto) {
+            sidebarPhoto.onerror = function() {
+                this.src = 'https://placehold.co/150x150/6c757d/white?text=No+Photo';
+            };
+        }
+    }
+
+    if (photoField) {
+        // Update on URL change
+        photoField.addEventListener('input', function() {
+            updatePhotoPreviews(this.value);
+        });
+
+        // Initial preview setup
+        updatePhotoPreviews(photoField.value);
+    }
+
+    // Quick photo buttons
+    document.querySelectorAll('.quick-photo').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const photoUrl = this.dataset.url;
+            if (photoField) {
+                photoField.value = photoUrl;
+                updatePhotoPreviews(photoUrl);
+                showToast('Photo URL applied', 'success');
+            }
+        });
+    });
+
+    // Form submission validation
+    document.getElementById('authorForm').addEventListener('submit', function(e) {
+        const name = document.getElementById('{{ form.name.id_for_label }}').value;
+
+        if (!name.trim()) {
+            e.preventDefault();
+            showToast('Please enter author name', 'error');
+            return;
+        }
+
+        if (name.length < 2) {
+            e.preventDefault();
+            showToast('Author name should be at least 2 characters long', 'error');
+            return;
+        }
+
+        // Validate photo URL if provided
+        const photoUrl = photoField ? photoField.value : '';
+        if (photoUrl && !isValidUrl(photoUrl)) {
+            e.preventDefault();
+            showToast('Please enter a valid photo URL', 'error');
+            return;
+        }
+    });
+
+    // URL validation helper
+    function isValidUrl(string) {
+        try {
+            new URL(string);
+            return true;
+        } catch (_) {
+            return false;
+        }
+    }
+});
+
+function showToast(message, type = 'info') {
+    // Simple toast implementation
+    const toast = document.createElement('div');
+    toast.className = `alert alert-${type === 'error' ? 'danger' : 'success'} alert-dismissible fade show position-fixed`;
+    toast.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+    toast.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        if (toast.parentNode) {
+            toast.remove();
+        }
+    }, 3000);
+}
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.card-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.border-bottom {
+    border-color: #dee2e6 !important;
+}
+
+.quick-photo:hover {
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
+}
+
+/* Make required field labels bold */
+.form-label:has(+ input:required),
+.form-label:has(+ select:required),
+.form-label:has(+ textarea:required) {
+    font-weight: 600;
+}
+
+/* Bio textarea styling */
+#{{ form.bio.id_for_label }} {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* Photo preview styling */
+#photoPreview {
+    transition: all 0.3s ease;
+}
+
+#photoPreview:hover {
+    transform: scale(1.02);
+}
+</style>
+{% endblock %}

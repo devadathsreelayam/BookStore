@@ -1,0 +1,679 @@
+{% extends 'base.html' %}
+
+{% block title %}Book Management - Admin{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>
+                    <i class="fas fa-book text-brown me-2"></i>Book Management
+                </h1>
+                <a href="{% url 'admin:index' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-cog me-2"></i>Django Admin
+                </a>
+            </div>
+            <p class="text-muted">Manage your book inventory and availability</p>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h4 class="mb-0">{{ total_books }}</h4>
+                    <small>Total Books</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-warning text-dark">
+                <div class="card-body">
+                    <h4 class="mb-0">{{ low_stock_books }}</h4>
+                    <small>Low Stock (<5)</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-danger text-white">
+                <div class="card-body">
+                    <h4 class="mb-0">{{ out_of_stock_books }}</h4>
+                    <small>Out of Stock</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Book Management Table -->
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">All Books</h5>
+            <div class="d-flex gap-2">
+                <!-- Add Book Button -->
+                <a href="{% url 'admin_book_add' %}" class="btn btn-success btn-sm">
+                    <i class="fas fa-plus me-1"></i>Add Book
+                </a>
+                <!-- Bulk Actions -->
+                <form method="post" class="d-flex gap-2" id="bulkActionForm">
+                    {% csrf_token %}
+                    <select name="action" class="form-select form-select-sm" style="width: auto;" id="bulkActionSelect">
+                        <option value="">Bulk Actions</option>
+                        <option value="restock_custom">Restock to Custom Value</option>
+                        <option value="toggle_availability">Toggle Availability</option>
+                    </select>
+                    <div id="customStockInput" class="d-none">
+                        <input type="number" name="custom_stock" class="form-control form-control-sm"
+                               placeholder="Qty" style="width: 80px;" min="0" value="10">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm" id="bulkActionBtn" disabled>
+                        Apply
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="card-body border-bottom">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" id="bookSearch" class="form-control" placeholder="Search books by title, author, ISBN...">
+                        <button type="button" id="clearBookSearch" class="btn btn-outline-secondary" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <small class="text-muted">
+                        Showing <span id="bookCount">{{ books.count }}</span> of {{ books.count }} books
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <!-- Main form that wraps the entire table for individual actions -->
+                <form method="post" id="mainActionForm">
+                    {% csrf_token %}
+                    <table class="table table-hover mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th style="width: 30px;">
+                                    <input type="checkbox" id="selectAll">
+                                </th>
+                                <th>Book</th>
+                                <th>Author</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for book in books %}
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="book_ids" value="{{ book.isbn }}" class="book-checkbox">
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <!-- Updated image container with hover effect -->
+                                        <div class="image-update-container me-3">
+                                            <img src="{{ book.cover_image }}"
+                                                 alt="{{ book.title }}"
+                                                 class="book-cover-admin rounded"
+                                                 style="width: 40px; height: 60px; object-fit: cover;"
+                                                 data-book-isbn="{{ book.isbn }}"
+                                                 data-current-image="{{ book.cover_image }}"
+                                                 onerror="this.onerror=null; this.src='https://placehold.co/40x60/6c757d/white?text=No+Cover'">
+                                            <div class="image-update-overlay">
+                                                <i class="fas fa-camera text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <strong class="d-block">{{ book.title|truncatewords:4 }}</strong>
+                                            <small class="text-muted">ISBN: {{ book.isbn }}</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    {% for author in book.authors.all %}
+                                        {{ author.name }}{% if not forloop.last %}, {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td>
+                                    <strong class="text-success">₹{{ book.price|floatformat:0 }}</strong>
+                                </td>
+                                <td>
+                                    {% if book.book_type == 'physical' or book.book_type == 'both' %}
+                                        <span class="badge {% if book.stock > 10 %}bg-success{% elif book.stock > 0 %}bg-warning{% else %}bg-danger{% endif %}">
+                                            {{ book.stock }}
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-info">N/A</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <span class="badge bg-secondary">{{ book.get_book_type_display }}</span>
+                                </td>
+                                <td>
+                                    {% if book.book_type == 'physical' or book.book_type == 'both' %}
+                                        {% if book.stock > 0 %}
+                                        <span class="badge bg-success">Available</span>
+                                        {% else %}
+                                        <span class="badge bg-danger">Out of Stock</span>
+                                        {% endif %}
+                                    {% else %}
+                                        <span class="badge bg-info">Digital</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <a href="{% url 'admin_book_detail' book.isbn %}"
+                                           class="btn btn-outline-primary" title="View / Edit">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <!-- Quick restock button -->
+                                        <button type="button" class="btn btn-outline-warning restock-btn"
+                                                title="Quick Restock" data-book-isbn="{{ book.isbn }}">
+                                            <i class="fas fa-boxes"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Image Update Modal -->
+<div class="modal fade" id="imageUpdateModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">Update Book Cover</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="imageUpdateForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="book_isbn" id="modalBookIsbn">
+                    <input type="hidden" name="action" value="update_image">
+                    <div class="mb-3">
+                        <label class="form-label small">Image URL</label>
+                        <input type="url" name="image_url" class="form-control form-control-sm"
+                               id="modalImageUrl" placeholder="https://example.com/image.jpg" required>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <img src="" alt="Preview"
+                             class="img-fluid rounded border"
+                             id="imagePreview"
+                             style="max-height: 200px; display: none;">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary btn-sm" id="saveImageBtn">Update Image</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Restock Modal -->
+<div class="modal fade" id="quickRestockModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">Quick Restock</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="quickRestockForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="book_isbn" id="restockBookIsbn">
+                    <input type="hidden" name="action" value="restock_custom">
+                    <div class="mb-3">
+                        <label class="form-label small">Stock Quantity</label>
+                        <input type="number" name="custom_stock" class="form-control"
+                               min="0" value="10" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary btn-sm" id="saveRestockBtn">Update Stock</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block extra_css %}
+<style>
+/* Search styles */
+#bookSearch {
+    border-right: none;
+}
+
+#bookSearch:focus {
+    box-shadow: none;
+    border-color: #dee2e6;
+}
+
+.input-group-text {
+    background-color: white;
+    border-right: none;
+}
+
+#clearBookSearch {
+    border-left: none;
+}
+
+/* Keyboard shortcut hint */
+#bookSearch::placeholder {
+    color: #6c757d;
+}
+
+@media (min-width: 768px) {
+    #bookSearch::placeholder {
+        content: "Search books by title, author, ISBN... (Ctrl+K)";
+    }
+}
+
+/* Image update hover effects */
+.image-update-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.image-update-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 0.375rem;
+}
+
+.image-update-container:hover .image-update-overlay {
+    opacity: 1;
+}
+
+.book-cover-admin {
+    transition: transform 0.2s ease;
+    cursor: pointer;
+}
+
+.image-update-container:hover .book-cover-admin {
+    transform: scale(1.05);
+}
+
+/* Custom stock input */
+#customStockInput {
+    transition: all 0.3s ease;
+}
+
+/* Bulk actions */
+#bulkActionBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* No results message */
+.no-results td {
+    background-color: #f8f9fa;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Book Management JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize variables
+    const selectAll = document.getElementById('selectAll');
+    const bookCheckboxes = document.querySelectorAll('.book-checkbox');
+    const bulkActionBtn = document.getElementById('bulkActionBtn');
+    const bulkActionSelect = document.getElementById('bulkActionSelect');
+    const customStockInput = document.getElementById('customStockInput');
+    const imageUpdateModal = new bootstrap.Modal(document.getElementById('imageUpdateModal'));
+    const quickRestockModal = new bootstrap.Modal(document.getElementById('quickRestockModal'));
+    const bulkActionForm = document.getElementById('bulkActionForm');
+
+    // Bulk Actions Functionality
+    function initBulkActions() {
+        // Select all functionality
+        selectAll.addEventListener('change', function() {
+            bookCheckboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+            updateBulkActionButton();
+        });
+
+        // Update bulk action button state
+        bookCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', updateBulkActionButton);
+        });
+
+        // Show/hide custom stock input for bulk actions
+        bulkActionSelect.addEventListener('change', function() {
+            if (this.value === 'restock_custom') {
+                customStockInput.classList.remove('d-none');
+            } else {
+                customStockInput.classList.add('d-none');
+            }
+        });
+
+        // Bulk action form submission
+        bulkActionForm.addEventListener('submit', handleBulkActionSubmit);
+    }
+
+    function updateBulkActionButton() {
+        const checkedCount = document.querySelectorAll('.book-checkbox:checked').length;
+        bulkActionBtn.disabled = checkedCount === 0;
+        bulkActionBtn.textContent = checkedCount > 0 ? `Apply (${checkedCount})` : 'Apply';
+    }
+
+    function handleBulkActionSubmit(e) {
+        e.preventDefault();
+
+        const action = bulkActionSelect.value;
+        const checkedCount = document.querySelectorAll('.book-checkbox:checked').length;
+
+        if (!action) {
+            alert('Please select an action.');
+            return;
+        }
+
+        if (checkedCount === 0) {
+            alert('Please select at least one book.');
+            return;
+        }
+
+        if (action === 'restock_custom') {
+            const stockValue = this.querySelector('input[name="custom_stock"]').value;
+            if (!stockValue || stockValue < 0) {
+                alert('Please enter a valid stock quantity.');
+                return;
+            }
+        }
+
+        if (!confirm(`Are you sure you want to ${action.replace('_', ' ')} for ${checkedCount} book(s)?`)) {
+            return;
+        }
+
+        submitBulkActionForm(action, checkedCount);
+    }
+
+    function submitBulkActionForm(action, checkedCount) {
+        const hiddenForm = document.createElement('form');
+        hiddenForm.method = 'POST';
+        hiddenForm.action = '';
+
+        // Add CSRF token
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const csrfInput = document.createElement('input');
+        csrfInput.type = 'hidden';
+        csrfInput.name = 'csrfmiddlewaretoken';
+        csrfInput.value = csrfToken;
+        hiddenForm.appendChild(csrfInput);
+
+        // Add action
+        const actionInput = document.createElement('input');
+        actionInput.type = 'hidden';
+        actionInput.name = 'action';
+        actionInput.value = action;
+        hiddenForm.appendChild(actionInput);
+
+        // Add selected book IDs
+        document.querySelectorAll('.book-checkbox:checked').forEach(checkbox => {
+            const bookIdInput = document.createElement('input');
+            bookIdInput.type = 'hidden';
+            bookIdInput.name = 'book_ids';
+            bookIdInput.value = checkbox.value;
+            hiddenForm.appendChild(bookIdInput);
+        });
+
+        // Add custom stock value if applicable
+        if (action === 'restock_custom') {
+            const stockValue = bulkActionForm.querySelector('input[name="custom_stock"]').value;
+            const stockInput = document.createElement('input');
+            stockInput.type = 'hidden';
+            stockInput.name = 'custom_stock';
+            stockInput.value = stockValue;
+            hiddenForm.appendChild(stockInput);
+        }
+
+        document.body.appendChild(hiddenForm);
+        hiddenForm.submit();
+    }
+
+    // Image Update Functionality
+    function initImageUpdates() {
+        document.querySelectorAll('.image-update-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function() {
+                const container = this.closest('.image-update-container');
+                const img = container.querySelector('.book-cover-admin');
+                const bookIsbn = img.dataset.bookIsbn;
+                const currentImage = img.dataset.currentImage;
+
+                document.getElementById('modalBookIsbn').value = bookIsbn;
+                document.getElementById('modalImageUrl').value = currentImage;
+                document.getElementById('imagePreview').src = currentImage;
+                document.getElementById('imagePreview').style.display = 'block';
+
+                imageUpdateModal.show();
+            });
+        });
+
+        // Preview image on URL change
+        document.getElementById('modalImageUrl').addEventListener('input', function() {
+            const preview = document.getElementById('imagePreview');
+            preview.src = this.value;
+            preview.style.display = 'block';
+            preview.onerror = function() {
+                preview.style.display = 'none';
+            };
+        });
+
+        // Save image update
+        document.getElementById('saveImageBtn').addEventListener('click', saveImageUpdate);
+    }
+
+    function saveImageUpdate() {
+        const form = document.getElementById('imageUpdateForm');
+        const formData = new FormData(form);
+
+        fetch('', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                const bookIsbn = formData.get('book_isbn');
+                const newImageUrl = formData.get('image_url');
+                const bookImage = document.querySelector(`.book-cover-admin[data-book-isbn="${bookIsbn}"]`);
+
+                if (bookImage) {
+                    bookImage.src = newImageUrl;
+                    bookImage.dataset.currentImage = newImageUrl;
+                }
+
+                imageUpdateModal.hide();
+                showToast('Image updated successfully!', 'success');
+            } else {
+                showToast(data.message || 'Error updating image', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showToast('Error updating image', 'error');
+        });
+    }
+
+    // Quick Restock Functionality
+    function initQuickRestock() {
+        document.querySelectorAll('.restock-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const bookIsbn = this.dataset.bookIsbn;
+                document.getElementById('restockBookIsbn').value = bookIsbn;
+                quickRestockModal.show();
+            });
+        });
+
+        document.getElementById('saveRestockBtn').addEventListener('click', saveQuickRestock);
+    }
+
+    function saveQuickRestock() {
+        const form = document.getElementById('quickRestockForm');
+        const formData = new FormData(form);
+
+        const hiddenForm = document.createElement('form');
+        hiddenForm.method = 'POST';
+        hiddenForm.action = '';
+
+        for (const [key, value] of formData.entries()) {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = value;
+            hiddenForm.appendChild(input);
+        }
+
+        const bookIdInput = document.createElement('input');
+        bookIdInput.type = 'hidden';
+        bookIdInput.name = 'book_ids';
+        bookIdInput.value = formData.get('book_isbn');
+        hiddenForm.appendChild(bookIdInput);
+
+        document.body.appendChild(hiddenForm);
+        hiddenForm.submit();
+    }
+
+    // Search Functionality
+    function initSearch() {
+        const searchInput = document.getElementById('bookSearch');
+        const clearSearch = document.getElementById('clearBookSearch');
+        const bookCount = document.getElementById('bookCount');
+        const bookRows = document.querySelectorAll('tbody tr');
+
+        function filterBooks() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            bookRows.forEach(row => {
+                const bookTitle = row.querySelector('td:nth-child(2) strong').textContent.toLowerCase();
+                const bookIsbn = row.querySelector('td:nth-child(2) small').textContent.toLowerCase();
+                const bookAuthors = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+
+                if (bookTitle.includes(searchTerm) ||
+                    bookIsbn.includes(searchTerm) ||
+                    bookAuthors.includes(searchTerm)) {
+                    row.style.display = '';
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            bookCount.textContent = visibleCount;
+            clearSearch.style.display = searchTerm ? 'block' : 'none';
+
+            handleNoResults(searchTerm, visibleCount);
+        }
+
+        function handleNoResults(searchTerm, visibleCount) {
+            const tbody = document.querySelector('tbody');
+            const existingNoResults = tbody.querySelector('.no-results');
+
+            if (visibleCount === 0 && searchTerm) {
+                if (!existingNoResults) {
+                    const noResultsRow = document.createElement('tr');
+                    noResultsRow.className = 'no-results';
+                    noResultsRow.innerHTML = `
+                        <td colspan="8" class="text-center py-4 text-muted">
+                            <i class="fas fa-search fa-2x mb-2"></i><br>
+                            No books found matching "<strong>${searchTerm}</strong>"
+                        </td>
+                    `;
+                    tbody.appendChild(noResultsRow);
+                }
+            } else if (existingNoResults) {
+                existingNoResults.remove();
+            }
+        }
+
+        searchInput.addEventListener('input', filterBooks);
+
+        clearSearch.addEventListener('click', function() {
+            searchInput.value = '';
+            filterBooks();
+            searchInput.focus();
+        });
+
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                searchInput.value = '';
+                filterBooks();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                searchInput.focus();
+            }
+        });
+    }
+
+    // Utility Functions
+    function showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `alert alert-${type === 'error' ? 'danger' : 'success'} alert-dismissible fade show position-fixed`;
+        toast.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+        toast.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            if (toast.parentNode) {
+                toast.remove();
+            }
+        }, 3000);
+    }
+
+    // Initialize all functionality
+    initBulkActions();
+    initImageUpdates();
+    initQuickRestock();
+    initSearch();
+});
+</script>
+{% endblock %}

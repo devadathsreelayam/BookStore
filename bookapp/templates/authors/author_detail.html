@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ author.name }} - BookNook{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <nav aria-label="breadcrumb" class="mb-3">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'author_list' %}">Authors</a></li>
+                    <li class="breadcrumb-item active">{{ author.name }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Author Profile -->
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    {% if author.photo %}
+                    <img src="{{ author.photo }}"
+                         alt="{{ author.name }}"
+                         class="img-fluid rounded mb-3"
+                         style="max-height: 300px; object-fit: cover;">
+                    {% else %}
+                    <div class="author-photo-placeholder-large rounded d-flex align-items-center justify-content-center mb-3 mx-auto"
+                         style="width: 200px; height: 200px;">
+                        <i class="fas fa-user fa-4x text-muted"></i>
+                    </div>
+                    {% endif %}
+
+                    <h2 class="h4">{{ author.name }}</h2>
+                    <p class="text-muted mb-3">
+                        <i class="fas fa-book me-1"></i>
+                        {{ author.books.count }} book{{ author.books.count|pluralize }} published
+                    </p>
+
+                    <a href="{% url 'book_catalog' %}?author={{ author.name }}"
+                       class="btn btn-primary w-100">
+                        <i class="fas fa-book-open me-2"></i>View All Books
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Author Bio and Books -->
+        <div class="col-md-8">
+            <!-- Author Bio -->
+            {% if author.bio %}
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">About the Author</h5>
+                </div>
+                <div class="card-body" style="white-space: pre-line;">
+                    <p class="card-text" style="line-height: 1.6;">{{ author.bio }}</p>
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Author's Books -->
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Books by {{ author.name }}</h5>
+                    <span class="badge bg-brown text-white">{{ books.count }}</span>
+                </div>
+                <div class="card-body">
+                    {% if books %}
+                    <div class="row">
+                        {% for book in books %}
+                        <div class="col-lg-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <img src="{{ book.cover_image }}"
+                                     alt="{{ book.title }}"
+                                     class="rounded me-3"
+                                     style="width: 60px; height: 90px; object-fit: cover;"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/60x90/6c757d/white?text=No+Cover'">
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">
+                                        <a href="{% url 'book_detail' book.isbn %}" class="text-decoration-none">
+                                            {{ book.title }}
+                                        </a>
+                                    </h6>
+                                    <p class="text-muted small mb-1">
+                                        {{ book.publication_year }} •
+                                        <span class="badge bg-primary">{{ book.genre.name }}</span>
+                                    </p>
+                                    <p class="text-success fw-bold mb-0">₹{{ book.price|floatformat:0 }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="text-center py-4">
+                        <i class="fas fa-book fa-3x text-muted mb-3"></i>
+                        <p class="text-muted">No books available by this author.</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .author-photo-placeholder-large {
+        background-color: #f8f9fa;
+        border: 2px dashed #dee2e6;
+    }
+</style>
+{% endblock %}

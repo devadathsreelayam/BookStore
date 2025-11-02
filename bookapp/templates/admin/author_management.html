@@ -1,0 +1,338 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Author Management - Admin{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1>
+                    <i class="fas fa-user-edit text-brown me-2"></i>Author Management
+                </h1>
+                <a href="{% url 'admin:index' %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-cog me-2"></i>Django Admin
+                </a>
+            </div>
+            <p class="text-muted">Manage authors and their information</p>
+        </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h4 class="mb-0">{{ total_authors }}</h4>
+                    <small>Total Authors</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h4 class="mb-0">{{ authors_with_photos }}</h4>
+                    <small>Authors with Photos</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-info text-white">
+                <div class="card-body">
+                    <h4 class="mb-0">
+                        <script>document.write({{ total_authors }} - {{ authors_with_photos }})</script>
+                    </h4>
+                    <small>Authors without Photos</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Author Management Table -->
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">All Authors</h5>
+            <a href="{% url 'admin_author_add' %}" class="btn btn-success btn-sm">
+                <i class="fas fa-plus me-1"></i>Add Author
+            </a>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="card-body border-bottom">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text" id="authorSearch" class="form-control" placeholder="Search authors by name...">
+                        <button type="button" id="clearSearch" class="btn btn-outline-secondary" style="display: none;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <small class="text-muted">
+                        Showing <span id="authorCount">{{ authors.count }}</span> of {{ authors.count }} authors
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover mb-0">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Photo</th>
+                            <th>Author</th>
+                            <th>Biography</th>
+                            <th>Books</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for author in authors %}
+                        <tr>
+                            <td>
+                                <div class="image-update-container">
+                                    <img src="{{ author.photo_url }}"
+                                         alt="{{ author.name }}"
+                                         class="author-photo-admin rounded"
+                                         style="width: 50px; height: 50px; object-fit: cover;"
+                                         data-author-id="{{ author.id }}"
+                                         data-current-photo="{{ author.photo }}">
+                                    <div class="image-update-overlay">
+                                        <i class="fas fa-camera text-white"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <strong class="d-block">{{ author.name }}</strong>
+                                <small class="text-muted">ID: {{ author.id }}</small>
+                            </td>
+                            <td>
+                                <small class="text-muted">
+                                    {{ author.bio|truncatewords:20|default:"No biography" }}
+                                </small>
+                            </td>
+                            <td>
+                                <span class="text-muted">{{ author.books.count }}</span>
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a href="{% url 'admin_author_detail' author.id %}"
+                                       class="btn btn-outline-primary" title="Edit">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{% url 'admin:bookapp_author_change' author.id %}"
+                                       class="btn btn-outline-secondary" title="Advanced Edit">
+                                        <i class="fas fa-cog"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Photo Update Modal -->
+<div class="modal fade" id="photoUpdateModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title">Update Author Photo</h6>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="photoUpdateForm">
+                    {% csrf_token %}
+                    <input type="hidden" name="author_id" id="modalAuthorId">
+                    <input type="hidden" name="action" value="update_photo">
+                    <div class="mb-3">
+                        <label class="form-label small">Photo URL</label>
+                        <input type="url" name="photo_url" class="form-control form-control-sm"
+                               id="modalPhotoUrl" placeholder="https://example.com/photo.jpg" required>
+                    </div>
+                    <div class="mb-3 text-center">
+                        <img src="" alt="Preview"
+                             class="img-fluid rounded border"
+                             id="photoPreview"
+                             style="max-height: 200px; display: none;">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary btn-sm" id="savePhotoBtn">Update Photo</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('authorSearch');
+    const clearSearch = document.getElementById('clearSearch');
+    const authorCount = document.getElementById('authorCount');
+    const authorRows = document.querySelectorAll('tbody tr');
+    const totalAuthors = authorRows.length;
+
+    function filterAuthors() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        authorRows.forEach(row => {
+            const authorName = row.querySelector('td:nth-child(2) strong').textContent.toLowerCase();
+            const authorBio = row.querySelector('td:nth-child(3) small').textContent.toLowerCase();
+
+            if (authorName.includes(searchTerm) || authorBio.includes(searchTerm)) {
+                row.style.display = '';
+                visibleCount++;
+            } else {
+                row.style.display = 'none';
+            }
+        });
+
+        // Update counter
+        authorCount.textContent = visibleCount;
+
+        // Show/hide clear button
+        clearSearch.style.display = searchTerm ? 'block' : 'none';
+
+        // Show message if no results
+        if (visibleCount === 0 && searchTerm) {
+            const tbody = document.querySelector('tbody');
+            if (!tbody.querySelector('.no-results')) {
+                const noResultsRow = document.createElement('tr');
+                noResultsRow.className = 'no-results';
+                noResultsRow.innerHTML = `
+                    <td colspan="5" class="text-center py-4 text-muted">
+                        <i class="fas fa-search fa-2x mb-2"></i><br>
+                        No authors found matching "<strong>${searchTerm}</strong>"
+                    </td>
+                `;
+                tbody.appendChild(noResultsRow);
+            }
+        } else {
+            const noResultsRow = document.querySelector('.no-results');
+            if (noResultsRow) {
+                noResultsRow.remove();
+            }
+        }
+    }
+
+    // Search input event
+    searchInput.addEventListener('input', filterAuthors);
+
+    // Clear search button
+    clearSearch.addEventListener('click', function() {
+        searchInput.value = '';
+        filterAuthors();
+        searchInput.focus();
+    });
+
+    // Clear search on Escape key
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            searchInput.value = '';
+            filterAuthors();
+        }
+    });
+
+
+
+    const photoUpdateModal = new bootstrap.Modal(document.getElementById('photoUpdateModal'));
+
+    // Photo update functionality
+    document.querySelectorAll('.image-update-overlay').forEach(overlay => {
+        overlay.addEventListener('click', function() {
+            const container = this.closest('.image-update-container');
+            const img = container.querySelector('.author-photo-admin');
+            const authorId = img.dataset.authorId;
+            const currentPhoto = img.dataset.currentPhoto;
+
+            document.getElementById('modalAuthorId').value = authorId;
+            document.getElementById('modalPhotoUrl').value = currentPhoto;
+            document.getElementById('photoPreview').src = currentPhoto;
+            document.getElementById('photoPreview').style.display = 'block';
+
+            photoUpdateModal.show();
+        });
+    });
+
+    // Preview photo on URL change
+    document.getElementById('modalPhotoUrl').addEventListener('input', function() {
+        const preview = document.getElementById('photoPreview');
+        preview.src = this.value;
+        preview.style.display = 'block';
+        preview.onerror = function() {
+            preview.style.display = 'none';
+        };
+    });
+
+    // Save photo update
+    document.getElementById('savePhotoBtn').addEventListener('click', function() {
+        const form = document.getElementById('photoUpdateForm');
+        const formData = new FormData(form);
+
+        fetch('', {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Update the photo on the page
+                const authorId = formData.get('author_id');
+                const newPhotoUrl = formData.get('photo_url');
+                const authorPhoto = document.querySelector(`.author-photo-admin[data-author-id="${authorId}"]`);
+
+                if (authorPhoto) {
+                    authorPhoto.src = newPhotoUrl;
+                    authorPhoto.dataset.currentPhoto = newPhotoUrl;
+                }
+
+                photoUpdateModal.hide();
+                showToast('Photo updated successfully!', 'success');
+            } else {
+                showToast(data.message || 'Error updating photo', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showToast('Error updating photo', 'error');
+        });
+    });
+});
+
+function showToast(message, type = 'info') {
+    // Your existing toast implementation
+    const toast = document.createElement('div');
+    toast.className = `alert alert-${type === 'error' ? 'danger' : 'success'} alert-dismissible fade show position-fixed`;
+    toast.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+    toast.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    document.body.appendChild(toast);
+
+    setTimeout(() => {
+        if (toast.parentNode) {
+            toast.remove();
+        }
+    }, 3000);
+}
+</script>
+{% endblock %}

@@ -1,0 +1,303 @@
+{% extends 'base.html' %}
+
+{% block title %}Join BookNook - Your Reading Journey Begins{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-lg border-0">
+            <!-- Header -->
+            <div class="card-header bg-brown text-white text-center py-4">
+                <h2 class="mb-0">
+                    <i class="fas fa-book-open me-2"></i>Welcome to BookNook
+                </h2>
+                <p class="mb-0 mt-2 opacity-75">Your literary sanctuary awaits</p>
+            </div>
+
+            <div class="card-body p-4">
+                <!-- Tab Navigation -->
+                <ul class="nav nav-pills nav-justified mb-4" id="authTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="login-tab" data-bs-toggle="tab"
+                                data-bs-target="#login" type="button" role="tab">
+                            <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="register-tab" data-bs-toggle="tab"
+                                data-bs-target="#register" type="button" role="tab">
+                            <i class="fas fa-user-plus me-2"></i>Join Us
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- Login Tab -->
+                    <div class="tab-pane fade show active" id="login" role="tabpanel">
+                        <form method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="next" value="{{ request.GET.next }}">
+
+                            <div class="mb-3">
+                                <label class="form-label text-brown fw-bold">Username</label>
+                                <input type="text" name="username" class="form-control"
+                                       placeholder="Enter your username" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label text-brown fw-bold">Password</label>
+                                <input type="password" name="password" class="form-control"
+                                       placeholder="Enter your password" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100 py-2 mb-3">
+                                <i class="fas fa-key me-2"></i>Enter Your Library
+                            </button>
+
+                            <div class="text-center">
+                                <small class="text-muted">
+                                    New here? <a href="#" class="text-brown fw-bold switch-tab">Create an account</a>
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Register Tab -->
+                    <div class="tab-pane fade" id="register" role="tabpanel">
+                        <form method="post" action="{% url 'register' %}">
+                            {% csrf_token %}
+
+                            <!-- Basic Information -->
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label text-brown fw-bold">First Name</label>
+                                    <input type="text" name="first_name" class="form-control"
+                                           placeholder="First Name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label text-brown fw-bold">Last Name</label>
+                                    <input type="text" name="last_name" class="form-control"
+                                           placeholder="Last Name" required>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-brown fw-bold">Username</label>
+                                <input type="text" name="username" class="form-control"
+                                       placeholder="Choose a username" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-brown fw-bold">Email Address</label>
+                                <input type="email" name="email" class="form-control"
+                                       placeholder="your.email@example.com" required>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label text-brown fw-bold">Password</label>
+                                    <input type="password" name="password1" class="form-control"
+                                           placeholder="Create password" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label text-brown fw-bold">Confirm Password</label>
+                                    <input type="password" name="password2" class="form-control"
+                                           placeholder="Repeat password" required>
+                                </div>
+                            </div>
+
+                            <!-- Personal Details -->
+                            <div class="mb-3">
+                                <label class="form-label text-brown fw-bold">Date of Birth</label>
+                                <input type="date" name="date_of_birth" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label text-brown fw-bold">Short Bio</label>
+                                <textarea name="bio" class="form-control" rows="3"
+                                          placeholder="Tell us about your reading preferences..."></textarea>
+                            </div>
+
+                            <!-- Genre Interests -->
+                            <div class="mb-4">
+                                <label class="form-label text-brown fw-bold">Your Reading Interests</label>
+                                <p class="text-muted small mb-3">Select 3-4 genres you love (we'll personalize your experience)</p>
+
+                                <div class="genre-chips-container">
+                                    <div class="row g-2" id="genre-chips">
+                                        <!-- Genres will be populated by JavaScript -->
+                                    </div>
+                                    <input type="hidden" name="interests" id="selected-interests">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-success w-100 py-2 mb-3">
+                                <i class="fas fa-feather me-2"></i>Begin Your Reading Journey
+                            </button>
+
+                            <div class="text-center">
+                                <small class="text-muted">
+                                    Already have an account? <a href="#" class="text-brown fw-bold switch-tab">Sign in here</a>
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="card-footer bg-light text-center py-3">
+                <small class="text-muted">
+                    By joining, you agree to our <a href="#" class="text-brown">Terms</a> and <a href="#" class="text-brown">Privacy Policy</a>
+                </small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .bg-brown {
+        background: linear-gradient(135deg, var(--primary-brown), var(--dark-brown)) !important;
+    }
+
+    .nav-pills .nav-link {
+        color: var(--dark-brown);
+        font-weight: 500;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .nav-pills .nav-link.active {
+        color: white !important;
+        background: linear-gradient(135deg, var(--primary-brown), var(--dark-brown));
+        border: none;
+    }
+
+    .nav-pills .nav-link:not(.active):hover {
+        background-color: rgba(139, 69, 19, 0.1);
+        color: var(--primary-brown);
+    }
+
+    .genre-chip {
+        display: inline-block;
+        background: white;
+        border: 2px solid var(--light-brown);
+        border-radius: 2rem;
+        padding: 0.5rem 1rem;
+        margin: 0.25rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .genre-chip:hover {
+        border-color: var(--primary-brown);
+        transform: translateY(-1px);
+    }
+
+    .genre-chip.selected {
+        background: linear-gradient(135deg, var(--primary-brown), var(--dark-brown));
+        color: white;
+        border-color: var(--primary-brown);
+    }
+
+    .genre-chip i {
+        margin-right: 0.5rem;
+        opacity: 0.7;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const activeTab = "{{ active_tab|default:'login' }}";
+
+    if (activeTab === 'register') {
+        // Activate register tab
+        const registerTab = new bootstrap.Tab(document.querySelector('#register-tab'));
+        registerTab.show();
+    }
+
+    // Tab switching
+    document.querySelectorAll('.switch-tab').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (this.textContent.includes('Create')) {
+                new bootstrap.Tab(document.querySelector('#register-tab')).show();
+            } else {
+                new bootstrap.Tab(document.querySelector('#login-tab')).show();
+            }
+        });
+    });
+
+    // Genre chips functionality
+    const genreChipsContainer = document.getElementById('genre-chips');
+    const selectedInterestsInput = document.getElementById('selected-interests');
+    let selectedGenres = [];
+
+    // Sample genres - you'll replace this with actual genres from your database
+    const genres = [
+        'Fiction', 'Mystery', 'Science Fiction', 'Fantasy', 'Romance',
+        'Biography', 'History', 'Science', 'Technology', 'Philosophy',
+        'Poetry', 'Drama', 'Horror', 'Young Adult', 'Children\'s',
+        'Business', 'Travel', 'Cooking', 'Art', 'Music'
+    ];
+
+    // Create genre chips
+    genres.forEach(genre => {
+        const col = document.createElement('div');
+        col.className = 'col-auto';
+        col.innerHTML = `
+            <div class="genre-chip" data-genre="${genre}">
+                <i class="fas fa-book"></i>${genre}
+            </div>
+        `;
+        genreChipsContainer.appendChild(col);
+    });
+
+    // Genre selection logic
+    document.querySelectorAll('.genre-chip').forEach(chip => {
+        chip.addEventListener('click', function() {
+            const genre = this.dataset.genre;
+
+            if (this.classList.contains('selected')) {
+                // Deselect
+                this.classList.remove('selected');
+                selectedGenres = selectedGenres.filter(g => g !== genre);
+            } else {
+                // Select (max 4)
+                if (selectedGenres.length < 4) {
+                    this.classList.add('selected');
+                    selectedGenres.push(genre);
+                } else {
+                    // Show message or prevent selection
+                    alert('Please select maximum 4 genres');
+                    return;
+                }
+            }
+
+            // Update hidden input
+            selectedInterestsInput.value = selectedGenres.join(',');
+        });
+    });
+
+    // Form validation for registration
+    const registerForm = document.querySelector('#register form');
+    if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+            if (selectedGenres.length < 3) {
+                e.preventDefault();
+                alert('Please select at least 3 genres to personalize your experience');
+                return false;
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

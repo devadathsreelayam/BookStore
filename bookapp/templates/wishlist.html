@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+{% block title %}My Wishlist - BookNook{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h1>
+                    <i class="fas fa-heart text-danger me-2"></i>My Wishlist
+                </h1>
+                {% if wishlist_items %}
+                <span class="badge bg-brown text-white fs-6">
+                    {{ wishlist.total_items }} item{{ wishlist.total_items|pluralize }}
+                </span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if wishlist_items %}
+    <div class="row">
+        <div class="col-12">
+            <!-- Wishlist Items -->
+            <div class="card">
+                <div class="card-body">
+                    {% for item in wishlist_items %}
+                    <div class="row align-items-center mb-4 pb-3 border-bottom">
+                        <!-- Book Cover -->
+                        <div class="col-md-2">
+                            <img src="{{ item.book.cover_image }}"
+                                 alt="{{ item.book.title }}"
+                                 class="img-fluid rounded"
+                                 style="height: 120px; object-fit: cover;"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/120x160/6c757d/white?text=No+Cover'">
+                        </div>
+
+                        <!-- Book Details -->
+                        <div class="col-md-6">
+                            <h5 class="mb-1">
+                                <a href="{% url 'book_detail' item.book.isbn %}" class="text-decoration-none text-dark">
+                                    {{ item.book.title }}
+                                </a>
+                            </h5>
+                            <p class="text-muted mb-1">
+                                by {% for author in item.book.authors.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                            </p>
+                            <p class="text-muted small mb-2">
+                                {{ item.book.summary|truncatewords:20 }}
+                            </p>
+                            <div class="mb-2">
+                                <span class="badge bg-primary me-1">{{ item.book.genre.name }}</span>
+                                {% if item.book.book_type == 'digital' or item.book.book_type == 'both' %}
+                                <span class="badge bg-info me-1">
+                                    <i class="fas fa-file-pdf"></i> eBook
+                                </span>
+                                {% endif %}
+                                {% if item.book.book_type == 'physical' or item.book.book_type == 'both' %}
+                                <span class="badge bg-secondary">
+                                    <i class="fas fa-book"></i> Paperback
+                                </span>
+                                {% endif %}
+                            </div>
+                            <small class="text-muted">Added on {{ item.added_at|date:"M d, Y" }}</small>
+                        </div>
+
+                        <!-- Price & Stock -->
+                        <div class="col-md-2">
+                            <h5 class="text-success mb-2">₹{{ item.book.price|floatformat:0 }}</h5>
+                            {% if item.book.stock > 0 %}
+                            <span class="badge bg-success">In Stock</span>
+                            {% else %}
+                            <span class="badge bg-danger">Out of Stock</span>
+                            {% endif %}
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="col-md-2 text-end">
+                            {% if item.book.stock > 0 and item.book.book_type != 'digital' %}
+                            <a href="{% url 'move_to_cart' item.id %}" class="btn btn-primary btn-sm mb-2 w-100">
+                                <i class="fas fa-cart-plus me-1"></i>Add to Cart
+                            </a>
+                            {% endif %}
+                            <a href="{% url 'remove_from_wishlist' item.id %}" class="btn btn-outline-danger btn-sm w-100">
+                                <i class="fas fa-trash me-1"></i>Remove
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                    <!-- Action Buttons -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{% url 'book_catalog' %}" class="btn btn-outline-primary">
+                            <i class="fas fa-arrow-left me-2"></i>Continue Shopping
+                        </a>
+                        <div>
+                            <a href="{% url 'clear_wishlist' %}" class="btn btn-outline-danger me-2">
+                                <i class="fas fa-broom me-1"></i>Clear Wishlist
+                            </a>
+                            <a href="{% url 'cart_detail' %}" class="btn btn-success">
+                                <i class="fas fa-shopping-cart me-1"></i>View Cart
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <!-- Empty Wishlist -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-center py-5">
+                <div class="card-body">
+                    <i class="fas fa-heart fa-4x text-muted mb-3"></i>
+                    <h3 class="text-muted">Your wishlist is empty</h3>
+                    <p class="text-muted mb-4">Start adding books you'd love to read!</p>
+                    <a href="{% url 'book_catalog' %}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-book me-2"></i>Explore Books
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

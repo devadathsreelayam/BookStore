@@ -1,0 +1,286 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ book.title }} - BookStore{% endblock %}
+
+{% block content %}
+<div class="row">
+    <!-- Book Details -->
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <!-- Book Cover -->
+                    <div class="col-md-4">
+                        <img src="{{ book.cover_image }}"
+                             alt="{{ book.title }}"
+                             class="img-fluid rounded"
+                             style="max-height: 400px; object-fit: cover;"
+                             onerror="this.onerror=null; this.src='https://placehold.co/300x400/6c757d/white?text=No+Cover'">
+                    </div>
+
+                    <!-- Book Info -->
+                    <div class="col-md-8">
+                        <h1 class="h3 mb-2">{{ book.title }}</h1>
+                        <p class="text-muted mb-3">
+                            by {% for author in book.authors.all %}
+                                <a href="{% url 'book_catalog' %}?author={{ author.name }}" class="text-decoration-none">
+                                    {{ author.name }}
+                                </a>{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+
+                        <div class="mb-3">
+                            <span class="badge bg-primary">{{ book.genre.name }}</span>
+                            {% if book.genre.parent %}
+                                <span class="badge bg-secondary">{{ book.genre.parent.name }}</span>
+                            {% endif %}
+                        </div>
+
+                        <!-- Format Selection -->
+                        <div class="mb-4">
+                            <h5 class="mb-3">Select Format:</h5>
+                            <div class="row g-2">
+                                <!-- eBook Option -->
+                                {% if book.book_type == 'digital' or book.book_type == 'both' %}
+                                {% widthratio book.price 4 3 as ebook_price %}
+                                <div class="col-md-6">
+                                    <div class="format-option border rounded p-3 h-100 {% if book.book_type == 'digital' %}border-success border-2{% endif %}">
+                                        <div class="d-flex align-items-start mb-2">
+                                            <i class="fas fa-file-pdf text-danger fs-4 me-3"></i>
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1 fw-bold">eBook</h6>
+                                                <small class="text-muted d-block">Instant PDF download</small>
+                                                <small class="text-muted">Read anywhere</small>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <h5 class="text-success mb-1">₹{{ ebook_price }}</h5>
+                                            <small class="text-muted text-decoration-line-through">₹{{ book.price|floatformat:0 }}</small>
+                                            <small class="text-success ms-2 fw-bold">Save 25%</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                <!-- Paperback Option -->
+                                {% if book.book_type == 'physical' or book.book_type == 'both' %}
+                                <div class="col-md-6">
+                                    <div class="format-option border rounded p-3 h-100 {% if book.book_type == 'physical' %}border-primary border-2{% endif %}">
+                                        <div class="d-flex align-items-start mb-2">
+                                            <i class="fas fa-book text-primary fs-4 me-3"></i>
+                                            <div class="flex-grow-1">
+                                                <h6 class="mb-1 fw-bold">Paperback</h6>
+                                                <small class="text-muted d-block">Free shipping</small>
+                                                <small class="text-muted">3-5 days delivery</small>
+                                            </div>
+                                        </div>
+                                        <div class="mt-2">
+                                            <h5 class="text-primary mb-1">₹{{ book.price|floatformat:0 }}</h5>
+                                            <div class="mt-1">
+                                                <span class="badge {% if book.stock > 0 %}bg-success{% else %}bg-danger{% endif %} small">
+                                                    {% if book.stock > 0 %}{{ book.stock }} in stock{% else %}Out of Stock{% endif %}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="mb-4">
+                            <div class="row g-2">
+                                {% if book.book_type == 'digital' or book.book_type == 'both' %}
+                                <div class="col-md-6">
+                                    <a href="{% url 'preview_ebook' book.isbn %}" class="btn btn-success w-100" target="_blank">
+                                        <i class="fas fa-shopping-cart me-2"></i>Buy & Download eBook
+                                    </a>
+                                </div>
+                                {% endif %}
+
+                                {% if book.book_type == 'physical' or book.book_type == 'both' %}
+                                <div class="col-md-6">
+                                    {% if book.stock > 0 %}
+                                    <a href="{% url 'add_to_cart' book.isbn %}" class="btn btn-primary w-100">
+                                        <i class="fas fa-shopping-cart me-2"></i>Add to Cart
+                                    </a>
+                                    {% else %}
+                                    <button class="btn btn-outline-secondary w-100" disabled>
+                                        <i class="fas fa-bell me-2"></i>Notify When Available
+                                    </button>
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Secondary Actions -->
+                            <div class="row g-2 mt-2">
+                                {% if book.book_type == 'digital' or book.book_type == 'both' %}
+                                <div class="col-md-6">
+                                    <a href="{% url 'preview_ebook' book.isbn %}" class="btn btn-outline-dark w-100" target="_blank">
+                                        <i class="fas fa-eye me-2"></i>Preview eBook
+                                    </a>
+                                </div>
+                                {% endif %}
+                                <div class="col-md-6">
+                                    <a class="btn btn-outline-danger w-100" href="{% url 'add_to_wishlist' book.isbn %}">
+                                        <i class="fas fa-heart me-2"></i>Add to Wishlist
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Book Meta Info -->
+                        <div class="border-top pt-3">
+                            <div class="row small text-muted">
+                                <div class="col-md-6 mb-2">
+                                    <strong>Publication Year:</strong> {{ book.publication_year }}
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <strong>ISBN:</strong> {{ book.isbn }}
+                                </div>
+                                <div class="col-md-6 mb-2">
+                                    <strong>Format:</strong> {{ book.get_book_type_display }}
+                                </div>
+                                {% if book.tags %}
+                                <div class="col-12 mb-2">
+                                    <strong>Tags:</strong>
+                                    {% for tag in book.tags %}
+                                        <span class="badge bg-light text-dark small">{{ tag }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book Summary -->
+                <div class="mt-4 pt-3 border-top">
+                    <h5 class="fw-bold mb-3">Summary</h5>
+                    <p class="mb-0" style="line-height: 1.6;">{{ book.summary }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Info Sidebar -->
+    <div class="col-md-4">
+        <!-- Quick Actions -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <a href="{% url 'book_catalog' %}?genre={{ book.genre.name }}" class="btn btn-outline-primary w-100 mb-2">
+                    More {{ book.genre.name }} Books
+                </a>
+                {% for author in book.authors.all %}
+                <a href="{% url 'book_catalog' %}?author={{ author.name }}" class="btn btn-outline-secondary w-100 mb-2">
+                    More by {{ author.name }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Book Stats -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Book Information</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Format:</strong> {{ book.get_book_type_display }}</p>
+                <p><strong>Language:</strong> English</p>
+                <p><strong>Pages:</strong> 300+ (Estimated)</p>
+                <p><strong>Publisher:</strong> Various</p>
+            </div>
+        </div>
+
+        <!-- Author Profile Card -->
+        <div class="card mt-4">
+            <div class="card-header">
+                <h6 class="mb-0">About the Author</h6>
+            </div>
+            <div class="card-body text-center">
+                {% for author in book.authors.all %}
+                <div class="mb-3">
+                    {% if author.photo %}
+                    <img src="{{ author.photo }}"
+                         alt="{{ author.name }}"
+                         class="rounded-circle mb-2"
+                         style="width: 80px; height: 80px; object-fit: cover;">
+                    {% else %}
+                    <div class="rounded-circle bg-light d-flex align-items-center justify-content-center mx-auto mb-2"
+                         style="width: 80px; height: 80px;">
+                        <i class="fas fa-user fa-2x text-muted"></i>
+                    </div>
+                    {% endif %}
+                    <h6 class="mb-1">{{ author.name }}</h6>
+                    <p class="text-muted small mb-2">
+                        <i class="fas fa-book me-1"></i>
+                        {{ author.books.count }} book{{ author.books.count|pluralize }}
+                    </p>
+                    {% if author.bio %}
+                    <p class="small text-muted mb-2">
+                        {{ author.bio|truncatewords:15 }}
+                    </p>
+                    {% endif %}
+                    <a href="{% url 'author_detail' author.id %}" class="btn btn-outline-primary btn-sm w-100">
+                        View Full Profile
+                    </a>
+                </div>
+                {% if not forloop.last %}<hr>{% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Books by Same Author -->
+{% if same_author_books %}
+<div class="row mt-5">
+    <div class="col-12">
+        <h3>More by the Same Author{% if book.authors.count > 1 %}s{% endif %}</h3>
+        <div class="row">
+            {% for similar_book in same_author_books %}
+            <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-3">
+                <div class="card h-100">
+                    <img src="{{ similar_book.cover_image }}"
+                         alt="{{ similar_book.title }}"
+                         class="card-img-top"
+                         style="height: 150px; object-fit: cover;"
+                         onerror="this.onerror=null; this.src='https://placehold.co/200x400/6c757d/white?text=No+Cover'">
+                    <div class="card-body p-2">
+                        <h6 class="card-title small">{{ similar_book.title|truncatewords:4 }}</h6>
+                        <p class="card-text small text-success mb-1">₹{{ similar_book.price }}</p>
+                        <a href="{% url 'book_detail' similar_book.isbn %}" class="btn btn-outline-primary btn-sm w-100">
+                            View
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<style>
+    /* Format selection styles */
+.format-option {
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.format-option:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transform: translateY(-1px);
+}
+
+.format-option.selected {
+    border-color: var(--primary-brown) !important;
+    background-color: rgba(139, 69, 19, 0.05);
+}
+</style>
+{% endblock %}
