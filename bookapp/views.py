@@ -89,6 +89,10 @@ def register(request):
             login(request, user)
             messages.success(request, 'Welcome to BookNook! Your reading journey begins now.')
             return redirect('book_catalog')
+
+        else:
+            # Form is invalid, it will be passed back with errors and data
+            messages.error(request, 'Please correct the errors below.')
     else:
         form = UserRegistrationForm()
 

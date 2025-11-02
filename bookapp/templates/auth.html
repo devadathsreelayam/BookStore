@@ -68,55 +68,127 @@
                         <form method="post" action="{% url 'register' %}">
                             {% csrf_token %}
 
+                            <!-- Display non-field errors -->
+                            {% if form.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>Please correct the errors below:</strong>
+                                <ul class="mb-0 mt-2">
+                                    {% for error in form.non_field_errors %}
+                                    <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            {% endif %}
+
                             <!-- Basic Information -->
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label text-brown fw-bold">First Name</label>
-                                    <input type="text" name="first_name" class="form-control"
-                                           placeholder="First Name" required>
+                                    <input type="text" name="first_name" class="form-control {% if form.first_name.errors %}is-invalid{% endif %}"
+                                           placeholder="First Name" value="{{ form.first_name.value|default:'' }}" required>
+                                    {% if form.first_name.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.first_name.errors %}
+                                        {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label text-brown fw-bold">Last Name</label>
-                                    <input type="text" name="last_name" class="form-control"
-                                           placeholder="Last Name" required>
+                                    <input type="text" name="last_name" class="form-control {% if form.last_name.errors %}is-invalid{% endif %}"
+                                           placeholder="Last Name" value="{{ form.last_name.value|default:'' }}" required>
+                                    {% if form.last_name.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.last_name.errors %}
+                                        {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label text-brown fw-bold">Username</label>
-                                <input type="text" name="username" class="form-control"
-                                       placeholder="Choose a username" required>
+                                <input type="text" name="username" class="form-control {% if form.username.errors %}is-invalid{% endif %}"
+                                       placeholder="Choose a username" value="{{ form.username.value|default:'' }}" required>
+                                {% if form.username.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.username.errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label text-brown fw-bold">Email Address</label>
-                                <input type="email" name="email" class="form-control"
-                                       placeholder="your.email@example.com" required>
+                                <input type="email" name="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                                       placeholder="your.email@example.com" value="{{ form.email.value|default:'' }}" required>
+                                {% if form.email.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label text-brown fw-bold">Password</label>
-                                    <input type="password" name="password1" class="form-control"
+                                    <input type="password" name="password1" class="form-control {% if form.password1.errors %}is-invalid{% endif %}"
                                            placeholder="Create password" required>
+                                    {% if form.password1.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.password1.errors %}
+                                        {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                    {% if form.password1.help_text %}
+                                    <div class="form-text">{{ form.password1.help_text }}</div>
+                                    {% endif %}
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label text-brown fw-bold">Confirm Password</label>
-                                    <input type="password" name="password2" class="form-control"
+                                    <input type="password" name="password2" class="form-control {% if form.password2.errors %}is-invalid{% endif %}"
                                            placeholder="Repeat password" required>
+                                    {% if form.password2.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.password2.errors %}
+                                        {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
 
                             <!-- Personal Details -->
                             <div class="mb-3">
                                 <label class="form-label text-brown fw-bold">Date of Birth</label>
-                                <input type="date" name="date_of_birth" class="form-control" required>
+                                <input type="date" name="date_of_birth" class="form-control {% if form.date_of_birth.errors %}is-invalid{% endif %}"
+                                       value="{{ form.date_of_birth.value|default:'' }}" required>
+                                {% if form.date_of_birth.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.date_of_birth.errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label text-brown fw-bold">Short Bio</label>
-                                <textarea name="bio" class="form-control" rows="3"
-                                          placeholder="Tell us about your reading preferences..."></textarea>
+                                <textarea name="bio" class="form-control {% if form.bio.errors %}is-invalid{% endif %}" rows="3"
+                                          placeholder="Tell us about your reading preferences...">{{ form.bio.value|default:'' }}</textarea>
+                                {% if form.bio.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.bio.errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
                             </div>
 
                             <!-- Genre Interests -->
@@ -128,8 +200,15 @@
                                     <div class="row g-2" id="genre-chips">
                                         <!-- Genres will be populated by JavaScript -->
                                     </div>
-                                    <input type="hidden" name="interests" id="selected-interests">
+                                    <input type="hidden" name="interests" id="selected-interests" value="{{ request.POST.interests|default:'' }}">
                                 </div>
+                                {% if form.interests.errors %}
+                                <div class="text-danger small mt-1">
+                                    {% for error in form.interests.errors %}
+                                    {{ error }}
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
                             </div>
 
                             <button type="submit" class="btn btn-success w-100 py-2 mb-3">
@@ -239,7 +318,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Genre chips functionality
     const genreChipsContainer = document.getElementById('genre-chips');
     const selectedInterestsInput = document.getElementById('selected-interests');
-    let selectedGenres = [];
+
+    // Get previously selected interests from form data or hidden input
+    const initialInterests = selectedInterestsInput.value ? selectedInterestsInput.value.split(',') : [];
+    let selectedGenres = [...initialInterests];
 
     // Sample genres - you'll replace this with actual genres from your database
     const genres = [
@@ -253,8 +335,9 @@ document.addEventListener('DOMContentLoaded', function() {
     genres.forEach(genre => {
         const col = document.createElement('div');
         col.className = 'col-auto';
+        const isSelected = selectedGenres.includes(genre);
         col.innerHTML = `
-            <div class="genre-chip" data-genre="${genre}">
+            <div class="genre-chip ${isSelected ? 'selected' : ''}" data-genre="${genre}">
                 <i class="fas fa-book"></i>${genre}
             </div>
         `;
@@ -298,6 +381,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Auto-activate register tab if there are form errors
+    {% if form.errors %}
+    if (window.location.hash !== '#register') {
+        const registerTab = new bootstrap.Tab(document.querySelector('#register-tab'));
+        registerTab.show();
+        // Update URL without page reload
+        history.replaceState(null, null, '#register');
+    }
+    {% endif %}
 });
 </script>
 {% endblock %}
