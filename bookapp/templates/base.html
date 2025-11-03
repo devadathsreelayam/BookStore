@@ -82,7 +82,7 @@
                             <i class="fas fa-shopping-cart fa-lg"></i>
                             {% if not user.cart.total_items == 0 %}
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-brown text-white">
-                                {{ user.cart.total_items|default:0 }}
+                                {% if not user.cart.total_items > 9 %}{{ user.cart.total_items|default:0 }}{% else %}9+{% endif %}
                             </span>
                             {% endif %}
                         </a>
