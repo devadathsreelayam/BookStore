@@ -1,4 +1,5 @@
 from datetime import timedelta, datetime
+from decimal import Decimal
 
 from django.db.models import Q, Sum, Count
 from django.forms import modelform_factory
@@ -12,6 +13,7 @@ from django.utils import timezone
 
 from bookapp.forms import UserRegistrationForm
 from bookapp.models import Book, Author, Reader, Genre, CartItem, Cart, WishlistItem, Wishlist, Order, OrderItem
+from bookapp.utils import generate_preview_pdf
 
 
 def home(request):
@@ -682,8 +684,33 @@ def purchase_ebook(request, isbn):
         return redirect('book_detail', isbn=isbn)
 
     try:
+        # Calculate eBook price (75% of paperback)
+        ebook_price = book.price * Decimal('0.75')
+
+        # Create order for eBook purchase
+        order = Order.objects.create(
+            user=request.user,
+            total_amount=ebook_price,
+            shipping_address="Digital Delivery - No Shipping Required",
+            payment_method='Instant Digital Purchase',
+            order_status='delivered',  # eBooks are confirmed immediately
+            payment_status='completed',  # Assuming instant payment
+            has_physical_books=False,
+            paid_at=timezone.now()
+        )
+
+        # Create order item for eBook
+        OrderItem.objects.create(
+            order=order,
+            book=book,
+            quantity=1,
+            price=ebook_price,
+            book_type='digital'
+        )
+
         # Generate the eBook PDF
-        pdf_file = generate_ebook_pdf(book)
+        # pdf_file = generate_ebook_pdf(book) TODO: Fix the ebook generation function and replace the preview
+        pdf_file = generate_preview_pdf(book)
 
         # Create response with PDF
         response = HttpResponse(pdf_file, content_type='application/pdf')
@@ -695,7 +722,8 @@ def purchase_ebook(request, isbn):
         return response
 
     except Exception as e:
-        messages.error(request, 'Error generating eBook. Please try again.')
+        messages.error(request, 'Error processing your eBook purchase. Please try again.')
+        print(f"eBook purchase error: {str(e)}")
         return redirect('book_detail', isbn=isbn)
 
 

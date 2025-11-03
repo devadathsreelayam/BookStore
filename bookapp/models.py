@@ -238,6 +238,16 @@ class Order(models.Model):
     def is_digital_only(self):
         return all(item.book.book_type == 'digital' for item in self.items.all())
 
+    @property
+    def ebook_items(self):
+        """Get all eBook items in this order"""
+        return self.items.filter(book_type='digital')
+
+    @property
+    def physical_items(self):
+        """Get all physical items in this order"""
+        return self.items.filter(book_type__in=['physical', 'both'])
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')

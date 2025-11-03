@@ -99,7 +99,7 @@
                             <div class="row g-2">
                                 {% if book.book_type == 'digital' or book.book_type == 'both' %}
                                 <div class="col-md-6">
-                                    <a href="{% url 'preview_ebook' book.isbn %}" class="btn btn-success w-100" target="_blank">
+                                    <a href="{% url 'purchase_ebook' book.isbn %}" class="btn btn-success w-100" target="_blank">
                                         <i class="fas fa-shopping-cart me-2"></i>Buy & Download eBook
                                     </a>
                                 </div>

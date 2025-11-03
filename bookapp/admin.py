@@ -257,8 +257,7 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['order_id', 'user', 'total_amount', 'order_status', 'payment_status', 'created_at',
-                    'has_physical_books_display']
+    list_display = ['order_id', 'user', 'total_amount', 'order_status', 'payment_status', 'created_at',]
     list_filter = ['order_status', 'payment_status', 'created_at', 'has_physical_books']
     search_fields = ['order_id', 'user__username', 'user__email', 'tracking_number']
     readonly_fields = ['created_at', 'updated_at', 'total_items_display', 'is_digital_only_display']
@@ -274,7 +273,7 @@ class OrderAdmin(admin.ModelAdmin):
             'fields': ['payment_method', 'payment_status', 'paid_at']
         }),
         ('Order Type', {
-            'fields': ['is_digital_only_display', 'has_physical_books_display'],
+            'fields': ['is_digital_only_display',],
             'classes': ['collapse']
         }),
         ('Timestamps', {
@@ -294,11 +293,11 @@ class OrderAdmin(admin.ModelAdmin):
     is_digital_only_display.short_description = 'Digital Only'
     is_digital_only_display.boolean = True
 
-    def has_physical_books_display(self, obj):
-        return obj.has_physical_books
+    def is_ebook_order(self, obj):
+        return not obj.has_physical_books
 
-    has_physical_books_display.short_description = 'Has Physical Books'
-    has_physical_books_display.boolean = True
+    is_ebook_order.boolean = True
+    is_ebook_order.short_description = 'eBook Only'
 
 
 class OrderItemAdmin(admin.ModelAdmin):
