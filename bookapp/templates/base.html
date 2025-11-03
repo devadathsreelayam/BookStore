@@ -68,7 +68,7 @@
                     <!-- Search Form -->
                     {% if not user.is_staff %}
                     <li class="nav-item me-2" style="align-self: center">
-                        <form class="d-flex" action="#" method="get">
+                        <form class="d-flex" action="{% url 'book_catalog' %}" method="get">
                             <input class="form-control form-control-sm" type="search"
                                    placeholder="Search books..." name="q" aria-label="Search">
                         </form>
