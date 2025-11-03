@@ -31,7 +31,11 @@
 
                         <!-- Book Details -->
                         <div class="col-md-5">
-                            <h5 class="mb-1">{{ item.book.title }}</h5>
+                            <h5 class="mb-1">
+                                <a href="{% url 'book_detail' item.book.isbn %}" class="text-decoration-none text-dark" title="View Book">
+                                    {{ item.book.title }}
+                                </a>
+                            </h5>
                             <p class="text-muted mb-1 small">
                                 by {% for author in item.book.authors.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
                             </p>
