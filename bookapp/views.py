@@ -191,12 +191,9 @@ def get_or_create_cart(request):
     return None
 
 
+@login_required
 def add_to_cart(request, isbn):
     """Add book to cart"""
-    if not request.user.is_authenticated:
-        messages.warning(request, 'Please login to add items to cart.')
-        return redirect('login')
-
     book = get_object_or_404(Book, isbn=isbn)
     cart = get_or_create_cart(request)
 
@@ -212,6 +209,7 @@ def add_to_cart(request, isbn):
     cart_item, created = CartItem.objects.get_or_create(
         cart=cart,
         book=book,
+        book_type='physical',  # Explicitly set to physical
         defaults={'quantity': 1}
     )
 

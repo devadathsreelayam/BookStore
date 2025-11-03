@@ -130,6 +130,7 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items')
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+    book_type = models.CharField(max_length=10, choices=Book.BOOK_TYPES, default='physical')
     added_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
