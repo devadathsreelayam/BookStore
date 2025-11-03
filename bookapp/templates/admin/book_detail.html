@@ -103,10 +103,18 @@
                                     {{ form.authors.label }}
                                 </label>
 
-                                <!-- Search input for filtering -->
-                                <input type="text" class="form-control mb-2" id="authorSearch"
-                                       placeholder="Search authors by name..."
-                                       onkeyup="filterAuthors()">
+                                <div class="row align-items-center mb-2">
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" id="authorSearch"
+                                               placeholder="Search authors by name..."
+                                               onkeyup="filterAuthors()">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a class="btn btn-outline-success w-100" href="{% url 'admin_author_add' %}" target="_blank" id="addAuthorBtn">
+                                            <i class="fas fa-plus me-1"></i>Add New Author
+                                        </a>
+                                    </div>
+                                </div>
 
                                 <select name="{{ form.authors.name }}" id="{{ form.authors.id_for_label }}"
                                         class="form-select" multiple size="6">
