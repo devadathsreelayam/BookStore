@@ -88,6 +88,12 @@
                             </div>
                         </div>
 
+                        {% if is_in_cart %}
+                        <div class="mb-3">
+                            <span class="text-muted">Book already added to cart.</span>
+                        </div>
+                        {% endif %}
+
                         <!-- Action Buttons -->
                         <div class="mb-4">
                             <div class="row g-2">
@@ -102,9 +108,15 @@
                                 {% if book.book_type == 'physical' or book.book_type == 'both' %}
                                 <div class="col-md-6">
                                     {% if book.stock > 0 %}
+                                    {% if not is_in_cart %}
                                     <a href="{% url 'add_to_cart' book.isbn %}" class="btn btn-primary w-100">
                                         <i class="fas fa-shopping-cart me-2"></i>Add to Cart
                                     </a>
+                                    {% else %}
+                                    <a href="{% url 'cart_detail' %}" class="btn btn-primary w-100">
+                                        <i class="fas fa-shopping-cart me-2"></i>View Cart
+                                    </a>
+                                    {% endif %}
                                     {% else %}
                                     <button class="btn btn-outline-secondary w-100" disabled>
                                         <i class="fas fa-bell me-2"></i>Notify When Available
@@ -124,9 +136,15 @@
                                 </div>
                                 {% endif %}
                                 <div class="col-md-6">
+                                    {% if is_in_wishlist %}
+                                    <a class="btn btn-danger w-100" href="{% url 'wishlist_detail' %}">
+                                        <i class="fas fa-heart me-2"></i>View in Wishlist
+                                    </a>
+                                    {% else %}
                                     <a class="btn btn-outline-danger w-100" href="{% url 'add_to_wishlist' book.isbn %}">
                                         <i class="fas fa-heart me-2"></i>Add to Wishlist
                                     </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

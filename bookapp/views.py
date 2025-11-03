@@ -170,10 +170,15 @@ def book_detail(request, isbn):
         authors__in=book.authors.all()
     ).exclude(isbn=isbn).distinct()[:6]  # Limit to 6 books
 
+    is_in_wishlist = WishlistItem.objects.filter(book_id=isbn, wishlist__user=request.user).exists()
+    is_in_cart = CartItem.objects.filter(book_id=isbn, cart__user=request.user).exists()
+
     context = {
         'book': book,
         'same_author_books': same_author_books,
         'ebook_price': ebook_price,
+        'is_in_wishlist': is_in_wishlist,
+        'is_in_cart': is_in_cart,
     }
     return render(request, 'book_detail.html', context)
 
