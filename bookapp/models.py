@@ -196,6 +196,9 @@ class Order(models.Model):
     shipping_address = models.TextField()
     payment_method = models.CharField(max_length=50, default='Credit Card')
 
+    razorpay_order_id = models.CharField(max_length=100, blank=True)
+    razorpay_payment_id = models.CharField(max_length=100, blank=True)
+
     # Status tracking
     order_status = models.CharField(max_length=20, choices=ORDER_STATUS, default='pending')
     payment_status = models.CharField(max_length=20, choices=PAYMENT_STATUS, default='pending')

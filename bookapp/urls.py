@@ -45,6 +45,9 @@ urlpatterns = [
     path('orders/<str:order_id>/cancel/', views.cancel_order, name='cancel_order'),
     # Generic patterns last
     path('orders/<str:order_id>/', views.order_detail, name='order_detail'),
+    path('order/<str:order_id>/payment/', views.order_payment_gateway, name='order_payment_gateway'),
+    path('order/payment/success/', views.handle_order_payment_success, name='order_payment_success'),
+    path('order/<str:order_id>/payment/cancel/', views.cancel_payment, name='cancel_payment'),
     path('orders/', views.order_list, name='order_list'),
 
 

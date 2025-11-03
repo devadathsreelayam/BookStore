@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Secure Payment - BookNook{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-success text-white text-center py-4">
+                    <h2 class="mb-0">
+                        <i class="fas fa-lock me-2"></i>Secure Payment
+                    </h2>
+                    <p class="mb-0 mt-2 opacity-75">Complete your purchase</p>
+                </div>
+
+                <div class="card-body p-4">
+                    <!-- Order Summary -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Order Summary</h5>
+                            <div class="row">
+                                <div class="col-6">
+                                    <strong>Order ID:</strong><br>
+                                    <strong>Total Amount:</strong><br>
+                                    <strong>Payment Method:</strong>
+                                </div>
+                                <div class="col-6 text-end">
+                                    #{{ order.order_id }}<br>
+                                    ₹{{ amount_display }}<br>
+                                    {{ order.payment_method }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Instructions -->
+                    <div class="alert alert-info mb-4">
+                        <h6 class="alert-heading">
+                            <i class="fas fa-info-circle me-2"></i>Payment Instructions
+                        </h6>
+                        <p class="mb-0">Click the button below to proceed with secure payment. You'll be redirected to our payment partner.</p>
+                    </div>
+
+                    <!-- Payment Button -->
+                    <div class="text-center mb-4">
+                        <button type="button" class="btn btn-primary btn-lg w-100 py-3 mb-3" id="rzp-button">
+                            <i class="fas fa-credit-card me-2"></i>Pay ₹{{ amount_display }} Now
+                        </button>
+
+                        <small class="text-muted">
+                            <i class="fas fa-shield-alt me-1"></i>
+                            Secured by Razorpay • PCI DSS Compliant
+                        </small>
+                    </div>
+
+                    <!-- Payment Methods -->
+                    <div class="text-center mb-4">
+                        <small class="text-muted d-block mb-2">We accept all major payment methods</small>
+                        <div class="d-flex justify-content-center gap-3 flex-wrap">
+                            <span class="badge bg-light text-dark p-2">Credit Cards</span>
+                            <span class="badge bg-light text-dark p-2">Debit Cards</span>
+                            <span class="badge bg-light text-dark p-2">UPI</span>
+                            <span class="badge bg-light text-dark p-2">Net Banking</span>
+                            <span class="badge bg-light text-dark p-2">Wallets</span>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'cart_detail' %}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-2"></i>Back to Cart
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Features -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="text-center">
+                        <div class="d-flex justify-content-center gap-4 flex-wrap">
+                            <div class="text-center">
+                                <i class="fas fa-lock fa-2x text-success mb-2"></i>
+                                <br>
+                                <small class="text-muted">256-bit SSL</small>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-shield-alt fa-2x text-success mb-2"></i>
+                                <br>
+                                <small class="text-muted">Secure Payment</small>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-user-shield fa-2x text-success mb-2"></i>
+                                <br>
+                                <small class="text-muted">PCI DSS</small>
+                            </div>
+                            <div class="text-center">
+                                <i class="fas fa-lock fa-2x text-success mb-2"></i>
+                                <br>
+                                <small class="text-muted">Verified</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const paymentButton = document.getElementById('rzp-button');
+
+    paymentButton.addEventListener('click', function() {
+        const options = {
+            key: "{{ razorpay_api_key }}",
+            amount: "{{ amount }}",
+            currency: "{{ currency }}",
+            name: "BookNook",
+            description: "Order #{{ order.order_id }}",
+            order_id: "{{ razorpay_order_id }}",
+            handler: function(response) {
+                // Create and submit form with payment details
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = "{% url 'order_payment_success' %}";
+
+                // Add CSRF token
+                const csrfToken = document.createElement('input');
+                csrfToken.type = 'hidden';
+                csrfToken.name = 'csrfmiddlewaretoken';
+                csrfToken.value = '{{ csrf_token }}';
+                form.appendChild(csrfToken);
+
+                // Add payment details
+                const paymentFields = {
+                    'razorpay_payment_id': response.razorpay_payment_id,
+                    'razorpay_order_id': response.razorpay_order_id,
+                    'razorpay_signature': response.razorpay_signature
+                };
+
+                for (const [key, value] of Object.entries(paymentFields)) {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = value;
+                    form.appendChild(input);
+                }
+
+                document.body.appendChild(form);
+                form.submit();
+            },
+            prefill: {
+                name: "{{ request.user.get_full_name|default:request.user.username }}",
+                email: "{{ request.user.email }}",
+            },
+            theme: {
+                color: "#8B4513"
+            },
+            modal: {
+                ondismiss: function() {
+                    console.log('Payment cancelled by user');
+                }
+            }
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.open();
+    });
+
+    // Optional: Auto-open payment modal after 1 second
+    setTimeout(function() {
+        // Uncomment below line if you want the payment modal to open automatically
+        // paymentButton.click();
+    }, 1000);
+});
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.card {
+    border-radius: 15px;
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+}
+
+.alert-info {
+    border-left: 4px solid #17a2b8;
+}
+
+.security-features i {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.security-features i:hover {
+    opacity: 1;
+}
+</style>
+{% endblock %}

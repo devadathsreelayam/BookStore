@@ -1,6 +1,8 @@
 from datetime import timedelta, datetime
 from decimal import Decimal
 
+import razorpay
+from razorpay import Payment
 from django.db.models import Q, Sum, Count
 from django.forms import modelform_factory
 from django.http import JsonResponse, HttpResponse
@@ -11,9 +13,14 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.template.defaulttags import now
 from django.utils import timezone
 
+from BookStore import settings
 from bookapp.forms import UserRegistrationForm
 from bookapp.models import Book, Author, Reader, Genre, CartItem, Cart, WishlistItem, Wishlist, Order, OrderItem
 from bookapp.utils import generate_preview_pdf
+
+
+# Initialize Razorpay client
+razorpay_client = razorpay.Client(auth=(settings.RAZORPAY_KEY_ID, settings.RAZORPAY_KEY_SECRET))
 
 
 def home(request):
@@ -548,12 +555,22 @@ def create_order(request):
                     'cart_items': cart_items
                 })
 
-            # Create order
+            # Validate COD for digital books
+            if payment_method == 'cash_on_delivery' and any(item.book.book_type == 'digital' for item in cart_items):
+                messages.error(request, 'Cash on Delivery is not available for eBooks. Please choose Pay Now.')
+                return render(request, 'orders/order_confirm.html', {
+                    'cart': cart,
+                    'cart_items': cart_items
+                })
+
+            # Create order immediately for both payment methods
             order = Order.objects.create(
                 user=request.user,
                 total_amount=cart.total_price,
                 shipping_address=shipping_address,
-                payment_method=payment_method
+                payment_method=payment_method,
+                order_status='pending',  # Will be confirmed on payment success
+                payment_status='pending'
             )
 
             # Create order items
@@ -563,19 +580,34 @@ def create_order(request):
                     book=cart_item.book,
                     quantity=cart_item.quantity,
                     price=cart_item.book.price,
-                    book_type=cart_item.book.book_type
+                    book_type='physical'
                 )
 
+            # For COD - confirm order immediately
+            if payment_method == 'cash_on_delivery':
+                order.order_status = 'confirmed'
+                order.save()
+
                 # Update stock for physical books
-                if cart_item.book.book_type in ['physical', 'both']:
-                    cart_item.book.stock -= cart_item.quantity
-                    cart_item.book.save()
+                for item in order.items.all():
+                    if item.book.book_type in ['physical', 'both']:
+                        item.book.stock -= item.quantity
+                        item.book.save()
 
-            # Clear cart
-            cart.clear()
+                # Clear cart
+                cart.clear()
+                messages.success(request,
+                                 f'Order #{order.order_id} created successfully! We will contact you for delivery.')
+                return redirect('order_detail', order_id=order.order_id)
 
-            messages.success(request, f'Order #{order.order_id} created successfully!')
-            return redirect('order_detail', order_id=order.order_id)
+            # For Razorpay - redirect to payment page
+            elif payment_method == 'razorpay':
+                # Store order ID in session for payment success handling
+                request.session['pending_order_id'] = order.order_id
+                request.session.modified = True
+
+                # Redirect to payment gateway
+                return redirect('order_payment_gateway', order_id=order.order_id)
 
         except Exception as e:
             messages.error(request, f'Error creating order: {str(e)}')
@@ -587,6 +619,184 @@ def create_order(request):
         'cart_items': cart_items
     }
     return render(request, 'orders/order_confirm.html', context)
+
+
+@login_required
+def order_payment_gateway(request, order_id):
+    """Handle order payment gateway"""
+    order = get_object_or_404(Order, order_id=order_id, user=request.user)
+
+    # Verify this is the correct pending order
+    if request.session.get('pending_order_id') != order_id or order.payment_status != 'pending':
+        messages.error(request, 'Invalid payment session.')
+        return redirect('cart_detail')
+
+    # Create Razorpay order
+    payment_result = create_order_payment(request, order.total_amount, order.order_id)
+
+    if payment_result['success']:
+        # Update order with Razorpay order ID
+        order.razorpay_order_id = payment_result['order_id']
+        order.save()
+
+        context = {
+            'razorpay_api_key': payment_result['razorpay_api_key'],
+            'amount': payment_result['amount'],
+            'currency': payment_result['currency'],
+            'razorpay_order_id': payment_result['order_id'],  # Razorpay's order ID
+            'order': order,  # Use 'order' instead of 'user_order'
+            'amount_display': order.total_amount,
+        }
+        return render(request, 'orders/order_payment_gateway.html', context)
+    else:
+        # Auto-cancel order if payment initialization fails
+        order.order_status = 'cancelled'
+        order.save()
+
+        if 'pending_order_id' in request.session:
+            del request.session['pending_order_id']
+
+        messages.error(request, f'Payment initialization failed. Order has been cancelled.')
+        return redirect('cart_detail')
+
+
+def create_order_payment(request, amount, order_id):
+    """Create Razorpay order for book payment"""
+    try:
+        # Convert amount to paisa (INR)
+        amount_in_paisa = int(float(amount) * 100)
+
+        # Create a Razorpay order
+        order_data = {
+            'amount': amount_in_paisa,
+            'currency': 'INR',
+            'receipt': f'order_{order_id}',
+            'payment_capture': '1',
+            'notes': {
+                'order_id': order_id,
+                'description': f"BookNook Order: {order_id}"
+            }
+        }
+
+        # Create an order
+        order = razorpay_client.order.create(data=order_data)
+
+        return {
+            'success': True,
+            'order_id': order['id'],
+            'amount': order_data['amount'],
+            'currency': order_data['currency'],
+            'razorpay_api_key': settings.RAZORPAY_KEY_ID,
+        }
+
+    except Exception as e:
+        return {
+            'success': False,
+            'error': str(e)
+        }
+
+
+@login_required
+def handle_order_payment_success(request):
+    """Handle order completion after successful payment"""
+    if request.method == 'POST':
+        try:
+            # Get pending order ID from session
+            order_id = request.session.get('pending_order_id')
+
+            if not order_id:
+                messages.error(request, 'Invalid payment session.')
+                return redirect('cart_detail')
+
+            # Verify payment signature
+            params_dict = {
+                'razorpay_payment_id': request.POST.get('razorpay_payment_id'),
+                'razorpay_order_id': request.POST.get('razorpay_order_id'),
+                'razorpay_signature': request.POST.get('razorpay_signature')
+            }
+
+            # Verify payment signature
+            razorpay_client.utility.verify_payment_signature(params_dict)
+
+            # Find and update order
+            order = Order.objects.get(order_id=order_id, user=request.user)
+            order.payment_status = 'completed'
+            order.order_status = 'confirmed'
+            order.paid_at = timezone.now()
+            order.razorpay_payment_id = params_dict['razorpay_payment_id']
+            order.save()
+
+            # Update stock for physical books
+            for item in order.items.all():
+                if item.book.book_type in ['physical', 'both']:
+                    item.book.stock -= item.quantity
+                    item.book.save()
+
+            # Clear cart and session data
+            cart = get_or_create_cart(request)
+            cart.clear()
+
+            # Clear session data
+            if 'pending_order_id' in request.session:
+                del request.session['pending_order_id']
+
+            messages.success(request, f'Payment successful! Order #{order.order_id} has been confirmed.')
+            return redirect('order_detail', order_id=order.order_id)
+
+        except Order.DoesNotExist:
+            messages.error(request, 'Order not found.')
+            return redirect('cart_detail')
+        except razorpay.errors.SignatureVerificationError:
+            # Auto-cancel order on payment verification failure
+            order_id = request.session.get('pending_order_id')
+            if order_id:
+                try:
+                    order = Order.objects.get(order_id=order_id, user=request.user)
+                    order.order_status = 'cancelled'
+                    order.save()
+                except Order.DoesNotExist:
+                    pass
+
+                if 'pending_order_id' in request.session:
+                    del request.session['pending_order_id']
+
+            messages.error(request, 'Payment verification failed. Order has been cancelled.')
+            return redirect('cart_detail')
+        except Exception as e:
+            # Auto-cancel order on any other error
+            order_id = request.session.get('pending_order_id')
+            if order_id:
+                try:
+                    order = Order.objects.get(order_id=order_id, user=request.user)
+                    order.order_status = 'cancelled'
+                    order.save()
+                except Order.DoesNotExist:
+                    pass
+
+                if 'pending_order_id' in request.session:
+                    del request.session['pending_order_id']
+
+            messages.error(request, f'Payment processing failed. Order has been cancelled.')
+            return redirect('cart_detail')
+
+    messages.error(request, 'Invalid request method.')
+    return redirect('cart_detail')
+
+
+@login_required
+def cancel_payment(request, order_id):
+    """Handle payment cancellation - auto-cancel the order"""
+    order = get_object_or_404(Order, order_id=order_id, user=request.user)
+
+    if order.payment_status == 'pending' and order.order_status == 'pending':
+        order.order_status = 'cancelled'
+        order.save()
+
+        if 'pending_order_id' in request.session:
+            del request.session['pending_order_id']
+
+    messages.info(request, 'Payment was cancelled. Your order has been cancelled.')
+    return redirect('cart_detail')
 
 
 @login_required

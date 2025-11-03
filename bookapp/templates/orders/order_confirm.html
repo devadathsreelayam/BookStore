@@ -72,21 +72,26 @@
                         <div class="mb-4">
                             <h5>Payment Method</h5>
                             <div class="mb-3">
-                                <select name="payment_method" class="form-select" required>
-                                    <option value="">Select Payment Method</option>
-                                    <option value="Credit Card">Credit Card</option>
-                                    <option value="Debit Card">Debit Card</option>
-                                    <option value="Net Banking">Net Banking</option>
-                                    <option value="UPI">UPI</option>
-                                    <option value="Wallet">Digital Wallet</option>
-                                </select>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="payment_method" id="pay_now" value="razorpay" required>
+                                    <label class="form-check-label fw-bold text-success" for="pay_now">
+                                        <i class="fas fa-credit-card me-2"></i>Pay Now (Credit/Debit Card, UPI, Net Banking)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="payment_method" id="cod" value="cash_on_delivery">
+                                    <label class="form-check-label fw-bold text-primary" for="cod">
+                                        <i class="fas fa-money-bill-wave me-2"></i>Cash on Delivery
+                                    </label>
+                                    <small class="text-muted d-block ms-4">Available for physical books only</small>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Action Buttons -->
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn btn-success btn-lg">
-                                <i class="fas fa-lock me-2"></i>Place Order & Pay
+                                <i class="fas fa-lock me-2"></i>Place Order
                             </button>
                             <a href="{% url 'cart_detail' %}" class="btn btn-outline-secondary">
                                 <i class="fas fa-arrow-left me-2"></i>Back to Cart

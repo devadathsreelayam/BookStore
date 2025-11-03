@@ -119,6 +119,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 LOGIN_URL = '/login/'
 
+RAZORPAY_KEY_ID = 'rzp_test_MJOAVy77oMVaYv'  # Get from Razorpay dashboard
+RAZORPAY_KEY_SECRET = 'MvUZ03MPzLq3lkvMneYECQsk'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
