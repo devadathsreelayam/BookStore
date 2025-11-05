@@ -1,3 +1,4 @@
 Django~=5.2.7
 pandas~=2.3.3
 xhtml2pdf
+razorpay
