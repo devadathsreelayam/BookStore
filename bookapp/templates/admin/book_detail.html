@@ -98,45 +98,45 @@
                             </div>
 
                             <!-- Authors -->
-                            <div class="col-12 mb-3">
-                                <label for="{{ form.authors.id_for_label }}" class="form-label">
-                                    {{ form.authors.label }}
-                                </label>
+<div class="col-12 mb-3">
+    <label for="{{ form.authors.id_for_label }}" class="form-label">
+        {{ form.authors.label }}
+    </label>
 
-                                <div class="row align-items-center mb-2">
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" id="authorSearch"
-                                               placeholder="Search authors by name..."
-                                               onkeyup="filterAuthors()">
-                                    </div>
-                                    <div class="col-md-3">
-                                        <a class="btn btn-outline-success w-100" href="{% url 'admin_author_add' %}" target="_blank" id="addAuthorBtn">
-                                            <i class="fas fa-plus me-1"></i>Add New Author
-                                        </a>
-                                    </div>
-                                </div>
+    <div class="row align-items-center mb-2">
+        <div class="col-md-9">
+            <input type="text" class="form-control" id="authorSearch"
+                   placeholder="Search authors by name..."
+                   onkeyup="filterAuthors()">
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-outline-success w-100" href="{% url 'admin_author_add' %}" target="_blank" id="addAuthorBtn">
+                <i class="fas fa-plus me-1"></i>Add New Author
+            </a>
+        </div>
+    </div>
 
-                                <select name="{{ form.authors.name }}" id="{{ form.authors.id_for_label }}"
-                                        class="form-select" multiple size="6">
-                                    {% for author in all_authors %}
-                                    <option value="{{ author.id }}"
-                                            {% if author in form.authors.value %}selected{% endif %}
-                                            data-author-name="{{ author.name|lower }}">
-                                        {{ author.name }}
-                                    </option>
-                                    {% endfor %}
-                                </select>
+    <select name="{{ form.authors.name }}" id="{{ form.authors.id_for_label }}"
+            class="form-select" multiple size="6">
+        {% for author in all_authors %}
+        <option value="{{ author.id }}"
+                {% if author.id in form.authors.value %}selected{% endif %}
+                data-author-name="{{ author.name|lower }}">
+            {{ author.name }}
+        </option>
+        {% endfor %}
+    </select>
 
-                                {% if form.authors.errors %}
-                                <div class="text-danger small mt-1">
-                                    {{ form.authors.errors }}
-                                </div>
-                                {% endif %}
-                                <ul>
-                                    <li><small class="form-text text-muted">Use search above to filter authors</small></li>
-                                    <li><small class="form-text text-muted">Use <kbd>Ctrl</kbd>+<kbd>Click</kbd> to select multiple authors.</small></li>
-                                </ul>
-                            </div>
+    {% if form.authors.errors %}
+    <div class="text-danger small mt-1">
+        {{ form.authors.errors }}
+    </div>
+    {% endif %}
+    <ul>
+        <li><small class="form-text text-muted">Use search above to filter authors</small></li>
+        <li><small class="form-text text-muted">Use <kbd>Ctrl</kbd>+<kbd>Click</kbd> to select multiple authors.</small></li>
+    </ul>
+</div>
 
                             <!-- Price -->
                             <div class="col-md-6 mb-3">
