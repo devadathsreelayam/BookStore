@@ -1232,12 +1232,12 @@ def admin_book_detail(request, isbn):
     """Admin book detail view for both viewing and editing"""
     book = get_object_or_404(Book, isbn=isbn)
 
-    # Create a model form with specific fields
+    # Create a model form with specific fields - ADD 'book_pdf'
     BookForm = modelform_factory(
         Book,
         fields=[
             'title', 'authors', 'publication_year', 'price',
-            'summary', 'cover_image', 'genre', 'book_type', 'stock'
+            'summary', 'cover_image', 'book_pdf', 'genre', 'book_type', 'stock'  # Added book_pdf
         ],
         labels={
             'title': 'Book Title',
@@ -1246,6 +1246,7 @@ def admin_book_detail(request, isbn):
             'price': 'Price (₹)',
             'summary': 'Summary',
             'cover_image': 'Cover Image URL',
+            'book_pdf': 'eBook PDF File',  # Added label
             'genre': 'Genre',
             'book_type': 'Book Type',
             'stock': 'Stock Quantity'
@@ -1253,12 +1254,14 @@ def admin_book_detail(request, isbn):
         help_texts={
             'stock': 'Stock only applies to physical books',
             'book_type': 'Digital books ignore stock quantity',
-            'cover_image': 'URL to book cover image'
+            'cover_image': 'URL to book cover image',
+            'book_pdf': 'Upload PDF file for eBook version. Max 50MB.'  # Added help text
         }
     )
 
     if request.method == 'POST':
-        form = BookForm(request.POST, instance=book)
+        # Add request.FILES for file uploads
+        form = BookForm(request.POST, request.FILES, instance=book)
         if form.is_valid():
             form.save()
             messages.success(request, f'Book "{book.title}" updated successfully!')

@@ -46,7 +46,7 @@
                     {% endif %}
                 </div>
                 <div class="card-body">
-                    <form method="post" id="bookForm">
+                    <form method="post" id="bookForm" enctype="multipart/form-data">
                         {% csrf_token %}
 
                         <!-- Basic Information -->
@@ -236,6 +236,69 @@
                                          id="coverPreview"
                                          style="max-height: 200px; display: none;"
                                          onerror="document.getElementById('coverPreview').style.display='none';">
+                                </div>
+                            </div>
+
+                            <!-- eBook PDF File -->
+                            <div class="col-12 mb-3">
+                                <label for="{{ form.book_pdf.id_for_label }}" class="form-label">
+                                    {{ form.book_pdf.label }}
+                                </label>
+
+                                <!-- Current PDF display if exists -->
+                                {% if not is_adding and form.instance.book_pdf %}
+                                <div class="alert alert-info mb-3">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <i class="fas fa-file-pdf text-danger me-2"></i>
+                                            <strong>Current PDF:</strong>
+                                            <a href="{{ form.instance.book_pdf.url }}" target="_blank" class="ms-2">
+                                                {{ form.instance.book_pdf.name|cut:"book_pdfs/" }}
+                                            </a>
+                                            <small class="text-muted ms-2">({{ form.instance.pdf_file_size }})</small>
+                                        </div>
+                                        <div>
+                                            <a href="{{ form.instance.book_pdf.url }}" target="_blank" class="btn btn-sm btn-outline-primary">
+                                                <i class="fas fa-eye me-1"></i>View
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-outline-danger" onclick="clearPdfFile()">
+                                                <i class="fas fa-times me-1"></i>Remove
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="replacePdf">
+                                    <label class="form-check-label" for="replacePdf">
+                                        Replace existing PDF file
+                                    </label>
+                                </div>
+                                {% endif %}
+
+                                <!-- PDF Upload Input -->
+                                <input type="file"
+                                       name="{{ form.book_pdf.name }}"
+                                       id="{{ form.book_pdf.id_for_label }}"
+                                       class="form-control {% if not is_adding and form.instance.book_pdf %}d-none{% endif %}"
+                                       accept=".pdf"
+                                       {% if not is_adding and form.instance.book_pdf %}disabled{% endif %}>
+
+                                {% if form.book_pdf.errors %}
+                                <div class="text-danger small mt-1">
+                                    {{ form.book_pdf.errors }}
+                                </div>
+                                {% endif %}
+
+                                {% if form.book_pdf.help_text %}
+                                <small class="form-text text-muted">{{ form.book_pdf.help_text }}</small>
+                                {% endif %}
+
+                                <!-- PDF Preview Info -->
+                                <div id="pdfPreview" class="mt-2 p-2 border rounded" style="display: none;">
+                                    <i class="fas fa-file-pdf text-danger me-2"></i>
+                                    <span id="pdfFileName"></span>
+                                    <small class="text-muted ms-2" id="pdfFileSize"></small>
                                 </div>
                             </div>
 
