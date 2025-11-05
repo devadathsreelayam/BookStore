@@ -79,29 +79,34 @@
 
 {% block extra_js %}
 <script>
-let countdown = 5; // Reduced countdown
+let countdown = 5;
 let downloadAttempted = false;
+let downloadCompleted = false;
 
 function triggerDownload() {
     if (downloadAttempted) return;
 
     downloadAttempted = true;
 
-    // Method 1: Direct download in same window
+    // Method 1: Direct download in same window - ONLY ONE METHOD
     const downloadUrl = "{% url 'download_ebook_file' order.order_id %}";
 
-    // Create invisible iframe for download
+    // Use only ONE method - choose either iframe OR window.open, not both
     const iframe = document.createElement('iframe');
     iframe.style.display = 'none';
     iframe.src = downloadUrl;
+    iframe.onload = function() {
+        downloadCompleted = true;
+        console.log('Download completed via iframe');
+    };
     document.body.appendChild(iframe);
 
     console.log('Download triggered via iframe');
 
-    // Also try direct link as fallback
-    setTimeout(() => {
-        window.open(downloadUrl, '_blank');
-    }, 1000);
+    // REMOVE the window.open fallback to prevent double download
+    // setTimeout(() => {
+    //     window.open(downloadUrl, '_blank');
+    // }, 1000);
 }
 
 function startCountdown() {
@@ -135,30 +140,32 @@ function closeTab() {
     }, 1000);
 }
 
-// Enhanced download with multiple fallbacks
+// Enhanced download with single trigger
 function startDownloadProcess() {
-    // Trigger immediate download
+    // Trigger download only once
     triggerDownload();
 
-    // Show manual download link after 3 seconds
+    // Show manual download link after 5 seconds if download didn't complete
     setTimeout(() => {
-        document.getElementById('manualDownload').style.display = 'block';
-    }, 3000);
+        if (!downloadCompleted) {
+            document.getElementById('manualDownload').style.display = 'block';
+        }
+    }, 5000);
 
     // Start countdown
     startCountdown();
 }
 
-// Start when page loads
+// Start when page loads - ensure it only runs once
+let processStarted = false;
 document.addEventListener('DOMContentLoaded', function() {
-    startDownloadProcess();
-});
-
-// Allow manual close
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeTab();
+    if (!processStarted) {
+        processStarted = true;
+        startDownloadProcess();
     }
 });
+
+// Prevent multiple event listeners
+document.removeEventListener('DOMContentLoaded', this);
 </script>
 {% endblock %}

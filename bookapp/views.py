@@ -2,6 +2,8 @@ from datetime import timedelta, datetime
 from decimal import Decimal
 
 import razorpay
+from django.db.backends.utils import logger
+from django.utils.text import slugify
 from razorpay import Payment
 from django.db.models import Q, Sum, Count
 from django.forms import modelform_factory
@@ -1027,26 +1029,43 @@ def handle_ebook_payment_success(request):
     return redirect('book_catalog')
 
 
+def get_ebook_pdf_content(book):
+    """
+    Get PDF content for a book - original if available, otherwise generated
+    Returns: (pdf_content, source_type) where source_type is 'original' or 'generated'
+    """
+    if book.book_pdf and book.book_pdf.name:
+        try:
+            if book.book_pdf.storage.exists(book.book_pdf.name):
+                return book.book_pdf.read(), 'original'
+        except Exception as e:
+            logger.error(f"Error reading original PDF for book {book.isbn}: {str(e)}")
+
+    # Fall back to generated PDF
+    return generate_preview_pdf(book), 'generated'
+
+
 @login_required
 def download_ebook_file(request, order_id):
-    """Direct eBook download endpoint with proper headers"""
+    """Direct eBook download endpoint"""
     order = get_object_or_404(Order, order_id=order_id, user=request.user)
 
     if order.payment_status != 'completed':
         messages.error(request, 'This order is not paid.')
         return redirect('order_detail', order_id=order_id)
 
-    # Generate the eBook PDF
     book = order.items.first().book
-    pdf_file = generate_preview_pdf(book)
-
-    # Create response with PDF - ensure proper headers
-    response = HttpResponse(pdf_file, content_type='application/pdf')
-
-    # Use different Content-Disposition for better browser compatibility
     filename = f"{slugify(book.title)}_ebook.pdf"
+
+    # Get PDF content (original or generated)
+    pdf_content, source_type = get_ebook_pdf_content(book)
+
+    logger.info(f"Serving {source_type} PDF for book: {book.title}")
+
+    # Create response with PDF
+    response = HttpResponse(pdf_content, content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename="{filename}"'
-    response['Content-Length'] = len(pdf_file)
+    response['Content-Length'] = len(pdf_content)
 
     # Additional headers to prevent caching issues
     response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
