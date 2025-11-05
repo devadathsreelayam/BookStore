@@ -120,7 +120,7 @@
                                         class="form-select" multiple size="6">
                                     {% for author in all_authors %}
                                     <option value="{{ author.id }}"
-                                            {% if author in form.authors.value %}selected{% endif %}
+                                            {% if author.id in form.authors.value %}selected{% endif %}
                                             data-author-name="{{ author.name|lower }}">
                                         {{ author.name }}
                                     </option>
