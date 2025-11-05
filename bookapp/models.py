@@ -89,9 +89,9 @@ class Book(models.Model):
     def _auto_update_book_type(self):
         """
         Automatically update book_type to 'both' when a PDF is added
-        to a book that was previously digital-only
+        to a book that was previously physical-only
         """
-        if self.book_pdf and self.book_type == 'digital':
+        if self.book_pdf and self.book_type == 'physical':
             self.book_type = 'both'
 
     def set_book_pdf(self, pdf_file):
