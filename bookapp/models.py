@@ -58,6 +58,7 @@ class Book(models.Model):
     price = models.DecimalField(max_digits=8, decimal_places=2)
     summary = models.TextField(blank=True)
     cover_image = models.URLField(blank=True)
+    book_pdf = models.FileField(upload_to='book_pdfs/', null=True, blank=True)  # New PDF field
     tags = JSONField(default=list, blank=True)
     genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True, related_name='books')
     book_type = models.CharField(max_length=10, choices=BOOK_TYPES, default='both')
@@ -75,10 +76,60 @@ class Book(models.Model):
         return self.genre
 
     def save(self, *args, **kwargs):
+        # Auto-update timestamps
         if not self.created_at:
             self.created_at = datetime.now()
         self.updated_at = datetime.now()
+
+        # Auto-update book_type when PDF is added to digital-only book
+        self._auto_update_book_type()
+
         super().save(*args, **kwargs)
+
+    def _auto_update_book_type(self):
+        """
+        Automatically update book_type to 'both' when a PDF is added
+        to a book that was previously digital-only
+        """
+        if self.book_pdf and self.book_type == 'digital':
+            self.book_type = 'both'
+
+    def set_book_pdf(self, pdf_file):
+        """
+        Method to set book PDF and automatically handle book_type update
+        """
+        self.book_pdf = pdf_file
+        self._auto_update_book_type()
+        self.save()
+
+    @property
+    def has_pdf(self):
+        """Check if book has a PDF file"""
+        return bool(self.book_pdf)
+
+    @property
+    def is_downloadable(self):
+        """Check if book can be downloaded (has PDF and is digital/both)"""
+        return self.has_pdf and self.book_type in ['digital', 'both']
+
+    @property
+    def pdf_file_size(self):
+        """Get PDF file size in human-readable format"""
+        if self.book_pdf and self.book_pdf.size:
+            size = self.book_pdf.size
+            if size < 1024:
+                return f"{size} B"
+            elif size < 1024 * 1024:
+                return f"{size / 1024:.1f} KB"
+            else:
+                return f"{size / (1024 * 1024):.1f} MB"
+        return "N/A"
+
+    def get_download_url(self):
+        """Get download URL for the PDF"""
+        if self.is_downloadable:
+            return self.book_pdf.url
+        return None
 
     class Meta:
         ordering = ['-publication_year', 'title']

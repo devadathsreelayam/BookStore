@@ -1,5 +1,6 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.contrib.auth.models import Group
+from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
 from .models import Author, Genre, Reader, Book, Cart, CartItem, WishlistItem, Wishlist, Order, OrderItem
@@ -57,12 +58,15 @@ class GenreAdmin(admin.ModelAdmin):
 
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ['title', 'display_authors', 'publication_year', 'price', 'book_type', 'stock', 'is_available']
+    list_display = ['title', 'display_authors', 'publication_year', 'price', 'book_type', 'stock', 'is_available',
+                    'has_pdf']
     list_filter = ['book_type', 'publication_year', 'genre', 'genre__parent']
     search_fields = ['title', 'isbn', 'authors__name']
-    readonly_fields = ['created_at', 'updated_at']
+    readonly_fields = ['created_at', 'updated_at', 'pdf_preview', 'pdf_file_size_display']
     list_editable = ['price', 'stock']
     filter_horizontal = ['authors']
+
+    # Add PDF to fieldsets
     fieldsets = [
         ('Basic Information', {
             'fields': ['isbn', 'title', 'authors', 'publication_year', 'genre']
@@ -71,7 +75,7 @@ class BookAdmin(admin.ModelAdmin):
             'fields': ['price', 'book_type', 'stock']
         }),
         ('Content Details', {
-            'fields': ['summary', 'cover_image', 'tags'],
+            'fields': ['summary', 'cover_image', 'book_pdf', 'pdf_preview', 'pdf_file_size_display', 'tags'],
             'classes': ['collapse']
         }),
         ('System Information', {
@@ -91,7 +95,54 @@ class BookAdmin(admin.ModelAdmin):
     is_available.short_description = 'Available'
     is_available.boolean = True
 
-    actions = ['restock_books', 'mark_as_digital', 'mark_as_physical']
+    # New method to show PDF status in list display
+    def has_pdf(self, obj):
+        return bool(obj.book_pdf)
+
+    has_pdf.short_description = 'Has PDF'
+    has_pdf.boolean = True
+
+    # PDF preview method
+    def pdf_preview(self, obj):
+        if obj.book_pdf:
+            return format_html(
+                '<a href="{}" target="_blank" class="button">📄 View PDF</a>&nbsp;'
+                '<a href="{}" download class="button">📥 Download PDF</a>',
+                obj.book_pdf.url,
+                obj.book_pdf.url
+            )
+        return "No PDF uploaded"
+
+    pdf_preview.short_description = "PDF Actions"
+
+    # PDF file size display
+    def pdf_file_size_display(self, obj):
+        if obj.book_pdf and obj.book_pdf.size:
+            return obj.pdf_file_size
+        return "No PDF"
+
+    pdf_file_size_display.short_description = "PDF File Size"
+
+    # Custom form to handle file upload validation
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields['book_pdf'].widget.attrs.update({
+            'accept': '.pdf',
+            'class': 'pdf-upload'
+        })
+        return form
+
+    # Override save_model to handle PDF upload and book_type auto-update
+    def save_model(self, request, obj, form, change):
+        # Check if PDF is being added and book is digital-only
+        if 'book_pdf' in form.changed_data and obj.book_pdf and obj.book_type == 'digital':
+            obj.book_type = 'both'
+            messages.info(request, f"Book type automatically updated to 'Both' since PDF was uploaded.")
+
+        super().save_model(request, obj, form, change)
+
+    # Custom actions
+    actions = ['restock_books', 'mark_as_digital', 'mark_as_physical', 'clear_pdfs', 'generate_sample_pdf']
 
     def restock_books(self, request, queryset):
         updated = queryset.update(stock=10)
@@ -110,6 +161,40 @@ class BookAdmin(admin.ModelAdmin):
         self.message_user(request, f'{updated} books marked as physical only.')
 
     mark_as_physical.short_description = "Mark as physical only"
+
+    # New action to clear PDFs
+    def clear_pdfs(self, request, queryset):
+        updated = 0
+        for book in queryset:
+            if book.book_pdf:
+                book.book_pdf.delete(save=False)
+                book.book_pdf = None
+                book.save()
+                updated += 1
+        self.message_user(request, f'PDFs cleared from {updated} books.')
+
+    clear_pdfs.short_description = "Clear PDF files"
+
+    # New action to generate sample PDF (placeholder for your PDF generation logic)
+    def generate_sample_pdf(self, request, queryset):
+        from django.http import HttpResponse
+        # This is a placeholder - implement your PDF generation logic here
+        processed = 0
+        for book in queryset:
+            # Example: You would call your PDF generation function here
+            # pdf_file = generate_ebook_pdf(book)
+            # book.book_pdf.save(f"{book.isbn}.pdf", pdf_file)
+            processed += 1
+        self.message_user(request,
+                          f'Sample PDF generation triggered for {processed} books. Implement PDF generation logic.')
+
+    generate_sample_pdf.short_description = "Generate sample PDF (placeholder)"
+
+    # Add custom CSS for better PDF upload field styling
+    class Media:
+        css = {
+            'all': ('admin/css/book_pdf_styles.css',)
+        }
 
 
 class ReaderAdmin(admin.ModelAdmin):
