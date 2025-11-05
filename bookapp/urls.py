@@ -49,6 +49,9 @@ urlpatterns = [
     path('order/payment/success/', views.handle_order_payment_success, name='order_payment_success'),
     path('order/<str:order_id>/payment/cancel/', views.cancel_payment, name='cancel_payment'),
     path('orders/', views.order_list, name='order_list'),
+    path('ebook/<str:order_id>/payment/', views.ebook_payment_gateway, name='ebook_payment_gateway'),
+    path('ebook/payment/success/', views.handle_ebook_payment_success, name='ebook_payment_success'),
+    path('ebook/<str:order_id>/download/', views.download_ebook_file, name='download_ebook_file'),
 
 
     # Author Related URLs

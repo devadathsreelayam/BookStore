@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% block title %}Payment Successful - BookNook{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-success text-white text-center py-4">
+                    <h2 class="mb-0">
+                        <i class="fas fa-check-circle me-2"></i>Payment Successful!
+                    </h2>
+                    <p class="mb-0 mt-2 opacity-75">Your eBook is downloading...</p>
+                </div>
+
+                <div class="card-body p-4 text-center">
+                    <!-- Success Icon -->
+                    <div class="mb-4">
+                        <i class="fas fa-check-circle fa-5x text-success mb-4"></i>
+                        <h4 class="text-success">Thank You for Your Purchase!</h4>
+                    </div>
+
+                    <!-- Order Details -->
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h6 class="card-title">Order Details</h6>
+                            <div class="row text-start">
+                                <div class="col-6">
+                                    <strong>Order ID:</strong><br>
+                                    <strong>Book:</strong><br>
+                                    <strong>Amount Paid:</strong>
+                                </div>
+                                <div class="col-6 text-end">
+                                    #{{ order.order_id }}<br>
+                                    {{ book.title }}<br>
+                                    ₹{{ order.total_amount|floatformat:0 }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Download Status -->
+                    <div class="alert alert-success mb-4" id="downloadStatus">
+                        <h6 class="alert-heading">
+                            <i class="fas fa-download me-2"></i>Downloading Your eBook
+                        </h6>
+                        <p class="mb-2">Your eBook "<strong>{{ book.title }}</strong>" is being downloaded automatically.</p>
+                        <p class="mb-0" id="countdownText">This tab will close in <strong id="countdown">10</strong> seconds.</p>
+                    </div>
+
+                    <!-- Manual Download Section -->
+                    <div class="alert alert-info mb-4" id="manualDownload" style="display: none;">
+                        <h6 class="alert-heading">
+                            <i class="fas fa-info-circle me-2"></i>Download Not Started?
+                        </h6>
+                        <p class="mb-2">If your download didn't start automatically, click the button below:</p>
+                        <a href="{% url 'download_ebook_file' order.order_id %}" class="btn btn-primary btn-sm" target="_blank">
+                            <i class="fas fa-download me-2"></i>Download eBook Manually
+                        </a>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'order_list' %}" class="btn btn-outline-success" target="_blank">
+                            <i class="fas fa-list me-2"></i>View All Orders
+                        </a>
+
+                        <button onclick="closeTab()" class="btn btn-outline-secondary">
+                            <i class="fas fa-times me-2"></i>Close This Tab
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let countdown = 5; // Reduced countdown
+let downloadAttempted = false;
+
+function triggerDownload() {
+    if (downloadAttempted) return;
+
+    downloadAttempted = true;
+
+    // Method 1: Direct download in same window
+    const downloadUrl = "{% url 'download_ebook_file' order.order_id %}";
+
+    // Create invisible iframe for download
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.src = downloadUrl;
+    document.body.appendChild(iframe);
+
+    console.log('Download triggered via iframe');
+
+    // Also try direct link as fallback
+    setTimeout(() => {
+        window.open(downloadUrl, '_blank');
+    }, 1000);
+}
+
+function startCountdown() {
+    const countdownElement = document.getElementById('countdown');
+    const countdownInterval = setInterval(() => {
+        countdown--;
+        countdownElement.textContent = countdown;
+
+        if (countdown <= 0) {
+            clearInterval(countdownInterval);
+            closeTab();
+        }
+    }, 1000);
+}
+
+function closeTab() {
+    // Notify parent window about success
+    if (window.opener && !window.opener.closed) {
+        window.opener.postMessage({
+            type: 'ebook_payment_success',
+            order_id: '{{ order.order_id }}'
+        }, '*');
+    }
+
+    // Try to close the tab (only works if opened by script)
+    window.close();
+
+    // Fallback: redirect to orders page
+    setTimeout(() => {
+        window.location.href = "{% url 'order_list' %}";
+    }, 1000);
+}
+
+// Enhanced download with multiple fallbacks
+function startDownloadProcess() {
+    // Trigger immediate download
+    triggerDownload();
+
+    // Show manual download link after 3 seconds
+    setTimeout(() => {
+        document.getElementById('manualDownload').style.display = 'block';
+    }, 3000);
+
+    // Start countdown
+    startCountdown();
+}
+
+// Start when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    startDownloadProcess();
+});
+
+// Allow manual close
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeTab();
+    }
+});
+</script>
+{% endblock %}

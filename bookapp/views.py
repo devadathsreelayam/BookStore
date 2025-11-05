@@ -884,57 +884,176 @@ def new_arrivals(request):
 
 @login_required
 def purchase_ebook(request, isbn):
-    """Handle eBook purchase and download"""
-    from .utils import generate_ebook_pdf
-
+    """Handle eBook purchase with payment integration"""
     book = get_object_or_404(Book, isbn=isbn)
 
     if book.book_type not in ['digital', 'both']:
         messages.error(request, 'This book is not available as an eBook.')
         return redirect('book_detail', isbn=isbn)
 
-    try:
-        # Calculate eBook price (75% of paperback)
-        ebook_price = book.price * Decimal('0.75')
+    # Calculate eBook price (75% of paperback)
+    ebook_price = book.price * Decimal('0.75')
 
-        # Create order for eBook purchase
-        order = Order.objects.create(
-            user=request.user,
-            total_amount=ebook_price,
-            shipping_address="Digital Delivery - No Shipping Required",
-            payment_method='Instant Digital Purchase',
-            order_status='delivered',  # eBooks are confirmed immediately
-            payment_status='completed',  # Assuming instant payment
-            has_physical_books=False,
-            paid_at=timezone.now()
-        )
+    # Create pending order first
+    order = Order.objects.create(
+        user=request.user,
+        total_amount=ebook_price,
+        shipping_address="Digital Delivery - No Shipping Required",
+        payment_method='razorpay',
+        order_status='pending',
+        payment_status='pending',
+        has_physical_books=False
+    )
 
-        # Create order item for eBook
-        OrderItem.objects.create(
-            order=order,
-            book=book,
-            quantity=1,
-            price=ebook_price,
-            book_type='digital'
-        )
+    # Create order item for eBook
+    OrderItem.objects.create(
+        order=order,
+        book=book,
+        quantity=1,
+        price=ebook_price,
+        book_type='digital'
+    )
 
-        # Generate the eBook PDF
-        # pdf_file = generate_ebook_pdf(book) TODO: Fix the ebook generation function and replace the preview
-        pdf_file = generate_preview_pdf(book)
+    # Store order ID in session for payment handling
+    request.session['ebook_order_id'] = order.order_id
+    request.session.modified = True
 
-        # Create response with PDF
-        response = HttpResponse(pdf_file, content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="{book.title.replace(" ", "_")}_ebook.pdf"'
+    # Redirect to eBook payment gateway
+    return redirect('ebook_payment_gateway', order_id=order.order_id)
 
-        # Show success message
-        messages.success(request, f'Thank you for purchasing "{book.title}"! Your eBook is downloading.')
 
-        return response
+@login_required
+def ebook_payment_gateway(request, order_id):
+    """Handle eBook payment gateway"""
+    order = get_object_or_404(Order, order_id=order_id, user=request.user)
 
-    except Exception as e:
-        messages.error(request, 'Error processing your eBook purchase. Please try again.')
-        print(f"eBook purchase error: {str(e)}")
-        return redirect('book_detail', isbn=isbn)
+    # Verify this is the correct eBook order
+    if request.session.get('ebook_order_id') != order_id or order.payment_status != 'pending':
+        messages.error(request, 'Invalid payment session.')
+        return redirect('book_detail', isbn=order.items.first().book.isbn)
+
+    # Create Razorpay order
+    payment_result = create_order_payment(request, order.total_amount, order.order_id)
+
+    if payment_result['success']:
+        # Update order with Razorpay order ID
+        order.razorpay_order_id = payment_result['order_id']
+        order.save()
+
+        context = {
+            'razorpay_api_key': payment_result['razorpay_api_key'],
+            'amount': payment_result['amount'],
+            'currency': payment_result['currency'],
+            'razorpay_order_id': payment_result['order_id'],
+            'order': order,
+            'amount_display': order.total_amount,
+            'book': order.items.first().book,
+            'is_ebook': True,
+        }
+        return render(request, 'orders/ebook_payment_gateway.html', context)
+    else:
+        # Auto-cancel order if payment initialization fails
+        order.order_status = 'cancelled'
+        order.save()
+
+        if 'ebook_order_id' in request.session:
+            del request.session['ebook_order_id']
+
+        messages.error(request, 'Payment initialization failed. Please try again.')
+        return redirect('book_detail', isbn=order.items.first().book.isbn)
+
+
+@login_required
+def handle_ebook_payment_success(request):
+    """Handle eBook download after successful payment"""
+    if request.method == 'POST':
+        try:
+            from .utils import generate_ebook_pdf
+
+            # Get eBook order ID from session
+            order_id = request.session.get('ebook_order_id')
+
+            if not order_id:
+                return render(request, 'orders/ebook_payment_error.html', {
+                    'error': 'Invalid payment session. Please try again.',
+                    'book_isbn': None
+                })
+
+            # Verify payment signature
+            params_dict = {
+                'razorpay_payment_id': request.POST.get('razorpay_payment_id'),
+                'razorpay_order_id': request.POST.get('razorpay_order_id'),
+                'razorpay_signature': request.POST.get('razorpay_signature')
+            }
+
+            # Verify payment signature
+            razorpay_client.utility.verify_payment_signature(params_dict)
+
+            # Find and update order
+            order = Order.objects.get(order_id=order_id, user=request.user)
+            order.payment_status = 'completed'
+            order.order_status = 'delivered'
+            order.paid_at = timezone.now()
+            order.razorpay_payment_id = params_dict['razorpay_payment_id']
+            order.save()
+
+            # Clear session data
+            if 'ebook_order_id' in request.session:
+                del request.session['ebook_order_id']
+
+            book = order.items.first().book
+
+            return render(request, 'orders/ebook_payment_success.html', {
+                'order': order,
+                'book': book
+            })
+
+        except Order.DoesNotExist:
+            return render(request, 'orders/ebook_payment_error.html', {
+                'error': 'Order not found. Please contact support.',
+                'book_isbn': None
+            })
+        except razorpay.errors.SignatureVerificationError:
+            return render(request, 'orders/ebook_payment_error.html', {
+                'error': 'Payment verification failed. Please try again.',
+                'book_isbn': order.items.first().book.isbn if 'order' in locals() else None
+            })
+        except Exception as e:
+            return render(request, 'orders/ebook_payment_error.html', {
+                'error': f'An unexpected error occurred: {str(e)}',
+                'book_isbn': order.items.first().book.isbn if 'order' in locals() else None
+            })
+
+    return redirect('book_catalog')
+
+
+@login_required
+def download_ebook_file(request, order_id):
+    """Direct eBook download endpoint with proper headers"""
+    order = get_object_or_404(Order, order_id=order_id, user=request.user)
+
+    if order.payment_status != 'completed':
+        messages.error(request, 'This order is not paid.')
+        return redirect('order_detail', order_id=order_id)
+
+    # Generate the eBook PDF
+    book = order.items.first().book
+    pdf_file = generate_preview_pdf(book)
+
+    # Create response with PDF - ensure proper headers
+    response = HttpResponse(pdf_file, content_type='application/pdf')
+
+    # Use different Content-Disposition for better browser compatibility
+    filename = f"{slugify(book.title)}_ebook.pdf"
+    response['Content-Disposition'] = f'attachment; filename="{filename}"'
+    response['Content-Length'] = len(pdf_file)
+
+    # Additional headers to prevent caching issues
+    response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+
+    return response
 
 
 @login_required

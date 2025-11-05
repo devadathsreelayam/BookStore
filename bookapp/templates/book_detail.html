@@ -99,7 +99,9 @@
                             <div class="row g-2">
                                 {% if book.book_type == 'digital' or book.book_type == 'both' %}
                                 <div class="col-md-6">
-                                    <a href="{% url 'purchase_ebook' book.isbn %}" class="btn btn-success w-100" target="_blank">
+                                    <a href="{% url 'purchase_ebook' book.isbn %}"
+                                       class="btn btn-success w-100">
+{#                                       onclick="openEbookPayment(this.href); return false;">#}
                                         <i class="fas fa-shopping-cart me-2"></i>Buy & Download eBook
                                     </a>
                                 </div>
@@ -283,6 +285,40 @@
     </div>
 </div>
 {% endif %}
+
+<script>
+function openEbookPayment(url) {
+    // Open in same tab for better download compatibility
+    window.location.href = url;
+
+    // Alternative: Open in new tab but handle download differently
+    // const newWindow = window.open(url, '_blank');
+    // if (!newWindow) {
+    //     // If popup blocked, fallback to same tab
+    //     window.location.href = url;
+    // }
+}
+
+// Listen for payment completion messages
+window.addEventListener('message', function(event) {
+    if (event.data.type === 'ebook_payment_success') {
+        // Show success message and redirect
+        showToast('eBook purchased successfully! Download starting...', 'success');
+        setTimeout(() => {
+            window.location.href = "{% url 'order_list' %}";
+        }, 2000);
+    }
+
+    if (event.data.type === 'ebook_payment_error') {
+        showToast('Payment failed. Please try again.', 'error');
+    }
+
+    if (event.data.type === 'ebook_payment_cancelled') {
+        // Optional: Show cancellation message
+        console.log('Purchase cancelled by user');
+    }
+});
+</script>
 
 <style>
     /* Format selection styles */

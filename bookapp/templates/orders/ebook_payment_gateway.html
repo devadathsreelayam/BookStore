@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}eBook Purchase - BookNook{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card shadow-lg border-0">
+                <div class="card-header bg-info text-white text-center py-4">
+                    <h2 class="mb-0">
+                        <i class="fas fa-book me-2"></i>eBook Purchase
+                    </h2>
+                    <p class="mb-0 mt-2 opacity-75">{{ book.title }}</p>
+                </div>
+
+                <div class="card-body p-4">
+                    <!-- eBook Summary -->
+                    <div class="card mb-4">
+                        <div class="card-body text-center">
+                            <img src="{{ book.cover_image }}"
+                                 alt="{{ book.title }}"
+                                 class="img-fluid rounded mb-3"
+                                 style="max-height: 150px;"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/200x300/6c757d/white?text=No+Cover'">
+                            <h5>{{ book.title }}</h5>
+                            <p class="text-muted">by
+                                {% for author in book.authors.all %}
+                                    {{ author.name }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </p>
+                            <h4 class="text-success">₹{{ amount_display }}</h4>
+                        </div>
+                    </div>
+
+                    <!-- Payment Button -->
+                    <div class="text-center mb-4">
+                        <button type="button" class="btn btn-primary btn-lg w-100 py-3 mb-3" id="rzp-button">
+                            <i class="fas fa-download me-2"></i>Download eBook - ₹{{ amount_display }}
+                        </button>
+
+                        <!-- Cancel Payment Button - Added here -->
+                        <button type="button" class="btn btn-outline-danger w-100 mb-3" onclick="cancelPurchase()">
+                            <i class="fas fa-times me-2"></i>Cancel Purchase
+                        </button>
+
+                        <small class="text-muted">
+                            <i class="fas fa-shield-alt me-1"></i>
+                            Instant download after payment
+                        </small>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-grid gap-2">
+                        <button type="button" class="btn btn-outline-secondary" onclick="closeWindow()">
+                            <i class="fas fa-times me-2"></i>Close Window
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+function closeWindow() {
+    if (window.opener && !window.opener.closed) {
+        // Only notify if not already notified by cancelPurchase
+        window.opener.postMessage({
+            type: 'ebook_payment_cancelled',
+            message: 'Window closed'
+        }, '*');
+        window.close();
+    } else {
+        window.location.href = "{% url 'book_detail' book.isbn %}";
+    }
+}
+
+function cancelPurchase() {
+    // Notify parent that purchase was cancelled
+    if (window.opener && !window.opener.closed) {
+        window.opener.postMessage({
+            type: 'ebook_payment_cancelled',
+            message: 'Purchase cancelled by user'
+        }, '*');
+    }
+
+    // Close this window
+    closeWindow();
+}
+
+function notifyParentSuccess(orderId) {
+    if (window.opener && !window.opener.closed) {
+        window.opener.postMessage({
+            type: 'ebook_payment_success',
+            order_id: orderId
+        }, '*');
+    }
+}
+
+function notifyParentError() {
+    if (window.opener && !window.opener.closed) {
+        window.opener.postMessage({
+            type: 'ebook_payment_error',
+            message: 'Payment failed'
+        }, '*');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const paymentButton = document.getElementById('rzp-button');
+
+    paymentButton.addEventListener('click', function() {
+        const options = {
+            key: "{{ razorpay_api_key }}",
+            amount: "{{ amount }}",
+            currency: "{{ currency }}",
+            name: "BookNook",
+            description: "eBook: {{ book.title }}",
+            order_id: "{{ razorpay_order_id }}",
+            handler: function(response) {
+                // Create form for payment verification
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = "{% url 'ebook_payment_success' %}";
+                // Remove target="_blank" - open in same window for better flow
+
+                const csrfToken = document.createElement('input');
+                csrfToken.type = 'hidden';
+                csrfToken.name = 'csrfmiddlewaretoken';
+                csrfToken.value = '{{ csrf_token }}';
+                form.appendChild(csrfToken);
+
+                const paymentFields = {
+                    'razorpay_payment_id': response.razorpay_payment_id,
+                    'razorpay_order_id': response.razorpay_order_id,
+                    'razorpay_signature': response.razorpay_signature
+                };
+
+                for (const [key, value] of Object.entries(paymentFields)) {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = value;
+                    form.appendChild(input);
+                }
+
+                document.body.appendChild(form);
+
+                // Show loading state
+                paymentButton.disabled = true;
+                paymentButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+
+                // Submit form - will redirect to success page
+                form.submit();
+            },
+            prefill: {
+                name: "{{ request.user.get_full_name|default:request.user.username }}",
+                email: "{{ request.user.email }}",
+            },
+            theme: {
+                color: "#8B4513"
+            },
+            modal: {
+                ondismiss: function() {
+                    // User closed payment modal without paying
+                    console.log('Payment modal closed by user');
+                    notifyParentError();
+                    // Close window after short delay
+                    setTimeout(closeWindow, 1000);
+                }
+            }
+        };
+
+        const rzp = new Razorpay(options);
+
+        rzp.on('payment.failed', function(response) {
+            // Payment failed handler
+            console.log('Payment failed:', response.error);
+            notifyParentError();
+
+            // Show error message
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'alert alert-danger mt-3';
+            errorDiv.innerHTML = `
+                <i class="fas fa-exclamation-triangle me-2"></i>
+                Payment failed: ${response.error.description || 'Please try again'}
+            `;
+            document.querySelector('.card-body').insertBefore(errorDiv, paymentButton.parentNode);
+
+            // Reset button
+            paymentButton.disabled = false;
+            paymentButton.innerHTML = '<i class="fas fa-download me-2"></i>Download eBook - ₹{{ amount_display }}';
+
+            // Auto-close after 3 seconds
+            setTimeout(closeWindow, 3000);
+        });
+
+        rzp.open();
+    });
+
+    // Add a cancel button handler
+    const cancelBtn = document.querySelector('[onclick="closeWindow()"]');
+    if (cancelBtn) {
+        cancelBtn.addEventListener('click', function() {
+            notifyParentError();
+        });
+    }
+
+    // Listen for escape key to cancel
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            notifyParentError();
+            closeWindow();
+        }
+    });
+});
+</script>
+{% endblock %}
