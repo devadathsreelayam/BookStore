@@ -165,6 +165,8 @@ document.addEventListener('DOMContentLoaded', function() {
             modal: {
                 ondismiss: function() {
                     console.log('Payment cancelled by user');
+                    // Redirect to failure url
+                    window.location.href = "{% url 'order_payment_failed' %}";
                 }
             }
         };

@@ -46,7 +46,8 @@ urlpatterns = [
     # Generic patterns last
     path('orders/<str:order_id>/', views.order_detail, name='order_detail'),
     path('order/<str:order_id>/payment/', views.order_payment_gateway, name='order_payment_gateway'),
-    path('order/payment/success/', views.handle_order_payment_success, name='order_payment_success'),
+    path('order/payment/success/', views.order_payment_success, name='order_payment_success'),
+    path('order/payment/failed/', views.order_payment_failed, name='order_payment_failed'),
     path('order/<str:order_id>/payment/cancel/', views.cancel_payment, name='cancel_payment'),
     path('orders/', views.order_list, name='order_list'),
     path('ebook/<str:order_id>/payment/', views.ebook_payment_gateway, name='ebook_payment_gateway'),

@@ -17,7 +17,7 @@ from django.utils import timezone
 
 from BookStore import settings
 from bookapp.forms import UserRegistrationForm
-from bookapp.models import Book, Author, Reader, Genre, CartItem, Cart, WishlistItem, Wishlist, Order, OrderItem
+from bookapp.models import Book, Author, Reader, Genre, CartItem, Cart, WishlistItem, Wishlist, Order, OrderItem, Payment
 from bookapp.utils import generate_preview_pdf
 
 
@@ -571,7 +571,7 @@ def create_order(request):
                 total_amount=cart.total_price,
                 shipping_address=shipping_address,
                 payment_method=payment_method,
-                order_status='pending',  # Will be confirmed on payment success
+                order_status='pending',
                 payment_status='pending'
             )
 
@@ -582,13 +582,29 @@ def create_order(request):
                     book=cart_item.book,
                     quantity=cart_item.quantity,
                     price=cart_item.book.price,
-                    book_type='physical'
+                    book_type='physical' if cart_item.book.book_type in ['physical', 'both'] else 'digital'
                 )
+
+            # Create payment record
+            payment_method_code = 'cash_on_delivery' if payment_method == 'cash_on_delivery' else 'razorpay'
+
+            payment = Payment.objects.create(
+                order=order,
+                user=request.user,
+                amount=order.total_amount,
+                payment_method=payment_method_code,
+                payment_status='pending'
+            )
 
             # For COD - confirm order immediately
             if payment_method == 'cash_on_delivery':
                 order.order_status = 'confirmed'
+                order.payment_status = 'completed'
                 order.save()
+
+                # Update payment status
+                payment.payment_status = 'completed'
+                payment.save()
 
                 # Update stock for physical books
                 for item in order.items.all():
@@ -604,8 +620,9 @@ def create_order(request):
 
             # For Razorpay - redirect to payment page
             elif payment_method == 'razorpay':
-                # Store order ID in session for payment success handling
+                # Store order ID and payment ID in session for payment success handling
                 request.session['pending_order_id'] = order.order_id
+                request.session['pending_payment_id'] = payment.payment_id
                 request.session.modified = True
 
                 # Redirect to payment gateway
@@ -629,34 +646,51 @@ def order_payment_gateway(request, order_id):
     order = get_object_or_404(Order, order_id=order_id, user=request.user)
 
     # Verify this is the correct pending order
-    if request.session.get('pending_order_id') != order_id or order.payment_status != 'pending':
+    if (request.session.get('pending_order_id') != order_id or
+        order.payment_status != 'pending'):
         messages.error(request, 'Invalid payment session.')
         return redirect('cart_detail')
+
+    # Get the pending payment
+    payment_id = request.session.get('pending_payment_id')
+    if not payment_id:
+        messages.error(request, 'Payment session expired.')
+        return redirect('cart_detail')
+
+    payment = get_object_or_404(Payment, payment_id=payment_id, order=order, user=request.user)
 
     # Create Razorpay order
     payment_result = create_order_payment(request, order.total_amount, order.order_id)
 
     if payment_result['success']:
-        # Update order with Razorpay order ID
-        order.razorpay_order_id = payment_result['order_id']
-        order.save()
+        # Update payment with Razorpay order ID
+        payment.razorpay_order_id = payment_result['order_id']
+        payment.save()
 
         context = {
             'razorpay_api_key': payment_result['razorpay_api_key'],
             'amount': payment_result['amount'],
             'currency': payment_result['currency'],
-            'razorpay_order_id': payment_result['order_id'],  # Razorpay's order ID
-            'order': order,  # Use 'order' instead of 'user_order'
+            'razorpay_order_id': payment_result['order_id'],
+            'order': order,
+            'payment': payment,
             'amount_display': order.total_amount,
         }
         return render(request, 'orders/order_payment_gateway.html', context)
     else:
-        # Auto-cancel order if payment initialization fails
+        # Update payment status to failed
+        payment.payment_status = 'failed'
+        payment.save()
+
+        # Update order status
         order.order_status = 'cancelled'
         order.save()
 
+        # Clear session
         if 'pending_order_id' in request.session:
             del request.session['pending_order_id']
+        if 'pending_payment_id' in request.session:
+            del request.session['pending_payment_id']
 
         messages.error(request, f'Payment initialization failed. Order has been cancelled.')
         return redirect('cart_detail')
@@ -699,33 +733,45 @@ def create_order_payment(request, amount, order_id):
 
 
 @login_required
-def handle_order_payment_success(request):
-    """Handle order completion after successful payment"""
+def order_payment_success(request):
+    """Handle successful order payment with Payment model integration"""
     if request.method == 'POST':
         try:
-            # Get pending order ID from session
-            order_id = request.session.get('pending_order_id')
+            # Get payment details from request
+            razorpay_payment_id = request.POST.get('razorpay_payment_id')
+            razorpay_order_id = request.POST.get('razorpay_order_id')
+            razorpay_signature = request.POST.get('razorpay_signature')
 
-            if not order_id:
+            # Get order and payment from session
+            order_id = request.session.get('pending_order_id')
+            payment_id = request.session.get('pending_payment_id')
+
+            if not order_id or not payment_id:
                 messages.error(request, 'Invalid payment session.')
                 return redirect('cart_detail')
 
+            order = get_object_or_404(Order, order_id=order_id, user=request.user)
+            payment = get_object_or_404(Payment, payment_id=payment_id, order=order, user=request.user)
+
             # Verify payment signature
             params_dict = {
-                'razorpay_payment_id': request.POST.get('razorpay_payment_id'),
-                'razorpay_order_id': request.POST.get('razorpay_order_id'),
-                'razorpay_signature': request.POST.get('razorpay_signature')
+                'razorpay_payment_id': razorpay_payment_id,
+                'razorpay_order_id': razorpay_order_id,
+                'razorpay_signature': razorpay_signature
             }
 
-            # Verify payment signature
             razorpay_client.utility.verify_payment_signature(params_dict)
 
-            # Find and update order
-            order = Order.objects.get(order_id=order_id, user=request.user)
+            # Update payment record
+            payment.razorpay_payment_id = razorpay_payment_id
+            payment.razorpay_signature = razorpay_signature
+            payment.payment_status = 'completed'
+            payment.save()
+
+            # Update order
             order.payment_status = 'completed'
             order.order_status = 'confirmed'
             order.paid_at = timezone.now()
-            order.razorpay_payment_id = params_dict['razorpay_payment_id']
             order.save()
 
             # Update stock for physical books
@@ -734,54 +780,64 @@ def handle_order_payment_success(request):
                     item.book.stock -= item.quantity
                     item.book.save()
 
-            # Clear cart and session data
+            # Clear cart and session
             cart = get_or_create_cart(request)
             cart.clear()
 
             # Clear session data
             if 'pending_order_id' in request.session:
                 del request.session['pending_order_id']
+            if 'pending_payment_id' in request.session:
+                del request.session['pending_payment_id']
 
             messages.success(request, f'Payment successful! Order #{order.order_id} has been confirmed.')
             return redirect('order_detail', order_id=order.order_id)
 
-        except Order.DoesNotExist:
-            messages.error(request, 'Order not found.')
-            return redirect('cart_detail')
         except razorpay.errors.SignatureVerificationError:
-            # Auto-cancel order on payment verification failure
-            order_id = request.session.get('pending_order_id')
-            if order_id:
-                try:
-                    order = Order.objects.get(order_id=order_id, user=request.user)
-                    order.order_status = 'cancelled'
-                    order.save()
-                except Order.DoesNotExist:
-                    pass
-
-                if 'pending_order_id' in request.session:
-                    del request.session['pending_order_id']
-
-            messages.error(request, 'Payment verification failed. Order has been cancelled.')
-            return redirect('cart_detail')
+            # Handle signature verification failure
+            return handle_payment_failure(request, 'Payment verification failed. Please contact support.')
         except Exception as e:
-            # Auto-cancel order on any other error
-            order_id = request.session.get('pending_order_id')
-            if order_id:
-                try:
-                    order = Order.objects.get(order_id=order_id, user=request.user)
-                    order.order_status = 'cancelled'
-                    order.save()
-                except Order.DoesNotExist:
-                    pass
-
-                if 'pending_order_id' in request.session:
-                    del request.session['pending_order_id']
-
-            messages.error(request, f'Payment processing failed. Order has been cancelled.')
-            return redirect('cart_detail')
+            # Handle any other errors
+            return handle_payment_failure(request, f'Error processing payment: {str(e)}')
 
     messages.error(request, 'Invalid request method.')
+    return redirect('cart_detail')
+
+
+@login_required
+def order_payment_failed(request):
+    """Handle failed order payment"""
+    return handle_payment_failure(request, 'Payment failed. Please try again.')
+
+
+def handle_payment_failure(request, error_message):
+    """Helper function to handle payment failures"""
+    order_id = request.session.get('pending_order_id')
+    payment_id = request.session.get('pending_payment_id')
+
+    if order_id and payment_id:
+        try:
+            order = get_object_or_404(Order, order_id=order_id, user=request.user)
+            payment = get_object_or_404(Payment, payment_id=payment_id, order=order, user=request.user)
+
+            # Update payment status
+            payment.payment_status = 'failed'
+            payment.save()
+
+            # Update order status
+            order.order_status = 'cancelled'
+            order.save()
+
+        except Exception as e:
+            print(f"Error updating failed payment: {str(e)}")
+
+    # Clear session
+    if 'pending_order_id' in request.session:
+        del request.session['pending_order_id']
+    if 'pending_payment_id' in request.session:
+        del request.session['pending_payment_id']
+
+    messages.error(request, error_message)
     return redirect('cart_detail')
 
 
