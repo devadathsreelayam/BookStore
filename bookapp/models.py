@@ -6,6 +6,7 @@ from django.db.models import JSONField
 from datetime import datetime
 
 from django.db.models import F, Sum
+from django.utils import timezone
 
 
 class Author(models.Model):
@@ -304,6 +305,11 @@ class Order(models.Model):
         """Get all physical items in this order"""
         return self.items.filter(book_type__in=['physical', 'both'])
 
+    @property
+    def latest_payment(self):
+        """Get the latest payment for this order"""
+        return self.payments.order_by('-created_at').first()
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name='items')
@@ -320,3 +326,118 @@ class OrderItem(models.Model):
         if self.price is None or self.quantity is None:
             return Decimal('0.00')
         return self.price * self.quantity
+
+
+class Payment(models.Model):
+    PAYMENT_STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('processing', 'Processing'),
+        ('completed', 'Completed'),
+        ('failed', 'Failed'),
+        ('cancelled', 'Cancelled'),
+        ('refunded', 'Refunded'),
+        ('partially_refunded', 'Partially Refunded'),
+    ]
+
+    PAYMENT_METHOD_CHOICES = [
+        ('razorpay', 'Razorpay'),
+        ('cash_on_delivery', 'Cash on Delivery'),
+    ]
+
+    # Basic Information
+    id = models.BigAutoField(primary_key=True)
+    payment_id = models.CharField(max_length=100, unique=True)  # External payment ID
+    order = models.ForeignKey('Order', on_delete=models.CASCADE, related_name='payments')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='payments')
+
+    # Amount Details
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD_CHOICES)
+    payment_status = models.CharField(max_length=20, choices=PAYMENT_STATUS_CHOICES, default='pending')
+
+    # Razorpay Specific Fields
+    razorpay_order_id = models.CharField(max_length=100, null=True, blank=True)
+    razorpay_payment_id = models.CharField(max_length=100, null=True, blank=True)
+    razorpay_signature = models.CharField(max_length=255, null=True, blank=True)
+
+    # Refund Information
+    refund_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    refund_reason = models.TextField(blank=True)
+    refunded_at = models.DateTimeField(null=True, blank=True)
+
+    # Timestamps
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = 'payments'
+        ordering = ['-created_at']
+        indexes = [
+            models.Index(fields=['payment_id']),
+            models.Index(fields=['order']),
+            models.Index(fields=['user']),
+            models.Index(fields=['payment_status']),
+            models.Index(fields=['created_at']),
+        ]
+        verbose_name = 'Payment'
+        verbose_name_plural = 'Payments'
+
+    def __str__(self):
+        return f"Payment {self.payment_id} - {self.amount}"
+
+    def save(self, *args, **kwargs):
+        # Auto-generate payment_id if not provided
+        if not self.payment_id:
+            self.payment_id = f"pay_{timezone.now().strftime('%Y%m%d_%H%M%S')}_{self.user.id}"
+        super().save(*args, **kwargs)
+
+    @property
+    def is_successful(self):
+        return self.payment_status == 'completed'
+
+    @property
+    def is_refunded(self):
+        return self.payment_status in ['refunded', 'partially_refunded']
+
+    @property
+    def can_refund(self):
+        return (self.payment_status == 'completed' and
+                self.refund_amount < self.amount)
+
+    def mark_as_completed(self, razorpay_payment_id=None, razorpay_signature=None):
+        self.payment_status = 'completed'
+        if razorpay_payment_id:
+            self.razorpay_payment_id = razorpay_payment_id
+        if razorpay_signature:
+            self.razorpay_signature = razorpay_signature
+        self.save()
+
+    def mark_as_failed(self):
+        self.payment_status = 'failed'
+        self.save()
+
+    def process_refund(self, amount=None, reason=""):
+        if not self.can_refund:
+            return False
+
+        refund_amount = amount or (self.amount - self.refund_amount)
+
+        if refund_amount <= 0:
+            return False
+
+        try:
+            self.refund_amount += refund_amount
+            self.refund_reason = reason
+
+            if self.refund_amount >= self.amount:
+                self.payment_status = 'refunded'
+            else:
+                self.payment_status = 'partially_refunded'
+
+            self.refunded_at = timezone.now()
+            self.save()
+            return True
+
+        except Exception as e:
+            # Handle refund failure
+            return False

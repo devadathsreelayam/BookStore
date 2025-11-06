@@ -3,7 +3,7 @@ from django.contrib.auth.models import Group
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
-from .models import Author, Genre, Reader, Book, Cart, CartItem, WishlistItem, Wishlist, Order, OrderItem
+from .models import Author, Genre, Reader, Book, Cart, CartItem, WishlistItem, Wishlist, Order, OrderItem, Payment
 
 # Hide the default Group model from admin
 admin.site.unregister(Group)
@@ -394,6 +394,25 @@ class OrderItemAdmin(admin.ModelAdmin):
         return f"₹{obj.total_price}"
 
     total_price_display.short_description = 'Total Price'
+
+
+@admin.register(Payment)
+class PaymentAdmin(admin.ModelAdmin):
+    list_display = [
+        'payment_id', 'order', 'user', 'amount', 'payment_method',
+        'payment_status', 'created_at'
+    ]
+    list_filter = [
+        'payment_status', 'payment_method', 'created_at'
+    ]
+    search_fields = [
+        'payment_id', 'order__order_id', 'user__username',
+        'user__email', 'razorpay_order_id', 'razorpay_payment_id'
+    ]
+    readonly_fields = [
+        'created_at', 'updated_at', 'refunded_at'
+    ]
+    list_per_page = 20
 
 
 # Register models with default admin site
