@@ -1,0 +1,263 @@
+<form method="post" action="{% url 'rate_book' book.isbn %}"
+      class="simple-rating-form"
+      id="rating-form-{{ book.isbn }}">
+    {% csrf_token %}
+    <input type="hidden" name="order_id" value="{{ order.order_id }}">
+    <input type="hidden" name="rating" id="rating-input-{{ book.isbn }}"
+           value="{% if user_rating %}{{ user_rating.rating }}{% else %}0{% endif %}">
+
+    <div class="mb-2">
+        <small class="text-muted d-block mb-1">
+            {% if user_rating %}Update your rating:{% else %}Rate this book:{% endif %}
+        </small>
+        <div class="star-rating interactive-stars" data-book-isbn="{{ book.isbn }}">
+            {% for i in "12345" %}
+                <span class="star"
+                      data-value="{{ i }}"
+                      data-book-isbn="{{ book.isbn }}">
+                    {% if user_rating and i|add:"0" <= user_rating.rating %}
+                        ★
+                    {% else %}
+                        ☆
+                    {% endif %}
+                </span>
+            {% endfor %}
+            <span class="rating-text ms-2 small">
+                {% if user_rating %}
+                    <strong>{{ user_rating.rating }}</strong>/5
+                {% else %}
+                    <span class="text-muted">Click stars to rate</span>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
+    <div class="d-flex align-items-center mt-2">
+        {% if user_rating %}
+            <button type="submit" class="btn btn-sm btn-primary me-2" id="submit-btn-{{ book.isbn }}">
+                <i class="fas fa-save me-1"></i>Update Rating
+            </button>
+            <button type="button"
+                    class="btn btn-sm btn-outline-danger"
+                    onclick="deleteRating('{{ book.isbn }}', '{{ order.order_id }}')">
+                <i class="fas fa-trash me-1"></i>Delete
+            </button>
+        {% else %}
+            <button type="submit" class="btn btn-sm btn-success" id="submit-btn-{{ book.isbn }}" disabled>
+                <i class="fas fa-star me-1"></i>Submit Rating
+            </button>
+        {% endif %}
+    </div>
+</form>
+
+<style>
+/* Interactive Star Rating */
+.interactive-stars {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.interactive-stars .star {
+    color: #dee2e6;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0 2px;
+    user-select: none;
+}
+
+.interactive-stars .star:hover {
+    transform: scale(1.2);
+    color: #ffc107 !important;
+}
+
+.interactive-stars .star.active {
+    color: #ffc107 !important;
+    text-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+}
+
+.interactive-stars .star:hover ~ .star {
+    color: #dee2e6 !important;
+}
+
+.rating-text {
+    font-size: 0.9rem;
+    min-width: 80px;
+}
+
+/* Hover effect for stars */
+.interactive-stars:hover .star {
+    color: #ffc107 !important;
+}
+
+.interactive-stars .star:hover ~ .star {
+    color: #dee2e6 !important;
+}
+</style>
+
+<script>
+// Interactive star rating
+document.addEventListener('DOMContentLoaded', function() {
+    // Setup interactive stars
+    document.querySelectorAll('.interactive-stars').forEach(starsContainer => {
+        const bookIsbn = starsContainer.getAttribute('data-book-isbn');
+        const stars = starsContainer.querySelectorAll('.star');
+        const ratingInput = document.getElementById(`rating-input-${bookIsbn}`);
+        const ratingText = starsContainer.querySelector('.rating-text');
+        const submitBtn = document.getElementById(`submit-btn-${bookIsbn}`);
+
+        // Get current rating if exists
+        let currentRating = ratingInput.value ? parseInt(ratingInput.value) : 0;
+
+        // Initialize stars based on current rating
+        updateStars(stars, currentRating, ratingText);
+
+        // Add click event to each star
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const ratingValue = parseInt(this.getAttribute('data-value'));
+                currentRating = ratingValue;
+                ratingInput.value = currentRating;
+
+                // Update star display
+                updateStars(stars, currentRating, ratingText);
+
+                // Enable submit button if rating changed
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                }
+            });
+
+            // Add hover effect
+            star.addEventListener('mouseenter', function() {
+                const hoverRating = parseInt(this.getAttribute('data-value'));
+                previewStars(stars, hoverRating);
+            });
+
+            star.addEventListener('mouseleave', function() {
+                // Restore to current rating
+                updateStars(stars, currentRating, ratingText);
+            });
+        });
+    });
+});
+
+function updateStars(stars, rating, ratingText) {
+    stars.forEach((star, index) => {
+        const starValue = index + 1;
+        if (starValue <= rating) {
+            star.innerHTML = '★';
+            star.classList.add('active');
+            star.classList.remove('text-secondary');
+        } else {
+            star.innerHTML = '☆';
+            star.classList.remove('active');
+            star.classList.add('text-secondary');
+        }
+    });
+
+    if (ratingText) {
+        if (rating > 0) {
+            ratingText.innerHTML = `<strong>${rating}</strong>/5`;
+        } else {
+            ratingText.innerHTML = '<span class="text-muted">Click stars to rate</span>';
+        }
+    }
+}
+
+function previewStars(stars, hoverRating) {
+    stars.forEach((star, index) => {
+        const starValue = index + 1;
+        if (starValue <= hoverRating) {
+            star.innerHTML = '★';
+            star.classList.add('active');
+            star.classList.remove('text-secondary');
+        } else {
+            star.innerHTML = '☆';
+            star.classList.remove('active');
+            star.classList.add('text-secondary');
+        }
+    });
+}
+
+// Delete rating function
+function deleteRating(bookIsbn, orderId) {
+    if (!confirm('Are you sure you want to delete your rating?')) {
+        return;
+    }
+
+    fetch(`/book/${bookIsbn}/delete-rating/?order_id=${orderId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showToast('Rating deleted successfully!', 'success');
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            showToast('Error: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showToast('Something went wrong. Please try again.', 'error');
+    });
+}
+
+// Form submission handler
+document.addEventListener('submit', function(e) {
+    if (e.target.classList.contains('simple-rating-form')) {
+        e.preventDefault();
+        const form = e.target;
+        const bookIsbn = form.id.replace('rating-form-', '');
+        const ratingInput = document.getElementById(`rating-input-${bookIsbn}`);
+
+        // Check if rating is selected
+        if (!ratingInput.value || ratingInput.value === '0') {
+            showToast('Please select a rating first!', 'error');
+            return;
+        }
+
+        const formData = new FormData(form);
+
+        // Show loading state
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Saving...';
+        submitBtn.disabled = true;
+
+        // Submit form
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showToast(data.message || 'Rating saved successfully!', 'success');
+                setTimeout(() => location.reload(), 1000);
+            } else {
+                showToast('Error: ' + data.error, 'error');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showToast('Something went wrong. Please try again.', 'error');
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        });
+    }
+});
+
+// Toast and CSRF functions remain the same...
+</script>

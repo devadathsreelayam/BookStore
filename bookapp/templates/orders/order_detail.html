@@ -34,32 +34,112 @@
                     <h5 class="mb-0">Order Items ({{ order.total_items }})</h5>
                 </div>
                 <div class="card-body">
-                    {% for item in order.items.all %}
-                    <div class="row align-items-center mb-4 pb-3 border-bottom">
-                        <div class="col-md-2">
-                            <img src="{{ item.book.cover_image }}"
-                                 alt="{{ item.book.title }}"
-                                 class="img-fluid rounded"
-                                 style="height: 100px; object-fit: cover;"
-                                 onerror="this.onerror=null; this.src='https://placehold.co/100x150/6c757d/white?text=No+Cover'">
+                    {% for item_data in items_with_ratings %}
+                        {% with item=item_data.item user_rating=item_data.user_rating %}
+                        <div class="row align-items-center mb-4 pb-3 border-bottom">
+                            <div class="col-md-2">
+                                <img src="{{ item.book.cover_image }}"
+                                     alt="{{ item.book.title }}"
+                                     class="img-fluid rounded"
+                                     style="height: 100px; object-fit: cover;"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/100x150/6c757d/white?text=No+Cover'">
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="mb-1">{{ item.book.title }}</h6>
+                                <p class="text-muted mb-1 small">
+                                    by {% for author in item.book.authors.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                                </p>
+
+                                <!-- Book Rating Display -->
+                                <div class="mb-2">
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-2">
+                                            {% for i in "12345" %}
+                                                {% if i|add:"0" <= item.book.average_rating|add:"0" %}
+                                                    <span class="text-warning">★</span>
+                                                {% else %}
+                                                    <span class="text-secondary">☆</span>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        <div class="small">
+                                            <strong>{{ item.book.average_rating|floatformat:1 }}</strong>
+                                            <span class="text-muted">/5.0</span>
+                                            <span class="text-muted ms-1">({{ item.book.rating_count }})</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <span class="badge bg-{% if item.book_type == 'digital' %}info{% else %}primary{% endif %}">
+                                    {{ item.get_book_type_display }}
+                                </span>
+
+                                <!-- User Rating Section -->
+                                {% if order.order_status == 'delivered' %}
+                                <div class="mt-3">
+                                    {% if user_rating %}
+                                        <!-- Show existing rating -->
+                                        <div class="rating-display">
+                                            <div class="text-success mb-2">
+                                                <i class="fas fa-check-circle me-1"></i>
+                                                <strong>Your Rating:</strong>
+                                                <div class="d-flex align-items-center mt-1">
+                                                    {% for i in "12345" %}
+                                                        {% if i|add:"0" <= user_rating.rating %}
+                                                            <span class="text-warning fs-5">★</span>
+                                                        {% else %}
+                                                            <span class="text-secondary fs-5">☆</span>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    <span class="ms-2 fw-bold">{{ user_rating.rating }} stars</span>
+                                                    <button type="button"
+                                                            class="btn btn-sm btn-outline-secondary ms-3"
+                                                            onclick="editRating('{{ item.book.isbn }}')">
+                                                        <i class="fas fa-edit me-1"></i>Edit
+                                                    </button>
+                                                    <button type="button"
+                                                            class="btn btn-sm btn-outline-danger ms-1"
+                                                            onclick="deleteRating('{{ item.book.isbn }}', '{{ order.order_id }}')">
+                                                        <i class="fas fa-trash me-1"></i>Delete
+                                                    </button>
+                                                </div>
+                                                {% if user_rating.review %}
+                                                <div class="mt-2">
+                                                    <strong>Your Review:</strong>
+                                                    <p class="mb-0 small">{{ user_rating.review }}</p>
+                                                </div>
+                                                {% endif %}
+                                                <div class="text-muted small mt-1">
+                                                    {% if user_rating.updated_at > user_rating.created_at %}
+                                                        Updated on {{ user_rating.updated_at|date:"M d, Y" }}
+                                                    {% else %}
+                                                        Rated on {{ user_rating.created_at|date:"M d, Y" }}
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Edit Rating Form (Hidden by default) -->
+                                        <div class="edit-rating-form mt-3" id="edit-form-{{ item.book.isbn }}" style="display: none;">
+                                            {% include 'partials/rating_form.html' with book=item.book order=order user_rating=user_rating %}
+                                        </div>
+
+                                    {% else %}
+                                        <!-- New Rating Form -->
+                                        {% include 'partials/rating_form.html' with book=item.book order=order user_rating=None %}
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <span class="fw-bold">Qty: {{ item.quantity }}</span>
+                            </div>
+                            <div class="col-md-2 text-end">
+                                <div class="text-success fw-bold">₹{{ item.total_price|floatformat:0 }}</div>
+                                <small class="text-muted">₹{{ item.price|floatformat:0 }} each</small>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <h6 class="mb-1">{{ item.book.title }}</h6>
-                            <p class="text-muted mb-1 small">
-                                by {% for author in item.book.authors.all %}{{ author.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
-                            </p>
-                            <span class="badge bg-{% if item.book_type == 'digital' %}info{% else %}primary{% endif %}">
-                                {{ item.get_book_type_display }}
-                            </span>
-                        </div>
-                        <div class="col-md-2 text-center">
-                            <span class="fw-bold">Qty: {{ item.quantity }}</span>
-                        </div>
-                        <div class="col-md-2 text-end">
-                            <div class="text-success fw-bold">₹{{ item.total_price|floatformat:0 }}</div>
-                            <small class="text-muted">₹{{ item.price|floatformat:0 }} each</small>
-                        </div>
-                    </div>
+                        {% endwith %}
                     {% endfor %}
                 </div>
             </div>
@@ -103,6 +183,31 @@
                         <strong class="float-end text-success">₹{{ order.total_amount|floatformat:0 }}</strong>
                     </div>
 
+                    <!-- Rating Stats -->
+                    {% if order.order_status == 'delivered' %}
+                    <div class="alert alert-info mt-3">
+                        <i class="fas fa-star me-2"></i>
+                        <strong>Rate your books!</strong>
+                        <p class="mb-0 small mt-1">
+                            You've rated {{ rated_count }} of {{ order.total_items }} book{{ order.total_items|pluralize }} in this order.
+                            {% if unrated_count > 0 %}
+                                <br><strong>{{ unrated_count }} more to rate!</strong>
+                            {% endif %}
+                        </p>
+
+                        <!-- Progress bar -->
+                        {% if order.total_items > 0 %}
+                        <div class="progress mt-2" style="height: 6px;">
+                            {% widthratio rated_count order.total_items 100 as progress_percent %}
+                            <div class="progress-bar bg-success" style="width: {{ progress_percent }}%"></div>
+                        </div>
+                        <div class="text-center small mt-1">
+                            {{ progress_percent }}% complete
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
                     {% if order.order_status == 'pending' or order.order_status == 'confirmed' %}
                     <a href="{% url 'cancel_order' order.order_id %}" class="btn btn-outline-danger w-100">
                         Cancel Order
@@ -134,4 +239,216 @@
         </div>
     </div>
 </div>
+
+<!-- Toast Container -->
+<div id="toast-container" class="toast-container position-fixed top-0 end-0 p-3"></div>
+
+<style>
+.rating-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border-radius: 4px !important;
+}
+
+.btn-warning {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+    color: #000 !important;
+}
+
+.text-warning {
+    color: #ffc107 !important;
+}
+
+.text-secondary {
+    color: #dee2e6 !important;
+}
+
+.spinner-border {
+    width: 1rem;
+    height: 1rem;
+    border-width: 0.15em;
+}
+
+.review-textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+</style>
+
+<script>
+// Edit rating function
+function editRating(bookIsbn) {
+    const displayDiv = document.querySelector(`#edit-form-${bookIsbn}`).previousElementSibling;
+    const editForm = document.getElementById(`edit-form-${bookIsbn}`);
+
+    displayDiv.style.display = 'none';
+    editForm.style.display = 'block';
+}
+
+// Delete rating function
+function deleteRating(bookIsbn, orderId) {
+    if (!confirm('Are you sure you want to delete your rating?')) {
+        return;
+    }
+
+    fetch(`/book/${bookIsbn}/delete-rating/?order_id=${orderId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken'),
+            'X-Requested-With': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showToast(data.message || 'Rating deleted successfully!', 'success');
+            setTimeout(() => location.reload(), 1000);
+        } else {
+            showToast('Error: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showToast('Something went wrong. Please try again.', 'error');
+    });
+}
+
+// Setup rating buttons
+document.addEventListener('DOMContentLoaded', function() {
+    // Setup rating button clicks
+    document.querySelectorAll('.rating-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const rating = this.getAttribute('data-rating');
+            const bookIsbn = this.getAttribute('data-book-isbn');
+            const form = document.getElementById(`rating-form-${bookIsbn}`);
+
+            if (!form) return;
+
+            // Reset all buttons in this form
+            const allButtons = form.querySelectorAll('.rating-btn');
+            allButtons.forEach(btn => {
+                btn.classList.remove('btn-warning');
+                btn.classList.add('btn-outline-secondary');
+            });
+
+            // Highlight selected button and previous ones
+            for (let i = 1; i <= rating; i++) {
+                const btn = form.querySelector(`[data-rating="${i}"]`);
+                if (btn) {
+                    btn.classList.remove('btn-outline-secondary');
+                    btn.classList.add('btn-warning');
+                }
+            }
+
+            // Set hidden input value
+            const ratingInput = form.querySelector('input[name="rating"]');
+            ratingInput.value = rating;
+
+            // Enable submit button
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.disabled = false;
+        });
+    });
+
+    // Load existing rating when editing
+    document.querySelectorAll('.edit-rating-form').forEach(form => {
+        const bookIsbn = form.id.replace('edit-form-', '');
+        const existingRating = form.querySelector('input[name="existing_rating"]');
+        if (existingRating && existingRating.value) {
+            // Simulate click on the rating button
+            const ratingBtn = form.querySelector(`[data-rating="${existingRating.value}"]`);
+            if (ratingBtn) {
+                ratingBtn.click();
+            }
+        }
+    });
+
+    // Handle form submissions
+    document.addEventListener('submit', function(e) {
+        if (e.target.classList.contains('rating-form')) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Submitting...';
+            submitBtn.disabled = true;
+
+            // Submit form
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': form.querySelector('[name=csrfmiddlewaretoken]').value
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showToast(data.message || 'Rating submitted successfully!', 'success');
+                    setTimeout(() => location.reload(), 1000);
+                } else {
+                    showToast('Error: ' + data.error, 'error');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('Something went wrong. Please try again.', 'error');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        }
+    });
+});
+
+// Toast notification
+function showToast(message, type = 'info') {
+    const toast = document.createElement('div');
+    toast.className = `toast align-items-center text-white bg-${type === 'success' ? 'success' : 'danger'} border-0`;
+    toast.setAttribute('role', 'alert');
+    toast.setAttribute('aria-live', 'assertive');
+    toast.setAttribute('aria-atomic', 'true');
+
+    toast.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                ${message}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    `;
+
+    const toastContainer = document.getElementById('toast-container');
+    toastContainer.appendChild(toast);
+
+    const bsToast = new bootstrap.Toast(toast);
+    bsToast.show();
+
+    toast.addEventListener('hidden.bs.toast', function() {
+        toast.remove();
+    });
+}
+
+// Get CSRF token
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+</script>
 {% endblock %}
