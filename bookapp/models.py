@@ -1,6 +1,7 @@
 from decimal import Decimal
 
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 from django.db.models import JSONField
 from datetime import datetime
@@ -64,11 +65,38 @@ class Book(models.Model):
     genre = models.ForeignKey(Genre, on_delete=models.SET_NULL, null=True, related_name='books')
     book_type = models.CharField(max_length=10, choices=BOOK_TYPES, default='both')
     stock = models.IntegerField(default=0)
+
+    # Rating fields
+    average_rating = models.DecimalField(
+        max_digits=3,
+        decimal_places=2,
+        default=3.50,  # Start with a decent rating
+        validators=[MinValueValidator(0), MaxValueValidator(5)]
+    )
+    rating_count = models.IntegerField(default=0)
+
     created_at = models.DateTimeField(null=True, blank=True)
     updated_at = models.DateTimeField(null=True, blank=True)
 
     def __str__(self):
         return self.title
+
+    def get_user_rating(self, user, order=None):
+        """Get user's rating for this book in a specific order"""
+        try:
+            # Check if user_ratings relationship exists
+            if hasattr(self, 'user_ratings'):
+                if order:
+                    rating = self.user_ratings.get(user=user, order=order)
+                else:
+                    # Get the most recent rating
+                    rating = self.user_ratings.filter(user=user).order_by('-created_at').first()
+                return rating.rating if rating else None
+        except Exception as e:
+            # Log the error in production
+            # print(f"Error getting user rating: {e}")
+            return None
+        return None
 
     @property
     def main_genre(self):
@@ -156,6 +184,92 @@ class Reader(models.Model):
                     (today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day)
             )
         return None
+
+
+class UserRating(models.Model):
+    """Model to track user ratings for books"""
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='book_ratings'
+    )
+    book = models.ForeignKey(
+        Book,
+        on_delete=models.CASCADE,
+        related_name='user_ratings'
+    )
+    order = models.ForeignKey(
+        'Order',  # Make sure to import Order or use string reference
+        on_delete=models.CASCADE,
+        related_name='ratings',
+        null=True,
+        blank=True,
+        help_text="The order in which this book was purchased"
+    )
+    rating = models.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        help_text="Rating from 1 to 5 stars"
+    )
+    review = models.TextField(
+        blank=True,
+        help_text="Optional review text"
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ['user', 'book', 'order']  # One rating per user per book per order
+        indexes = [
+            models.Index(fields=['user', 'book']),
+            models.Index(fields=['book', 'rating']),
+            models.Index(fields=['created_at']),
+        ]
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.user.username} - {self.book.title}: {self.rating}⭐"
+
+    def save(self, *args, **kwargs):
+        """Update book's rating statistics when saving"""
+        # Call parent save first
+        super().save(*args, **kwargs)
+
+        # Update book's average rating
+        ratings = self.book.user_ratings.all()
+        self.book.rating_count = ratings.count()
+
+        # Calculate average manually to avoid Decimal/float issues
+        if self.book.rating_count > 0:
+            total_rating = sum(r.rating for r in ratings)
+            avg_rating = total_rating / self.book.rating_count
+            self.book.average_rating = round(Decimal(avg_rating), 2)
+        else:
+            self.book.average_rating = Decimal('0.00')
+
+        # Update timestamps as well
+        self.book.updated_at = timezone.now()
+        self.book.save(update_fields=['average_rating', 'rating_count', 'updated_at'])
+
+    def delete(self, *args, **kwargs):
+        """Update book's rating statistics when deleting"""
+        book = self.book
+
+        # Call parent delete
+        super().delete(*args, **kwargs)
+
+        # Update book's average rating
+        ratings = book.user_ratings.all()
+        book.rating_count = ratings.count()
+
+        if book.rating_count > 0:
+            total_rating = sum(r.rating for r in ratings)
+            avg_rating = total_rating / book.rating_count
+            book.average_rating = round(Decimal(avg_rating), 2)
+        else:
+            book.average_rating = Decimal('0.00')
+
+        book.updated_at = timezone.now()
+        book.save(update_fields=['average_rating', 'rating_count', 'updated_at'])
 
 
 class Cart(models.Model):
