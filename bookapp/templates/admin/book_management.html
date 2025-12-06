@@ -60,7 +60,7 @@
                 <form method="post" class="d-flex gap-2" id="bulkActionForm">
                     {% csrf_token %}
                     <select name="action" class="form-select form-select-sm" style="width: auto;" id="bulkActionSelect">
-                        <option value="">Bulk Actions</option>
+                        <option value="" disabled selected>Bulk Actions</option>
                         <option value="restock_custom">Restock to Custom Value</option>
                         <option value="toggle_availability">Toggle Availability</option>
                     </select>
