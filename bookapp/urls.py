@@ -15,6 +15,8 @@ urlpatterns = [
     # Catalog and book details
     path('catalog/', views.book_catalog, name='book_catalog'),
     path('book/<str:isbn>/', views.book_detail, name='book_detail'),
+    path('book/<str:isbn>/rate/', views.rate_book, name='rate_book'),
+    path('book/<str:isbn>/delete-rating/', views.delete_rating, name='delete_rating'),
 
 
     # eBook URLs

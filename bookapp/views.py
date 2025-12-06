@@ -4,6 +4,7 @@ from decimal import Decimal
 import razorpay
 from django.db.backends.utils import logger
 from django.utils.text import slugify
+from django.views.decorators.http import require_POST
 from razorpay import Payment
 from django.db.models import Q, Sum, Count
 from django.forms import modelform_factory
@@ -17,7 +18,8 @@ from django.utils import timezone
 
 from BookStore import settings
 from bookapp.forms import UserRegistrationForm
-from bookapp.models import Book, Author, Reader, Genre, CartItem, Cart, WishlistItem, Wishlist, Order, OrderItem, Payment
+from bookapp.models import Book, Author, Reader, Genre, CartItem, Cart, WishlistItem, Wishlist, Order, OrderItem, \
+    Payment, UserRating
 from bookapp.utils import generate_preview_pdf
 
 
@@ -181,8 +183,27 @@ def book_detail(request, isbn):
         authors__in=book.authors.all()
     ).exclude(isbn=isbn).distinct()[:6]  # Limit to 6 books
 
-    is_in_wishlist = WishlistItem.objects.filter(book_id=isbn, wishlist__user=request.user).exists()
-    is_in_cart = CartItem.objects.filter(book_id=isbn, cart__user=request.user).exists()
+    # Check if book is in cart (for logged-in users only)
+    is_in_cart = False
+    if request.user.is_authenticated:
+        try:
+            is_in_cart = Cart.objects.filter(
+                user=request.user,
+                books=book
+            ).exists()
+        except:
+            is_in_cart = False
+
+    # Check if book is in wishlist (for logged-in users only)
+    is_in_wishlist = False
+    if request.user.is_authenticated:
+        try:
+            is_in_wishlist = Wishlist.objects.filter(
+                user=request.user,
+                books=book
+            ).exists()
+        except:
+            is_in_wishlist = False
 
     context = {
         'book': book,
@@ -500,6 +521,85 @@ def check_wishlist_status(request):
 
 
 @login_required
+@require_POST
+def rate_book(request, isbn):
+    """Handle book rating with UserRating model"""
+    try:
+        book = get_object_or_404(Book, isbn=isbn)
+        rating = int(request.POST.get('rating', 0))
+        order_id = request.POST.get('order_id')
+        review = request.POST.get('review', '').strip()
+
+        if not (1 <= rating <= 5):
+            return JsonResponse({'success': False, 'error': 'Please select a rating between 1 and 5'})
+
+        # Get the order
+        order = get_object_or_404(Order, order_id=order_id, user=request.user)
+
+        # Check if order is delivered
+        if order.order_status != 'delivered':
+            return JsonResponse({'success': False, 'error': 'You can only rate books from delivered orders'})
+
+        # Check if book is in this order
+        if not order.items.filter(book=book).exists():
+            return JsonResponse({'success': False, 'error': 'This book is not in your order'})
+
+        # Create or update rating
+        user_rating, created = UserRating.objects.update_or_create(
+            user=request.user,
+            book=book,
+            order=order,
+            defaults={
+                'rating': rating,
+                'review': review,
+                'updated_at': timezone.now()
+            }
+        )
+
+        action = 'updated' if not created else 'submitted'
+
+        return JsonResponse({
+            'success': True,
+            'rating': rating,
+            'new_average': round(book.average_rating, 1),
+            'new_count': book.rating_count,
+            'action': action,
+            'message': f'Rating {action} successfully!'
+        })
+
+    except ValueError:
+        return JsonResponse({'success': False, 'error': 'Invalid rating value'})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+
+
+@login_required
+def delete_rating(request, isbn):
+    """Delete a user's rating"""
+    try:
+        book = get_object_or_404(Book, isbn=isbn)
+        order_id = request.GET.get('order_id')
+
+        if order_id:
+            order = get_object_or_404(Order, order_id=order_id, user=request.user)
+            rating = get_object_or_404(UserRating, user=request.user, book=book, order=order)
+        else:
+            rating = get_object_or_404(UserRating, user=request.user, book=book)
+
+        rating.delete()
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Rating deleted successfully!',
+            'new_average': round(book.average_rating, 1),
+            'new_count': book.rating_count
+        })
+
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+
+
+@login_required
 def order_list(request):
     """Display user's order history"""
     orders = Order.objects.filter(user=request.user).order_by('-created_at')
@@ -512,12 +612,46 @@ def order_list(request):
 
 @login_required
 def order_detail(request, order_id):
-    """Display order details"""
+    """View to display order details with ratings"""
     order = get_object_or_404(Order, order_id=order_id, user=request.user)
 
+    # Get user ratings for this order
+    user_ratings = {}
+    for item in order.items.all():
+        try:
+            rating_obj = UserRating.objects.get(
+                user=request.user,
+                book=item.book,
+                order=order
+            )
+            user_ratings[item.book.isbn] = {
+                'rating': rating_obj.rating,
+                'review': rating_obj.review,
+                'created_at': rating_obj.created_at,
+                'updated_at': rating_obj.updated_at,
+                'id': rating_obj.id
+            }
+        except UserRating.DoesNotExist:
+            user_ratings[item.book.isbn] = None
+
+    # Create a dictionary with book objects and their ratings
+    items_with_ratings = []
+    for item in order.items.all():
+        items_with_ratings.append({
+            'item': item,
+            'user_rating': user_ratings.get(item.book.isbn)
+        })
+
+    # Count rated items
+    rated_count = sum(1 for rating in user_ratings.values() if rating is not None)
+
     context = {
-        'order': order
+        'order': order,
+        'items_with_ratings': items_with_ratings,  # Pass pre-processed data
+        'rated_count': rated_count,
+        'unrated_count': order.total_items - rated_count,
     }
+
     return render(request, 'orders/order_detail.html', context)
 
 
